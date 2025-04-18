@@ -15,7 +15,7 @@ import { RouterView } from 'vue-router'
     </main>
 
     <footer class="app-footer">
-      <p>© 2025 题库练习系统 - 基于Vue 3 + TypeScript开发</p>
+      <p>© 2025 题库练习系统</p>
     </footer>
   </div>
 </template>
@@ -60,6 +60,7 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
+  text-align: center;
 }
 
 .header-content {
@@ -77,10 +78,6 @@ body {
   text-align: center;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 0;
-  background: linear-gradient(135deg, var(--primary-color) 0%, #66b1ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
 }
 

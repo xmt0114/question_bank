@@ -39,89 +39,92 @@ const startExam = () => {
   <main>
     <div class="home-container">
       <div class="selection-container">
-        <!-- 组织选择 -->
-        <div class="selection-section">
-          <div class="card-container org-cards">
-            <div
-              v-for="org in questionStore.organizationList"
-              :key="org.id"
-              class="card org-card"
-              :class="{ active: questionStore.selectedOrganizationId === org.id }"
-              @click="questionStore.selectOrganization(org.id)"
-            >
-              <div class="card-image">
-                <img :src="org.image" :alt="org.name">
-              </div>
-              <div class="card-title">
-                {{ org.name }}
+        <!-- 选择区域框 -->   
+          <div class="selection-box">
+          <!-- 组织选择 -->
+            <h4 class="selection-box-title">组织选择</h4>
+            <div class="card-container org-cards">
+              <div
+                v-for="org in questionStore.organizationList"
+                :key="org.id"
+                class="card org-card"
+                :class="{ active: questionStore.selectedOrganizationId === org.id }"
+                @click="questionStore.selectOrganization(org.id)"
+              >
+                <div class="card-image">
+                  <img :src="org.image" :alt="org.name">
+                </div>
+                <div class="card-title">
+                  {{ org.name }}
+                </div>
               </div>
             </div>
-          </div>
         </div>
 
-        <!-- 类别选择 -->
-        <div class="selection-section" v-if="questionStore.selectedOrganizationId">
-          <div class="card-container category-cards">
-            <div
-              v-for="category in questionStore.filteredCategories"
-              :key="category.id"
-              class="card category-card"
-              :class="{ active: questionStore.selectedCategoryId === category.id }"
-              @click="questionStore.selectCategory(category.id)"
-            >
-              <div class="card-image">
-                <img :src="category.image" :alt="category.name">
-              </div>
-              <div class="card-title">
-                {{ category.name }}
+        <div class="selection-box">
+          <!-- 类别选择 -->
+            <h4 class="selection-box-title">类别选择</h4>
+            <div class="card-container category-cards">
+              <div
+                v-for="category in questionStore.filteredCategories"
+                :key="category.id"
+                class="card category-card"
+                :class="{ active: questionStore.selectedCategoryId === category.id }"
+                @click="questionStore.selectCategory(category.id)"
+              >
+                <div class="card-image">
+                  <img :src="category.image" :alt="category.name">
+                </div>
+                <div class="card-title">
+                  {{ category.name }}
+                </div>
               </div>
             </div>
-          </div>
         </div>
 
-        <!-- 级别选择 -->
-        <div class="selection-section" v-if="questionStore.selectedCategoryId">
-          <div class="card-container level-cards">
-            <div
-              v-for="level in questionStore.filteredLevels"
-              :key="level.id"
-              class="card level-card"
-              :class="{ active: questionStore.selectedLevelId === level.id }"
-              @click="questionStore.selectLevel(level.id)"
-            >
-              <div class="card-title">
-                {{ level.name }}
+        <div class="selection-box">
+          <!-- 级别选择 -->
+            <h4 class="selection-box-title">级别选择</h4>
+            <div class="card-container level-cards">
+              <div
+                v-for="level in questionStore.filteredLevels"
+                :key="level.id"
+                class="card level-card"
+                :class="{ active: questionStore.selectedLevelId === level.id }"
+                @click="questionStore.selectLevel(level.id)"
+              >
+                <div class="card-title">
+                  {{ level.name }}
+                </div>
               </div>
             </div>
-          </div>
         </div>
 
-        <!-- 试卷选择 -->
-        <div class="selection-section" v-if="questionStore.selectedLevelId">
-          <div class="card-container paper-cards">
-            <div
-              v-for="paper in questionStore.filteredPapers"
-              :key="paper.id"
-              class="card paper-card"
-              :class="{ active: questionStore.currentPaperId === paper.id }"
-              @click="questionStore.selectPaper(paper.id)"
-            >
-              <div class="card-title">
-                {{ paper.name }}
+        <div class="selection-box">
+          <!-- 试卷选择 -->
+            <h4 class="selection-box-title">试卷选择</h4>
+            <div class="card-container paper-cards">
+              <div
+                v-for="paper in questionStore.filteredPapers"
+                :key="paper.id"
+                class="card paper-card"
+                :class="{ active: questionStore.currentPaperId === paper.id }"
+                @click="questionStore.selectPaper(paper.id)"
+              >
+                <div class="card-title">
+                  {{ paper.name }}
+                </div>
               </div>
             </div>
-          </div>
         </div>
+      </div>
 
         <!-- 模式选择 -->
-        <div class="mode-selection" v-if="questionStore.currentPaperId">
           <div class="mode-buttons">
             <el-button type="primary" size="large" @click="startTutorial">讲解模式</el-button>
             <el-button type="success" size="large" @click="startExam">测试模式</el-button>
           </div>
         </div>
-      </div>
-    </div>
   </main>
 </template>
 
@@ -273,16 +276,18 @@ h1 {
 
 /* 模式选择样式 */
 .mode-selection {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .mode-selection h2 {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  color: #606266;
-  text-align: left;
-  padding-left: 0.5rem;
-  border-left: 4px solid #409EFF;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #409EFF;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-bottom: 2px solid #409EFF;
+  display: inline-block;
 }
 
 .mode-buttons {
@@ -293,8 +298,9 @@ h1 {
 }
 
 .mode-buttons .el-button {
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
+  padding: 1.2rem 3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 /* 响应式调整 */
@@ -340,5 +346,43 @@ h1 {
   .org-cards, .category-cards, .level-cards, .paper-cards {
     --cards-per-row: 1;
   }
+}
+
+/* 增强选择框样式，使边框更加明显 */
+.selection-box {
+  border: 2px solid #409EFF;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(240, 249, 255, 0.5);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.selection-box-title {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 0 1.5rem;
+  color: #409EFF;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #409EFF;
+  border-radius: 20px;
+}
+
+/* 调整各选择区域标题样式，使其更加突出 */
+.selection-section h3 {
+  margin: 1rem 0 0.75rem 0;
+  font-size: 1.2rem;
+  color: #303133;
+  text-align: left;
+  padding: 0.3rem 0.8rem;
+  border-left: 6px solid #409EFF;
+  background-color: rgba(64, 158, 255, 0.1);
+  border-radius: 0 4px 4px 0;
+  font-weight: bold;
 }
 </style>
