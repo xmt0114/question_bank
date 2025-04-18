@@ -4,6 +4,7 @@ export const mockPapers: Paper[] = [
   {
     id: 'robot-theory',
     name: '机器人一级理论',
+    category: '机器人',
     questions: [
       {
         id: 'rt-1',
@@ -74,6 +75,7 @@ export const mockPapers: Paper[] = [
   {
     id: 'robot-practice',
     name: '机器人一级实操',
+    category: '机器人',
     questions: [
       {
         id: 'rp-1',
@@ -144,6 +146,7 @@ export const mockPapers: Paper[] = [
   {
     id: 'primary-theory',
     name: '小学理论学习',
+    category: '图形化编程',
     questions: [
       {
         id: 'pt-1',

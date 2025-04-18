@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { useQuestionStore } from '@/stores/question'
 
 const router = useRouter()
+const questionStore = useQuestionStore()
+const selectedCategory = ref('')
 const selectedPaper = ref('')
 
-const papers = [
-  { id: 'robot-theory', name: '机器人一级理论' },
-  { id: 'robot-practice', name: '机器人一级实操' },
-  { id: 'primary-theory', name: '小学理论学习' }
-]
+// 获取所有题目类别
+const categories = computed(() => {
+  const categorySet = new Set(questionStore.papers.map(paper => paper.category))
+  return Array.from(categorySet)
+})
+
+// 根据选择的类别筛选题目
+const filteredPapers = computed(() => {
+  if (!selectedCategory.value) return []
+  return questionStore.papers.filter(paper => paper.category === selectedCategory.value)
+})
 
 const startTutorial = () => {
   if (!selectedPaper.value) {
@@ -41,10 +50,25 @@ const startExam = () => {
       <h1>题库练习系统</h1>
 
       <div class="paper-selection">
-        <h2>请选择题目</h2>
-        <el-select v-model="selectedPaper" placeholder="请选择题目">
+        <h2>请选择题目类别</h2>
+        <el-select v-model="selectedCategory" placeholder="请选择题目类别" class="selection-dropdown">
           <el-option
-            v-for="paper in papers"
+            v-for="category in categories"
+            :key="category"
+            :label="category"
+            :value="category"
+          />
+        </el-select>
+        
+        <h2 class="sub-title">请选择题目</h2>
+        <el-select 
+          v-model="selectedPaper" 
+          placeholder="请选择题目" 
+          :disabled="!selectedCategory" 
+          class="selection-dropdown"
+        >
+          <el-option
+            v-for="paper in filteredPapers"
             :key="paper.id"
             :label="paper.name"
             :value="paper.id"
@@ -87,15 +111,24 @@ h1 {
 }
 
 .paper-selection {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .paper-selection h2 {
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #606266;
 }
 
-.el-select {
-  width: 300px;
+.paper-selection .sub-title {
+  margin-top: 1.5rem;
+}
+
+.selection-dropdown {
+  width: 400px;
 }
 
 .mode-selection h2 {

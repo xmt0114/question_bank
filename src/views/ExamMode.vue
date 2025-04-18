@@ -5,6 +5,7 @@ import { useQuestionStore } from '@/stores/question'
 import QuestionItem from '@/components/QuestionItem.vue'
 import QuestionNavigation from '@/components/QuestionNavigation.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { QuestionType } from '@/types/question'
 
 const route = useRoute()
 const router = useRouter()
@@ -60,7 +61,7 @@ const submitCurrentAnswer = () => {
   const answer = questionStore.userAnswers[questionId]
 
   // 如果是多选题
-  if (currentQuestion.value.type === 'multipleChoice') {
+  if (currentQuestion.value.type === QuestionType.MultipleChoice) {
     // 获取所有选中的复选框
     const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked')
 

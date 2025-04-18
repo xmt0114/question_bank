@@ -96,14 +96,14 @@ const backToHome = async () => {
 
     <template v-else>
       <div class="tutorial-header">
-        <div class="header-left">
+        <div class="mode-title">
           <h2>讲解模式</h2>
         </div>
-        <div class="header-right">
+        <div class="header-controls">
           <div class="progress-info">
             <span>题目 {{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span>
           </div>
-          <el-button @click="backToHome">返回首页</el-button>
+          <el-button @click="backToHome" type="primary" plain>返回首页</el-button>
         </div>
       </div>
 
@@ -173,26 +173,45 @@ const backToHome = async () => {
 
 .tutorial-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
   width: 100%;
 }
 
-.header-left h2 {
-  color: #409EFF;
-  margin: 0;
+.mode-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.header-right {
+.mode-title h2 {
+  color: #409EFF;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-bottom: 2px solid #409EFF;
+  display: inline-block;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.header-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .progress-info {
   font-size: 16px;
   font-weight: 500;
+  background-color: #f0f9ff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #d9ecff;
 }
 
 .question-wrapper {

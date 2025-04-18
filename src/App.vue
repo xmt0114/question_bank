@@ -63,7 +63,6 @@ body {
 }
 
 .header-content {
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -74,15 +73,20 @@ body {
 .app-title {
   color: var(--primary-color);
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #66b1ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
 }
 
 .app-main {
   flex: 1;
   padding: 1rem 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .app-footer {

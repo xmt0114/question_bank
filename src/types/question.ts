@@ -23,6 +23,7 @@ export interface Question {
 export interface Paper {
   id: string;
   name: string;
+  category: string; // 添加题目类别字段
   questions: Question[];
 }
 

@@ -45,6 +45,11 @@ const isCorrect = computed(() => {
 const handleSingleSelect = (optionId: string) => {
   if (props.disabled) return
   selectedAnswer.value = optionId
+  
+  // 如果隐藏了提交按钮（在ExamMode模式下），选择选项后立即提交答案
+  if (props.hideSubmitButton) {
+    submitAnswer()
+  }
 }
 
 const handleMultipleSelect = (optionId: string) => {
@@ -60,6 +65,12 @@ const handleMultipleSelect = (optionId: string) => {
   }
 
   selectedAnswer.value = multipleAnswer
+  
+  // 如果隐藏了提交按钮（在ExamMode模式下），选择选项后立即提交答案
+  // 多选题需要至少选择一项才提交
+  if (props.hideSubmitButton && multipleAnswer.length > 0) {
+    submitAnswer()
+  }
 }
 
 const submitAnswer = () => {
