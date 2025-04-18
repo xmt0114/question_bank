@@ -1,11 +1,22 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Paper, Question, UserAnswer, ExamResult } from '@/types/question'
-import { mockPapers } from '@/data/mockData'
+import type { Paper, Question, UserAnswer, ExamResult, Organization, Category, Level } from '@/types/question'
+import { mockPapers, organizations, categories, levels } from '@/data/mockData'
 
 export const useQuestionStore = defineStore('question', () => {
+  // 数据存储
+  const organizationList = ref<Organization[]>(organizations)
+  const categoryList = ref<Category[]>(categories)
+  const levelList = ref<Level[]>(levels)
   const papers = ref<Paper[]>(mockPapers)
+
+  // 选择状态
+  const selectedOrganizationId = ref<string>('')
+  const selectedCategoryId = ref<string>('')
+  const selectedLevelId = ref<string>('')
   const currentPaperId = ref<string>('')
+
+  // 考试状态
   const currentQuestionIndex = ref<number>(0)
   const userAnswers = ref<Record<string, UserAnswer>>({})
   const examStartTime = ref<Date | null>(null)
@@ -54,7 +65,10 @@ export const useQuestionStore = defineStore('question', () => {
   })
 
   function startExam(paperId: string, mode: 'tutorial' | 'exam') {
-    currentPaperId.value = paperId
+    // 设置当前试卷
+    selectPaper(paperId)
+
+    // 初始化考试状态
     currentQuestionIndex.value = 0
     userAnswers.value = {}
     examStartTime.value = new Date()
@@ -71,6 +85,27 @@ export const useQuestionStore = defineStore('question', () => {
           isAnswered: false
         }
       })
+    }
+
+    // 设置级别、类别和组织
+    if (currentPaper.value) {
+      // 设置级别
+      const level = levelList.value.find(l => l.id === currentPaper.value?.levelId)
+      if (level) {
+        selectedLevelId.value = level.id
+
+        // 设置类别
+        const category = categoryList.value.find(c => c.id === level.categoryId)
+        if (category) {
+          selectedCategoryId.value = category.id
+
+          // 设置组织
+          const organization = organizationList.value.find(o => o.id === category.organizationId)
+          if (organization) {
+            selectedOrganizationId.value = organization.id
+          }
+        }
+      }
     }
   }
 
@@ -112,20 +147,136 @@ export const useQuestionStore = defineStore('question', () => {
     examEndTime.value = new Date()
   }
 
+  // 组织相关的计算属性和方法
+  const filteredCategories = computed(() => {
+    if (!selectedOrganizationId.value) return []
+    return categoryList.value.filter(category => category.organizationId === selectedOrganizationId.value)
+  })
+
+  const filteredLevels = computed(() => {
+    if (!selectedCategoryId.value) return []
+    return levelList.value.filter(level => level.categoryId === selectedCategoryId.value)
+  })
+
+  const filteredPapers = computed(() => {
+    if (!selectedLevelId.value) return []
+    return papers.value.filter(paper => paper.levelId === selectedLevelId.value)
+  })
+
+  // 选择组织
+  function selectOrganization(organizationId: string) {
+    selectedOrganizationId.value = organizationId
+    // 重置下级选择
+    selectedCategoryId.value = ''
+    selectedLevelId.value = ''
+    currentPaperId.value = ''
+
+    // 自动选择第一个类别（如果有）
+    const firstCategory = filteredCategories.value[0]
+    if (firstCategory) {
+      selectCategory(firstCategory.id)
+    }
+  }
+
+  // 选择类别
+  function selectCategory(categoryId: string) {
+    selectedCategoryId.value = categoryId
+    // 重置下级选择
+    selectedLevelId.value = ''
+    currentPaperId.value = ''
+
+    // 自动选择第一个级别（如果有）
+    const firstLevel = filteredLevels.value[0]
+    if (firstLevel) {
+      selectLevel(firstLevel.id)
+    }
+  }
+
+  // 选择级别
+  function selectLevel(levelId: string) {
+    selectedLevelId.value = levelId
+    // 重置试卷选择
+    currentPaperId.value = ''
+
+    // 自动选择第一个试卷（如果有）
+    const firstPaper = filteredPapers.value[0]
+    if (firstPaper) {
+      selectPaper(firstPaper.id)
+    }
+  }
+
+  // 选择试卷
+  function selectPaper(paperId: string) {
+    currentPaperId.value = paperId
+  }
+
+  // 获取当前选中的组织
+  const currentOrganization = computed(() => {
+    if (!selectedOrganizationId.value) return null
+    return organizationList.value.find(org => org.id === selectedOrganizationId.value) || null
+  })
+
+  // 获取当前选中的类别
+  const currentCategory = computed(() => {
+    if (!selectedCategoryId.value) return null
+    return categoryList.value.find(cat => cat.id === selectedCategoryId.value) || null
+  })
+
+  // 获取当前选中的级别
+  const currentLevel = computed(() => {
+    if (!selectedLevelId.value) return null
+    return levelList.value.find(level => level.id === selectedLevelId.value) || null
+  })
+
+  // 初始化选择
+  function initSelection() {
+    // 如果有组织，选择第一个
+    const firstOrg = organizationList.value[0]
+    if (firstOrg) {
+      selectOrganization(firstOrg.id)
+    }
+  }
+
   return {
+    // 数据列表
+    organizationList,
+    categoryList,
+    levelList,
     papers,
+
+    // 选择状态
+    selectedOrganizationId,
+    selectedCategoryId,
+    selectedLevelId,
     currentPaperId,
+
+    // 考试状态
     currentQuestionIndex,
     userAnswers,
     examStartTime,
     examEndTime,
     examMode,
+
+    // 计算属性
+    filteredCategories,
+    filteredLevels,
+    filteredPapers,
+    currentOrganization,
+    currentCategory,
+    currentLevel,
     currentPaper,
     currentQuestion,
     totalQuestions,
     isLastQuestion,
     isFirstQuestion,
     examResult,
+
+    // 方法
+    selectOrganization,
+    selectCategory,
+    selectLevel,
+    selectPaper,
+    initSelection,
     startExam,
     submitAnswer,
     nextQuestion,

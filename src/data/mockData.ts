@@ -1,10 +1,197 @@
-import { Paper, QuestionType } from '@/types/question'
+import { Paper, QuestionType, Organization, Category, Level } from '@/types/question'
 
-export const mockPapers: Paper[] = [
+// 组织数据
+export const organizations: Organization[] = [
   {
-    id: 'robot-theory',
-    name: '机器人一级理论',
-    category: '机器人',
+    id: 'ccef',
+    name: '中国计算机电子学会',
+    image: 'https://via.placeholder.com/150x100?text=CCEF',
+    description: '中国计算机电子学会是中国计算机和电子领域的学术组织'
+  },
+  {
+    id: 'youth-contest',
+    name: '全国青少年信息素养大赛',
+    image: 'https://via.placeholder.com/150x100?text=Youth+Contest',
+    description: '全国青少年信息素养大赛是面向全国青少年的信息技术竞赛'
+  }
+]
+
+// 类别数据
+export const categories: Category[] = [
+  {
+    id: 'robot',
+    name: '机器人技术',
+    image: 'https://via.placeholder.com/150x100?text=Robot',
+    description: '机器人技术相关的考试和认证',
+    organizationId: 'ccef'
+  },
+  {
+    id: 'graphic',
+    name: '图形化编程',
+    image: 'https://via.placeholder.com/150x100?text=Graphic',
+    description: '图形化编程相关的考试和认证',
+    organizationId: 'ccef'
+  },
+  {
+    id: 'python',
+    name: 'Python编程',
+    image: 'https://via.placeholder.com/150x100?text=Python',
+    description: 'Python编程相关的考试和认证',
+    organizationId: 'ccef'
+  },
+  {
+    id: 'youth-robot',
+    name: '机器人技术',
+    image: 'https://via.placeholder.com/150x100?text=Youth+Robot',
+    description: '青少年机器人技术竞赛',
+    organizationId: 'youth-contest'
+  },
+  {
+    id: 'youth-graphic',
+    name: '图形化编程',
+    image: 'https://via.placeholder.com/150x100?text=Youth+Graphic',
+    description: '青少年图形化编程竞赛',
+    organizationId: 'youth-contest'
+  },
+  {
+    id: 'youth-python',
+    name: 'Python编程',
+    image: 'https://via.placeholder.com/150x100?text=Youth+Python',
+    description: '青少年Python编程竞赛',
+    organizationId: 'youth-contest'
+  }
+]
+
+// 级别数据
+export const levels: Level[] = [
+  // 中国计算机电子学会 - 机器人技术
+  {
+    id: 'robot-level-1',
+    name: '一级',
+    description: '机器人技术一级认证',
+    categoryId: 'robot'
+  },
+  {
+    id: 'robot-level-2',
+    name: '二级',
+    description: '机器人技术二级认证',
+    categoryId: 'robot'
+  },
+  {
+    id: 'robot-level-3',
+    name: '三级',
+    description: '机器人技术三级认证',
+    categoryId: 'robot'
+  },
+
+  // 中国计算机电子学会 - 图形化编程
+  {
+    id: 'graphic-level-1',
+    name: '一级',
+    description: '图形化编程一级认证',
+    categoryId: 'graphic'
+  },
+  {
+    id: 'graphic-level-2',
+    name: '二级',
+    description: '图形化编程二级认证',
+    categoryId: 'graphic'
+  },
+  {
+    id: 'graphic-level-3',
+    name: '三级',
+    description: '图形化编程三级认证',
+    categoryId: 'graphic'
+  },
+
+  // 中国计算机电子学会 - Python编程
+  {
+    id: 'python-level-1',
+    name: '一级',
+    description: 'Python编程一级认证',
+    categoryId: 'python'
+  },
+  {
+    id: 'python-level-2',
+    name: '二级',
+    description: 'Python编程二级认证',
+    categoryId: 'python'
+  },
+  {
+    id: 'python-level-3',
+    name: '三级',
+    description: 'Python编程三级认证',
+    categoryId: 'python'
+  },
+
+  // 全国青少年信息素养大赛 - 机器人技术
+  {
+    id: 'youth-robot-level-1',
+    name: '1-3年级',
+    description: '小学1-3年级组',
+    categoryId: 'youth-robot'
+  },
+  {
+    id: 'youth-robot-level-2',
+    name: '4-6年级',
+    description: '小学4-6年级组',
+    categoryId: 'youth-robot'
+  },
+  {
+    id: 'youth-robot-level-3',
+    name: '初中组',
+    description: '初中组',
+    categoryId: 'youth-robot'
+  },
+
+  // 全国青少年信息素养大赛 - 图形化编程
+  {
+    id: 'youth-graphic-level-1',
+    name: '1-3年级',
+    description: '小学1-3年级组',
+    categoryId: 'youth-graphic'
+  },
+  {
+    id: 'youth-graphic-level-2',
+    name: '4-6年级',
+    description: '小学4-6年级组',
+    categoryId: 'youth-graphic'
+  },
+  {
+    id: 'youth-graphic-level-3',
+    name: '初中组',
+    description: '初中组',
+    categoryId: 'youth-graphic'
+  },
+
+  // 全国青少年信息素养大赛 - Python编程
+  {
+    id: 'youth-python-level-1',
+    name: '1-3年级',
+    description: '小学1-3年级组',
+    categoryId: 'youth-python'
+  },
+  {
+    id: 'youth-python-level-2',
+    name: '4-6年级',
+    description: '小学4-6年级组',
+    categoryId: 'youth-python'
+  },
+  {
+    id: 'youth-python-level-3',
+    name: '初中组',
+    description: '初中组',
+    categoryId: 'youth-python'
+  }
+]
+
+// 试卷数据
+export const mockPapers: Paper[] = [
+  // 中国计算机电子学会 - 机器人技术 - 一级 - 2024年12月初赛
+  {
+    id: 'robot-level-1-2024-12',
+    name: '2024年12月初赛',
+    levelId: 'robot-level-1',
     questions: [
       {
         id: 'rt-1',
@@ -72,10 +259,11 @@ export const mockPapers: Paper[] = [
       }
     ]
   },
+  // 中国计算机电子学会 - 机器人技术 - 一级 - 2025年3月初赛
   {
-    id: 'robot-practice',
-    name: '机器人一级实操',
-    category: '机器人',
+    id: 'robot-level-1-2025-03',
+    name: '2025年3月初赛',
+    levelId: 'robot-level-1',
     questions: [
       {
         id: 'rp-1',
@@ -143,10 +331,11 @@ export const mockPapers: Paper[] = [
       }
     ]
   },
+  // 中国计算机电子学会 - 图形化编程 - 一级 - 2024年12月初赛
   {
-    id: 'primary-theory',
-    name: '小学理论学习',
-    category: '图形化编程',
+    id: 'graphic-level-1-2024-12',
+    name: '2024年12月初赛',
+    levelId: 'graphic-level-1',
     questions: [
       {
         id: 'pt-1',
@@ -211,6 +400,94 @@ export const mockPapers: Paper[] = [
         ],
         answer: ['A', 'B', 'D'],
         explanation: '太阳能、风能和水能都是可再生能源，而煤炭是不可再生的化石燃料。'
+      }
+    ]
+  },
+
+  // 中国计算机电子学会 - 图形化编程 - 一级 - 2025年3月初赛
+  {
+    id: 'graphic-level-1-2025-03',
+    name: '2025年3月初赛',
+    levelId: 'graphic-level-1',
+    questions: [
+      {
+        id: 'gl1-1',
+        type: QuestionType.SingleChoice,
+        title: '下列哪个是图形化编程语言？',
+        options: [
+          { id: 'A', text: 'Python' },
+          { id: 'B', text: 'Scratch' },
+          { id: 'C', text: 'Java' },
+          { id: 'D', text: 'C++' }
+        ],
+        answer: 'B',
+        explanation: 'Scratch是一种图形化编程语言，由麦克萨诸塞大学媒体实验室开发。'
+      }
+    ]
+  },
+
+  // 中国计算机电子学会 - 图形化编程 - 二级 - 2024年12月初赛
+  {
+    id: 'graphic-level-2-2024-12',
+    name: '2024年12月初赛',
+    levelId: 'graphic-level-2',
+    questions: [
+      {
+        id: 'gl2-1',
+        type: QuestionType.SingleChoice,
+        title: '在Scratch中，下列哪个块用于控制角色的移动？',
+        options: [
+          { id: 'A', text: '移动x步' },
+          { id: 'B', text: '说一个气泡' },
+          { id: 'C', text: '等待x秒' },
+          { id: 'D', text: '播放音效' }
+        ],
+        answer: 'A',
+        explanation: '在Scratch中，“移动x步”块用于控制角色的移动。'
+      }
+    ]
+  },
+
+  // 全国青少年信息素养大赛 - 机器人技术 - 1-3年级 - 2024年初赛
+  {
+    id: 'youth-robot-level-1-2024',
+    name: '2024年初赛',
+    levelId: 'youth-robot-level-1',
+    questions: [
+      {
+        id: 'yr1-1',
+        type: QuestionType.SingleChoice,
+        title: '下列哪种机器人最适合小学生学习编程？',
+        options: [
+          { id: 'A', text: '工业机器人' },
+          { id: 'B', text: '手术机器人' },
+          { id: 'C', text: '教育机器人' },
+          { id: 'D', text: '军用机器人' }
+        ],
+        answer: 'C',
+        explanation: '教育机器人是专门为教育目的设计的，最适合小学生学习编程。'
+      }
+    ]
+  },
+
+  // 全国青少年信息素养大赛 - 图形化编程 - 1-3年级 - 2024年初赛
+  {
+    id: 'youth-graphic-level-1-2024',
+    name: '2024年初赛',
+    levelId: 'youth-graphic-level-1',
+    questions: [
+      {
+        id: 'yg1-1',
+        type: QuestionType.SingleChoice,
+        title: '在图形化编程中，下列哪个形状最适合用来表示开始或结束？',
+        options: [
+          { id: 'A', text: '菜单块' },
+          { id: 'B', text: '圆角矩形' },
+          { id: 'C', text: '菱形' },
+          { id: 'D', text: '椭圆形' }
+        ],
+        answer: 'B',
+        explanation: '在图形化编程中，圆角矩形通常用来表示开始或结束节点。'
       }
     ]
   }

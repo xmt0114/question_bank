@@ -186,6 +186,26 @@ const backToHome = async () => {
         <div class="header-left">
           <h2>测试模式</h2>
         </div>
+
+        <div class="paper-info" v-if="questionStore.currentPaper && questionStore.currentLevel && questionStore.currentCategory && questionStore.currentOrganization">
+          <div class="info-item">
+            <span class="label">组织：</span>
+            <span class="value">{{ questionStore.currentOrganization.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">类别：</span>
+            <span class="value">{{ questionStore.currentCategory.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">级别：</span>
+            <span class="value">{{ questionStore.currentLevel.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">试卷：</span>
+            <span class="value">{{ questionStore.currentPaper.name }}</span>
+          </div>
+        </div>
+
         <div v-if="!examFinished" class="exam-actions">
           <el-button @click="backToHome">返回首页</el-button>
           <el-button type="primary" @click="submitExam">提交试卷</el-button>
@@ -262,17 +282,55 @@ const backToHome = async () => {
 
 .exam-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
   width: 100%;
-  flex-wrap: wrap;
   gap: 1rem;
+}
+
+.header-left {
+  width: 100%;
+  text-align: center;
 }
 
 .exam-header h2 {
   color: #409EFF;
   margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-bottom: 2px solid #409EFF;
+  display: inline-block;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.paper-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  background-color: #f0f9ff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d9ecff;
+  width: 100%;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.info-item .label {
+  font-weight: bold;
+  color: #606266;
+  margin-right: 0.25rem;
+}
+
+.info-item .value {
+  color: #409EFF;
 }
 
 .exam-content {

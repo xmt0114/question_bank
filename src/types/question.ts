@@ -20,10 +20,36 @@ export interface Question {
   explanation: string;
 }
 
+// 组织（如中国计算机电子学会、全国青少年信息素养大赛）
+export interface Organization {
+  id: string;
+  name: string;
+  image?: string;
+  description?: string;
+}
+
+// 类别（如机器人技术、图形化编程、Python编程）
+export interface Category {
+  id: string;
+  name: string;
+  image?: string;
+  description?: string;
+  organizationId: string; // 关联到所属组织
+}
+
+// 级别（如一级/二级/三级或1-3年级/4-6年级/初中组）
+export interface Level {
+  id: string;
+  name: string;
+  description?: string;
+  categoryId: string; // 关联到所属类别
+}
+
+// 试卷（如2024年12月初赛、2025年3月初赛）
 export interface Paper {
   id: string;
   name: string;
-  category: string; // 添加题目类别字段
+  levelId: string; // 关联到所属级别
   questions: Question[];
 }
 

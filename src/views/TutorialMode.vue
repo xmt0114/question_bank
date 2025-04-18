@@ -99,6 +99,24 @@ const backToHome = async () => {
         <div class="mode-title">
           <h2>讲解模式</h2>
         </div>
+        <div class="paper-info" v-if="questionStore.currentPaper && questionStore.currentLevel && questionStore.currentCategory && questionStore.currentOrganization">
+          <div class="info-item">
+            <span class="label">组织：</span>
+            <span class="value">{{ questionStore.currentOrganization.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">类别：</span>
+            <span class="value">{{ questionStore.currentCategory.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">级别：</span>
+            <span class="value">{{ questionStore.currentLevel.name }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">试卷：</span>
+            <span class="value">{{ questionStore.currentPaper.name }}</span>
+          </div>
+        </div>
         <div class="header-controls">
           <div class="progress-info">
             <span>题目 {{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span>
@@ -196,6 +214,33 @@ const backToHome = async () => {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.paper-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  background-color: #f0f9ff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d9ecff;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.info-item .label {
+  font-weight: bold;
+  color: #606266;
+  margin-right: 0.25rem;
+}
+
+.info-item .value {
+  color: #409EFF;
+}
+
 .header-controls {
   display: flex;
   align-items: center;
@@ -203,6 +248,7 @@ const backToHome = async () => {
   gap: 2rem;
   width: 100%;
   padding: 0 1rem;
+  margin-top: 1rem;
 }
 
 .progress-info {
