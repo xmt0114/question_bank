@@ -186,10 +186,6 @@ const backToHome = async () => {
 
     <template v-else>
       <div class="exam-header">
-        <div class="header-left">
-          <h2>测试模式</h2>
-        </div>
-
         <div class="paper-info" v-if="questionStore.currentPaper && questionStore.currentLevel && questionStore.currentCategory && questionStore.currentOrganization">
           <div class="info-item">
             <span class="label">组织：</span>

@@ -2,23 +2,23 @@
   {
     "id": "robot",
     "name": "机器人技术",
-    "image": "https://via.placeholder.com/150x100?text=Robot",
-    "description": "机器人技术相关的考试和认证",
-    "organizationId": "ccef"
+    "organizationId": "ccef",
+    "image": "/images/young_robo_ico.png",
+    "description": "机器人技术相关的考试和认证"
   },
   {
     "id": "graphic",
     "name": "图形化编程",
-    "image": "https://via.placeholder.com/150x100?text=Graphic",
-    "description": "图形化编程相关的考试和认证",
-    "organizationId": "ccef"
+    "organizationId": "ccef",
+    "image": "/images/class_shape.png",
+    "description": "图形化编程相关的考试和认证"
   },
   {
     "id": "python",
     "name": "Python编程",
-    "image": "https://via.placeholder.com/150x100?text=Python",
-    "description": "Python编程相关的考试和认证",
-    "organizationId": "ccef"
+    "organizationId": "ccef",
+    "image": "/images/class_python.png",
+    "description": "Python编程相关的考试和认证"
   },
   {
     "id": "youth-creative-engineering",

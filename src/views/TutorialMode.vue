@@ -97,9 +97,6 @@ const backToHome = async () => {
 
     <template v-else>
       <div class="tutorial-header">
-        <div class="mode-title">
-          <h2>讲解模式</h2>
-        </div>
         <div class="paper-info" v-if="questionStore.currentPaper && questionStore.currentLevel && questionStore.currentCategory && questionStore.currentOrganization">
           <div class="info-item">
             <span class="label">组织：</span>
@@ -253,10 +250,10 @@ const backToHome = async () => {
 }
 
 .progress-info {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   background-color: #f0f9ff;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 4px;
   border: 1px solid #d9ecff;
 }
