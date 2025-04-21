@@ -2,13 +2,13 @@
   {
     "id": "ccef",
     "name": "中国计算机电子学会",
-    "image": "https://via.placeholder.com/150x100?text=CCEF",
+    "image": "/images/bank_ceic.png",
     "description": "中国计算机电子学会是中国计算机和电子领域的学术组织"
   },
   {
     "id": "youth-contest",
     "name": "全国青少年信息素养大赛",
-    "image": "https://via.placeholder.com/150x100?text=Youth+Contest",
+    "image": "/images/bank_ceic.png",
     "description": "全国青少年信息素养大赛是面向全国青少年的信息技术竞赛"
   }
 ]

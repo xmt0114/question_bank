@@ -54,57 +54,9 @@
     "categoryId": "python"
   },
   {
-    "id": "youth-robot-level-1",
+    "id": "youth-creative-engineering-level-1",
     "name": "1-3年级",
-    "description": "小学1-3年级组",
-    "categoryId": "youth-robot"
-  },
-  {
-    "id": "youth-robot-level-2",
-    "name": "4-6年级",
-    "description": "小学4-6年级组",
-    "categoryId": "youth-robot"
-  },
-  {
-    "id": "youth-robot-level-3",
-    "name": "初中组",
-    "description": "初中组",
-    "categoryId": "youth-robot"
-  },
-  {
-    "id": "youth-graphic-level-1",
-    "name": "1-3年级",
-    "description": "小学1-3年级组",
-    "categoryId": "youth-graphic"
-  },
-  {
-    "id": "youth-graphic-level-2",
-    "name": "4-6年级",
-    "description": "小学4-6年级组",
-    "categoryId": "youth-graphic"
-  },
-  {
-    "id": "youth-graphic-level-3",
-    "name": "初中组",
-    "description": "初中组",
-    "categoryId": "youth-graphic"
-  },
-  {
-    "id": "youth-python-level-1",
-    "name": "1-3年级",
-    "description": "小学1-3年级组",
-    "categoryId": "youth-python"
-  },
-  {
-    "id": "youth-python-level-2",
-    "name": "4-6年级",
-    "description": "小学4-6年级组",
-    "categoryId": "youth-python"
-  },
-  {
-    "id": "youth-python-level-3",
-    "name": "初中组",
-    "description": "初中组",
-    "categoryId": "youth-python"
+    "categoryId": "youth-creative-engineering",
+    "description": ""
   }
 ]

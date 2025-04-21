@@ -71,6 +71,13 @@ export const useQuestionStore = defineStore('question', () => {
   async function startExam(paperId: string, mode: 'tutorial' | 'exam') {
     loading.value = true
     try {
+      // 先清除旧的考试状态，避免状态混淆
+      // 但保留当前选择的组织、类别、级别信息
+      currentQuestionIndex.value = 0
+      userAnswers.value = {}
+      examStartTime.value = null
+      examEndTime.value = null
+
       // 设置当前试卷
       await selectPaper(paperId)
 
@@ -158,6 +165,29 @@ export const useQuestionStore = defineStore('question', () => {
     examEndTime.value = new Date()
   }
 
+  // 清除考试状态
+  function clearExamState() {
+    console.log('Clearing exam state...')
+
+    // 重置考试相关状态
+    currentQuestionIndex.value = 0
+    userAnswers.value = {}
+    examStartTime.value = null
+    examEndTime.value = null
+    examMode.value = 'tutorial'
+
+    // 清除当前试卷缓存
+    const paperId = currentPaperId.value
+    if (paperId && paperCache.value[paperId]) {
+      console.log(`Clearing paper cache for ${paperId}`)
+      delete paperCache.value[paperId]
+    }
+
+    // 重置当前试卷ID
+    // 注意：这一步很重要，可以避免试图访问已清除的缓存
+    currentPaperId.value = ''
+  }
+
   // 组织相关的计算属性和方法
   const filteredCategories = computed(() => {
     if (!selectedOrganizationId.value) return []
@@ -232,10 +262,18 @@ export const useQuestionStore = defineStore('question', () => {
 
   // 选择试卷
   async function selectPaper(paperId: string) {
+    // 如果当前有选中的试卷，且与要选择的不同，则清除旧的缓存
+    const oldPaperId = currentPaperId.value
+    if (oldPaperId && oldPaperId !== paperId && paperCache.value[oldPaperId]) {
+      console.log(`Switching papers from ${oldPaperId} to ${paperId}, clearing old cache`)
+      delete paperCache.value[oldPaperId]
+    }
+
     currentPaperId.value = paperId
 
     // 如果试卷已经在缓存中，不需要重新加载
     if (paperCache.value[paperId]) {
+      console.log(`Paper ${paperId} found in cache, using cached version`)
       return
     }
 
@@ -348,6 +386,7 @@ export const useQuestionStore = defineStore('question', () => {
     nextQuestion,
     prevQuestion,
     goToQuestion,
-    finishExam
+    finishExam,
+    clearExamState
   }
 })

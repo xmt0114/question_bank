@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useQuestionStore } from '@/stores/question'
@@ -9,6 +9,9 @@ const questionStore = useQuestionStore()
 
 // 加载状态
 const loading = computed(() => questionStore.loading)
+
+// 判断是否为管理员模式
+const isAdminMode = import.meta.env.VITE_APP_MODE === 'admin'
 
 // 初始化选择
 onMounted(async () => {
@@ -36,6 +39,10 @@ const startExam = () => {
     query: { paper: questionStore.currentPaperId }
   })
 }
+
+const goToSettings = () => {
+  router.push('/settings')
+}
 </script>
 
 <template>
@@ -44,7 +51,13 @@ const startExam = () => {
       <div v-if="loading" class="loading-container">
         <el-skeleton :rows="10" animated />
       </div>
-      <div v-else class="selection-container">
+      <div v-else>
+        <div class="home-header">
+          <h2>题库练习系统</h2>
+          <el-button v-if="isAdminMode" type="info" @click="goToSettings">管理设置</el-button>
+        </div>
+
+        <div class="selection-container">
         <!-- 选择区域框 -->
           <div class="selection-box">
           <!-- 组织选择 -->
@@ -65,13 +78,15 @@ const startExam = () => {
                 </div>
               </div>
             </div>
-        </div>
+          </div>
 
-        <div class="selection-box">
+          <div class="selection-box">
           <!-- 类别选择 -->
             <h4 class="selection-box-title">类别选择</h4>
             <div class="card-container category-cards">
+              <div v-if="questionStore.filteredCategories.length === 0" class="no-data">暂无</div>
               <div
+                v-else
                 v-for="category in questionStore.filteredCategories"
                 :key="category.id"
                 class="card category-card"
@@ -86,13 +101,15 @@ const startExam = () => {
                 </div>
               </div>
             </div>
-        </div>
+          </div>
 
-        <div class="selection-box">
+          <div class="selection-box">
           <!-- 级别选择 -->
             <h4 class="selection-box-title">级别选择</h4>
             <div class="card-container level-cards">
+              <div v-if="questionStore.filteredLevels.length === 0" class="no-data">暂无</div>
               <div
+                v-else
                 v-for="level in questionStore.filteredLevels"
                 :key="level.id"
                 class="card level-card"
@@ -104,13 +121,15 @@ const startExam = () => {
                 </div>
               </div>
             </div>
-        </div>
+          </div>
 
-        <div class="selection-box">
+          <div class="selection-box">
           <!-- 试卷选择 -->
             <h4 class="selection-box-title">试卷选择</h4>
             <div class="card-container paper-cards">
+              <div v-if="questionStore.filteredPapers.length === 0" class="no-data">暂无</div>
               <div
+                v-else
                 v-for="paper in questionStore.filteredPapers"
                 :key="paper.id"
                 class="card paper-card"
@@ -122,15 +141,16 @@ const startExam = () => {
                 </div>
               </div>
             </div>
-        </div>
-      </div>
+          </div>
 
-        <!-- 模式选择 -->
-          <div class="mode-buttons" v-if="!loading">
+          <!-- 模式选择 -->
+          <div class="mode-buttons">
             <el-button type="primary" size="large" @click="startTutorial" :loading="loading">讲解模式</el-button>
             <el-button type="success" size="large" @click="startExam" :loading="loading">测试模式</el-button>
           </div>
         </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -147,6 +167,21 @@ const startExam = () => {
   padding: 2rem;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ebeef5;
+}
+
+.home-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #409EFF;
 }
 
 h1 {
@@ -396,5 +431,16 @@ h1 {
   background-color: rgba(64, 158, 255, 0.1);
   border-radius: 0 4px 4px 0;
   font-weight: bold;
+}
+
+/* 暂无数据样式 */
+.no-data {
+  width: 100%;
+  padding: 2rem 0;
+  text-align: center;
+  color: #909399;
+  font-size: 1.2rem;
+  background-color: rgba(144, 147, 153, 0.1);
+  border-radius: 4px;
 }
 </style>

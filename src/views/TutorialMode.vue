@@ -65,6 +65,7 @@ const prevQuestion = () => {
 
 const finishExam = () => {
   ElMessage.success('恭喜你完成了所有题目！')
+  questionStore.clearExamState()
   router.push('/')
 }
 
@@ -79,6 +80,7 @@ const backToHome = async () => {
         type: 'warning'
       }
     )
+    questionStore.clearExamState()
     router.push('/')
   } catch (e) {
     // 用户取消返回

@@ -145,12 +145,15 @@ const submitExam = async () => {
 
   questionStore.finishExam()
   examFinished.value = true
+  // 不立即清除状态，因为还需要显示结果
+  // 在返回首页时才清除状态
   ElMessage.success('试卷已提交！')
 }
 
 const backToHome = async () => {
   // 如果考试已结束，直接返回首页
   if (examFinished.value) {
+    questionStore.clearExamState()
     router.push('/')
     return
   }
@@ -166,6 +169,7 @@ const backToHome = async () => {
         type: 'warning'
       }
     )
+    questionStore.clearExamState()
     router.push('/')
   } catch (e) {
     // 用户取消返回

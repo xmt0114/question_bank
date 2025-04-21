@@ -21,24 +21,10 @@
     "organizationId": "ccef"
   },
   {
-    "id": "youth-robot",
-    "name": "机器人技术",
-    "image": "https://via.placeholder.com/150x100?text=Youth+Robot",
-    "description": "青少年机器人技术竞赛",
-    "organizationId": "youth-contest"
-  },
-  {
-    "id": "youth-graphic",
-    "name": "图形化编程",
-    "image": "https://via.placeholder.com/150x100?text=Youth+Graphic",
-    "description": "青少年图形化编程竞赛",
-    "organizationId": "youth-contest"
-  },
-  {
-    "id": "youth-python",
-    "name": "Python编程",
-    "image": "https://via.placeholder.com/150x100?text=Youth+Python",
-    "description": "青少年Python编程竞赛",
-    "organizationId": "youth-contest"
+    "id": "youth-creative-engineering",
+    "name": "创意工程主题赛",
+    "organizationId": "youth-contest",
+    "image": "/images/cygc.png",
+    "description": "创意工程主题赛目的在大力发展科创教育、人工智能教育，同时提高青少年创新创造能力，三维空间想象力和实践动手能力而设立的跨学科综合竞技项目。"
   }
 ]
