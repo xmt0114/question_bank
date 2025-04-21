@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useQuestionStore } from '@/stores/question'
@@ -7,9 +7,12 @@ import { useQuestionStore } from '@/stores/question'
 const router = useRouter()
 const questionStore = useQuestionStore()
 
+// 加载状态
+const loading = computed(() => questionStore.loading)
+
 // 初始化选择
-onMounted(() => {
-  questionStore.initSelection()
+onMounted(async () => {
+  await questionStore.initSelection()
 })
 
 const startTutorial = () => {
@@ -38,8 +41,11 @@ const startExam = () => {
 <template>
   <main>
     <div class="home-container">
-      <div class="selection-container">
-        <!-- 选择区域框 -->   
+      <div v-if="loading" class="loading-container">
+        <el-skeleton :rows="10" animated />
+      </div>
+      <div v-else class="selection-container">
+        <!-- 选择区域框 -->
           <div class="selection-box">
           <!-- 组织选择 -->
             <h4 class="selection-box-title">组织选择</h4>
@@ -120,9 +126,9 @@ const startExam = () => {
       </div>
 
         <!-- 模式选择 -->
-          <div class="mode-buttons">
-            <el-button type="primary" size="large" @click="startTutorial">讲解模式</el-button>
-            <el-button type="success" size="large" @click="startExam">测试模式</el-button>
+          <div class="mode-buttons" v-if="!loading">
+            <el-button type="primary" size="large" @click="startTutorial" :loading="loading">讲解模式</el-button>
+            <el-button type="success" size="large" @click="startExam" :loading="loading">测试模式</el-button>
           </div>
         </div>
   </main>
@@ -135,6 +141,12 @@ const startExam = () => {
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
+}
+
+.loading-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 h1 {

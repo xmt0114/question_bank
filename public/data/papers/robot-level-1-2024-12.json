@@ -1,0 +1,71 @@
+{
+  "id": "robot-level-1-2024-12",
+  "name": "2024年12月初赛",
+  "levelId": "robot-level-1",
+  "questions": [
+    {
+      "id": "rt-1",
+      "type": "single",
+      "title": "机器人的三大定律是由哪位科幻作家提出的？",
+      "options": [
+        { "id": "A", "text": "艾萨克·阿西莫夫" },
+        { "id": "B", "text": "阿瑟·克拉克" },
+        { "id": "C", "text": "罗伯特·海因莱因" },
+        { "id": "D", "text": "菲利普·迪克" }
+      ],
+      "answer": "A",
+      "explanation": "机器人三大定律是由科幻作家艾萨克·阿西莫夫在1942年提出的，用于规范机器人的行为准则。"
+    },
+    {
+      "id": "rt-2",
+      "type": "multiple",
+      "title": "以下哪些是工业机器人的主要组成部分？",
+      "options": [
+        { "id": "A", "text": "机械本体" },
+        { "id": "B", "text": "控制系统" },
+        { "id": "C", "text": "驱动系统" },
+        { "id": "D", "text": "感知系统" }
+      ],
+      "answer": ["A", "B", "C", "D"],
+      "explanation": "工业机器人通常由机械本体、控制系统、驱动系统和感知系统四大部分组成。"
+    },
+    {
+      "id": "rt-3",
+      "type": "truefalse",
+      "title": "机器人可以完全替代人类工作，不需要人类监督。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "尽管机器人可以自动完成许多任务，但目前的技术水平下，大多数机器人系统仍需要人类监督和干预，特别是在复杂、变化的环境中。"
+    },
+    {
+      "id": "rt-4",
+      "type": "single",
+      "title": "下图所示的机器人属于哪种类型？",
+      "image": "https://via.placeholder.com/600x400?text=Robot+Arm+Image",
+      "options": [
+        { "id": "A", "text": "直角坐标机器人" },
+        { "id": "B", "text": "关节型机器人" },
+        { "id": "C", "text": "SCARA机器人" },
+        { "id": "D", "text": "并联机器人" }
+      ],
+      "answer": "B",
+      "explanation": "图中所示的是典型的关节型机器人，它模仿人类手臂的结构，具有多个旋转关节，可以实现复杂的空间运动。"
+    },
+    {
+      "id": "rt-5",
+      "type": "multiple",
+      "title": "以下哪些是机器人编程的常用方法？",
+      "options": [
+        { "id": "A", "text": "示教编程" },
+        { "id": "B", "text": "离线编程" },
+        { "id": "C", "text": "引导式编程" },
+        { "id": "D", "text": "自然语言编程" }
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "机器人编程的常用方法包括示教编程、离线编程和引导式编程。自然语言编程目前在工业机器人中应用较少。"
+    }
+  ]
+}

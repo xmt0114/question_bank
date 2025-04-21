@@ -1,0 +1,71 @@
+{
+  "id": "graphic-level-1-2024-12",
+  "name": "2024年12月初赛",
+  "levelId": "graphic-level-1",
+  "questions": [
+    {
+      "id": "pt-1",
+      "type": "single",
+      "title": "下列哪个是地球上最大的海洋？",
+      "options": [
+        { "id": "A", "text": "大西洋" },
+        { "id": "B", "text": "印度洋" },
+        { "id": "C", "text": "太平洋" },
+        { "id": "D", "text": "北冰洋" }
+      ],
+      "answer": "C",
+      "explanation": "太平洋是地球上最大的海洋，面积约占地球表面的三分之一。"
+    },
+    {
+      "id": "pt-2",
+      "type": "multiple",
+      "title": "以下哪些是我国的四大发明？",
+      "options": [
+        { "id": "A", "text": "造纸术" },
+        { "id": "B", "text": "印刷术" },
+        { "id": "C", "text": "指南针" },
+        { "id": "D", "text": "火药" }
+      ],
+      "answer": ["A", "B", "C", "D"],
+      "explanation": "我国的四大发明是造纸术、印刷术、指南针和火药，它们对世界文明的发展产生了重大影响。"
+    },
+    {
+      "id": "pt-3",
+      "type": "truefalse",
+      "title": "地球是太阳系中最大的行星。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "地球不是太阳系中最大的行星，木星才是太阳系中最大的行星。"
+    },
+    {
+      "id": "pt-4",
+      "type": "single",
+      "title": "下图中的动物属于哪一类？",
+      "image": "https://via.placeholder.com/600x400?text=Dolphin+Image",
+      "options": [
+        { "id": "A", "text": "鱼类" },
+        { "id": "B", "text": "两栖类" },
+        { "id": "C", "text": "爬行类" },
+        { "id": "D", "text": "哺乳类" }
+      ],
+      "answer": "D",
+      "explanation": "图中的海豚是哺乳动物，尽管它们生活在水中，但它们通过肺呼吸，产仔并哺乳。"
+    },
+    {
+      "id": "pt-5",
+      "type": "multiple",
+      "title": "以下哪些是常见的可再生能源？",
+      "options": [
+        { "id": "A", "text": "太阳能" },
+        { "id": "B", "text": "风能" },
+        { "id": "C", "text": "煤炭" },
+        { "id": "D", "text": "水能" }
+      ],
+      "answer": ["A", "B", "D"],
+      "explanation": "太阳能、风能和水能都是可再生能源，而煤炭是不可再生的化石燃料。"
+    }
+  ]
+}

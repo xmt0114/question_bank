@@ -1,14 +1,18 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Paper, Question, UserAnswer, ExamResult, Organization, Category, Level } from '@/types/question'
-import { mockPapers, organizations, categories, levels } from '@/data/mockData'
+import * as dataService from '@/services/dataService'
 
 export const useQuestionStore = defineStore('question', () => {
   // 数据存储
-  const organizationList = ref<Organization[]>(organizations)
-  const categoryList = ref<Category[]>(categories)
-  const levelList = ref<Level[]>(levels)
-  const papers = ref<Paper[]>(mockPapers)
+  const organizationList = ref<Organization[]>([])
+  const categoryList = ref<Category[]>([])
+  const levelList = ref<Level[]>([])
+  const papers = ref<Paper[]>([])
+
+  // 加载状态
+  const loading = ref<boolean>(false)
+  const paperCache = ref<Record<string, Paper>>({}) // 缓存已加载的试卷
 
   // 选择状态
   const selectedOrganizationId = ref<string>('')
@@ -64,48 +68,55 @@ export const useQuestionStore = defineStore('question', () => {
     return result
   })
 
-  function startExam(paperId: string, mode: 'tutorial' | 'exam') {
-    // 设置当前试卷
-    selectPaper(paperId)
+  async function startExam(paperId: string, mode: 'tutorial' | 'exam') {
+    loading.value = true
+    try {
+      // 设置当前试卷
+      await selectPaper(paperId)
 
-    // 初始化考试状态
-    currentQuestionIndex.value = 0
-    userAnswers.value = {}
-    examStartTime.value = new Date()
-    examEndTime.value = null
-    examMode.value = mode
+      // 初始化考试状态
+      currentQuestionIndex.value = 0
+      userAnswers.value = {}
+      examStartTime.value = new Date()
+      examEndTime.value = null
+      examMode.value = mode
 
-    // 初始化用户答案
-    if (currentPaper.value) {
-      currentPaper.value.questions.forEach(question => {
-        userAnswers.value[question.id] = {
-          questionId: question.id,
-          answer: Array.isArray(question.answer) ? [] : '',
-          isCorrect: false,
-          isAnswered: false
-        }
-      })
-    }
+      // 初始化用户答案
+      if (currentPaper.value) {
+        currentPaper.value.questions.forEach(question => {
+          userAnswers.value[question.id] = {
+            questionId: question.id,
+            answer: Array.isArray(question.answer) ? [] : '',
+            isCorrect: false,
+            isAnswered: false
+          }
+        })
+      }
 
-    // 设置级别、类别和组织
-    if (currentPaper.value) {
-      // 设置级别
-      const level = levelList.value.find(l => l.id === currentPaper.value?.levelId)
-      if (level) {
-        selectedLevelId.value = level.id
+      // 设置级别、类别和组织
+      if (currentPaper.value) {
+        // 设置级别
+        const level = levelList.value.find(l => l.id === currentPaper.value?.levelId)
+        if (level) {
+          selectedLevelId.value = level.id
 
-        // 设置类别
-        const category = categoryList.value.find(c => c.id === level.categoryId)
-        if (category) {
-          selectedCategoryId.value = category.id
+          // 设置类别
+          const category = categoryList.value.find(c => c.id === level.categoryId)
+          if (category) {
+            selectedCategoryId.value = category.id
 
-          // 设置组织
-          const organization = organizationList.value.find(o => o.id === category.organizationId)
-          if (organization) {
-            selectedOrganizationId.value = organization.id
+            // 设置组织
+            const organization = organizationList.value.find(o => o.id === category.organizationId)
+            if (organization) {
+              selectedOrganizationId.value = organization.id
+            }
           }
         }
       }
+    } catch (error) {
+      console.error(`Failed to start exam with paper ${paperId}:`, error)
+    } finally {
+      loading.value = false
     }
   }
 
@@ -114,7 +125,7 @@ export const useQuestionStore = defineStore('question', () => {
     if (!question) return
 
     const isCorrect = Array.isArray(question.answer)
-      ? JSON.stringify(answer.sort()) === JSON.stringify(question.answer.sort())
+      ? JSON.stringify(Array.isArray(answer) ? [...answer].sort() : []) === JSON.stringify([...question.answer].sort())
       : answer === question.answer
 
     userAnswers.value[questionId] = {
@@ -193,21 +204,62 @@ export const useQuestionStore = defineStore('question', () => {
   }
 
   // 选择级别
-  function selectLevel(levelId: string) {
+  async function selectLevel(levelId: string) {
     selectedLevelId.value = levelId
     // 重置试卷选择
     currentPaperId.value = ''
 
-    // 自动选择第一个试卷（如果有）
-    const firstPaper = filteredPapers.value[0]
-    if (firstPaper) {
-      selectPaper(firstPaper.id)
+    loading.value = true
+    try {
+      // 加载该级别下的试卷元数据
+      const levelPapers = await dataService.loadPapersByLevel(levelId)
+
+      // 更新试卷列表
+      const existingPapers = papers.value.filter(p => p.levelId !== levelId)
+      papers.value = [...existingPapers, ...levelPapers]
+
+      // 自动选择第一个试卷（如果有）
+      const firstPaper = levelPapers[0]
+      if (firstPaper) {
+        selectPaper(firstPaper.id)
+      }
+    } catch (error) {
+      console.error(`Failed to load papers for level ${levelId}:`, error)
+    } finally {
+      loading.value = false
     }
   }
 
   // 选择试卷
-  function selectPaper(paperId: string) {
+  async function selectPaper(paperId: string) {
     currentPaperId.value = paperId
+
+    // 如果试卷已经在缓存中，不需要重新加载
+    if (paperCache.value[paperId]) {
+      return
+    }
+
+    loading.value = true
+    try {
+      // 加载试卷详细数据
+      const paperData = await dataService.loadPaper(paperId)
+      if (paperData) {
+        // 更新缓存
+        paperCache.value[paperId] = paperData
+
+        // 更新试卷列表中的试卷数据
+        const paperIndex = papers.value.findIndex(p => p.id === paperId)
+        if (paperIndex !== -1) {
+          papers.value[paperIndex] = paperData
+        } else {
+          papers.value.push(paperData)
+        }
+      }
+    } catch (error) {
+      console.error(`Failed to load paper ${paperId}:`, error)
+    } finally {
+      loading.value = false
+    }
   }
 
   // 获取当前选中的组织
@@ -229,11 +281,24 @@ export const useQuestionStore = defineStore('question', () => {
   })
 
   // 初始化选择
-  function initSelection() {
-    // 如果有组织，选择第一个
-    const firstOrg = organizationList.value[0]
-    if (firstOrg) {
-      selectOrganization(firstOrg.id)
+  async function initSelection() {
+    loading.value = true
+    try {
+      // 加载基础数据
+      const { organizations, categories, levels } = await dataService.loadAllBaseData()
+      organizationList.value = organizations
+      categoryList.value = categories
+      levelList.value = levels
+
+      // 如果有组织，选择第一个
+      const firstOrg = organizationList.value[0]
+      if (firstOrg) {
+        selectOrganization(firstOrg.id)
+      }
+    } catch (error) {
+      console.error('Failed to initialize data:', error)
+    } finally {
+      loading.value = false
     }
   }
 
@@ -256,6 +321,7 @@ export const useQuestionStore = defineStore('question', () => {
     examStartTime,
     examEndTime,
     examMode,
+    loading,
 
     // 计算属性
     filteredCategories,

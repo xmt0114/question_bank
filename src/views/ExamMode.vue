@@ -12,9 +12,9 @@ const router = useRouter()
 const questionStore = useQuestionStore()
 
 const examFinished = ref(false)
-const loading = ref(true)
+const storeLoading = computed(() => questionStore.loading)
 
-onMounted(() => {
+onMounted(async () => {
   const paperId = route.query.paper as string
 
   if (!paperId) {
@@ -24,8 +24,7 @@ onMounted(() => {
   }
 
   // 初始化题目
-  questionStore.startExam(paperId, 'exam')
-  loading.value = false
+  await questionStore.startExam(paperId, 'exam')
 })
 
 const currentQuestion = computed(() => questionStore.currentQuestion)
@@ -177,7 +176,7 @@ const backToHome = async () => {
 
 <template>
   <div class="exam-container">
-    <div v-if="loading" class="loading">
+    <div v-if="storeLoading" class="loading">
       <el-skeleton :rows="10" animated />
     </div>
 

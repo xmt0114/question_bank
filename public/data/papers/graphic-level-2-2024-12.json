@@ -1,0 +1,20 @@
+{
+  "id": "graphic-level-2-2024-12",
+  "name": "2024年12月初赛",
+  "levelId": "graphic-level-2",
+  "questions": [
+    {
+      "id": "gl2-1",
+      "type": "single",
+      "title": "在Scratch中，下列哪个块用于控制角色的移动？",
+      "options": [
+        { "id": "A", "text": "移动x步" },
+        { "id": "B", "text": "说一个气泡" },
+        { "id": "C", "text": "等待x秒" },
+        { "id": "D", "text": "播放音效" }
+      ],
+      "answer": "A",
+      "explanation": "在Scratch中，"移动x步"块用于控制角色的移动。"
+    }
+  ]
+}

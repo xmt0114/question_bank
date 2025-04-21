@@ -1,0 +1,20 @@
+{
+  "id": "graphic-level-1-2025-03",
+  "name": "2025年3月初赛",
+  "levelId": "graphic-level-1",
+  "questions": [
+    {
+      "id": "gl1-1",
+      "type": "single",
+      "title": "下列哪个是图形化编程语言？",
+      "options": [
+        { "id": "A", "text": "Python" },
+        { "id": "B", "text": "Scratch" },
+        { "id": "C", "text": "Java" },
+        { "id": "D", "text": "C++" }
+      ],
+      "answer": "B",
+      "explanation": "Scratch是一种图形化编程语言，由麦克萨诸塞大学媒体实验室开发。"
+    }
+  ]
+}
