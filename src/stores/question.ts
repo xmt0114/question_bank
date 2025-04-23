@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Paper, Question, UserAnswer, ExamResult, Organization, Category, Level } from '@/types/question'
+import type { Paper, UserAnswer, ExamResult, Organization, Category, Level } from '@/types/question'
 import * as dataService from '@/services/dataService'
 
 export const useQuestionStore = defineStore('question', () => {

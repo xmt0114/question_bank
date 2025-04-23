@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build:user": "vue-tsc --noEmit && vite build --mode user",
+    "build:admin": "vue-tsc --noEmit && vite build --mode admin",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit"
   },
@@ -24,3 +26,4 @@
     "vue-tsc": "^2.2.8"
   }
 }
+

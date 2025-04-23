@@ -58,5 +58,11 @@
     "name": "1-3年级",
     "categoryId": "youth-creative-engineering",
     "description": ""
+  },
+  {
+    "id": "robot-level-4",
+    "name": "四级",
+    "categoryId": "robot",
+    "description": "机器人技术四级认证"
   }
 ]

@@ -57,7 +57,7 @@ const router = createRouter({
 })
 
 // 添加导航守卫，根据模式控制路由访问
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   // 如果是管理员模式，允许访问所有路由
   if (isAdminMode) {
     next()

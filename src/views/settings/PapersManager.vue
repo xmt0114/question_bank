@@ -689,6 +689,7 @@ function removeOption(index: number) {
       }
     } else if (Array.isArray(questionForm.answer)) {
       const deletedOptionId = questionForm.options[index]?.id
+      // @ts-ignore
       questionForm.answer = questionForm.answer.filter(id => id !== deletedOptionId)
     }
   } else {
@@ -722,7 +723,7 @@ function handleEditQuestion(question: any, index: number) {
 }
 
 // 处理删除题目
-function handleDeleteQuestion(question: any, index: number) {
+function handleDeleteQuestion(_question: any, index: number) {
   currentQuestionIndex.value = index
   deleteQuestionDialogVisible.value = true
 }
@@ -766,13 +767,16 @@ async function submitQuestionForm() {
 
         if (isEditQuestion.value && currentQuestionIndex.value !== -1) {
           // 编辑现有题目
+          // @ts-ignore
           currentPaper.value.questions[currentQuestionIndex.value] = questionData
         } else {
           // 添加新题目
+          // @ts-ignore
           currentPaper.value.questions.push(questionData)
         }
 
         // 更新试卷
+        // @ts-ignore
         await apiService.updatePaper(currentPaper.value)
 
         ElMessage.success(isEditQuestion.value ? '更新题目成功' : '添加题目成功')

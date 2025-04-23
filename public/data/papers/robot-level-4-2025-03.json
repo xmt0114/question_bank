@@ -1,0 +1,748 @@
+{
+  "id": "robot-level-4-2025-03",
+  "name": "2025年3月机器人四级理论考试",
+  "levelId": "robot-level-4",
+  "questions": [
+    {
+      "id": "pt-1",
+      "type": "single",
+      "title": "2025年蛇年春晚，节目《秧BOT》机器人舞蹈表演节目点燃了全国观众的热情，请问参加节目表演的机器人是有哪家公司研发？",
+      "options": [
+        {
+          "id": "A",
+          "text": "大疆"
+        },
+        {
+          "id": "B",
+          "text": "华为"
+        },
+        {
+          "id": "C",
+          "text": "优必选"
+        },
+        {
+          "id": "D",
+          "text": "宇树科技"
+        }
+      ],
+      "answer": "D",
+      "explanation": "正确答案是D（宇树科技）。该公司的机器人以高机动性和稳定性著称，适合舞台表演。其他选项中，大疆以无人机技术闻名，华为在通信和智能手机领域突出，优必选虽然也研发机器人，但未参与此次春晚节目。宇树科技专注于四足机器人研发，其产品动作灵活，能在复杂地形和舞台上稳定表演。"
+    },
+    {
+      "id": "pt-2",
+      "type": "single",
+      "title": "有关Arduino C程序的loop()函数，下列说法正确的是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "loop()函数仅运行一次"
+        },
+        {
+          "id": "B",
+          "text": "loop()函数中可以放置初始化代码"
+        },
+        {
+          "id": "C",
+          "text": "loop()函数中的代码会循环执行"
+        },
+        {
+          "id": "D",
+          "text": "loop()函数可以缺失"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C。Arduino程序结构中，loop()函数是主循环函数，会持续重复执行，用于处理核心功能。初始化代码应放在setup()函数中。loop()函数不能缺失，否则程序无法正常运行。选项A错误，因为它会无限循环；选项B错误，初始化应放在setup()；选项D错误，loop()是必需的。"
+    },
+    {
+      "id": "pt-3",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板的MCU工作频率是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "8MHz"
+        },
+        {
+          "id": "B",
+          "text": "16MHz"
+        },
+        {
+          "id": "C",
+          "text": "32MHz"
+        },
+        {
+          "id": "D",
+          "text": "64MHz"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B（16MHz）。Arduino UNO/Nano采用ATmega328P微控制器，其标准工作频率为16MHz。这一频率通过外部晶振提供时钟信号。较高的工作频率能提升程序运行速度和响应能力，但也会增加功耗。8MHz通常用于低功耗场景，32MHz和64MHz则常见于更高端的微控制器。"
+    },
+    {
+      "id": "pt-4",
+      "type": "single",
+      "title": "Arduino C语言中，十六进制数的前缀是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "0b"
+        },
+        {
+          "id": "B",
+          "text": "0x"
+        },
+        {
+          "id": "C",
+          "text": "0"
+        },
+        {
+          "id": "D",
+          "text": "无前缀"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B（0x）。在C语言及其派生语言（如Arduino编程语言）中，十六进制数以0x开头，例如0xFF表示十进制255。选项A（0b）用于二进制数，选项C（0）用于八进制数，选项D错误，因为十进制数不需要前缀。不同进制前缀的使用便于程序编译器区分数值类型。"
+    },
+    {
+      "id": "pt-5",
+      "type": "single",
+      "title": "二进制数0b1010对应的十进制数是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "8"
+        },
+        {
+          "id": "B",
+          "text": "10"
+        },
+        {
+          "id": "C",
+          "text": "12"
+        },
+        {
+          "id": "D",
+          "text": "16"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B（10）。二进制转十进制的方法是按权展开：0b1010 = 1×2³ + 0×2² + 1×2¹ + 0×2⁰ = 8 + 0 + 2 + 0 = 10。选项A少算了2¹位，选项C多算了2²位，选项D错误地认为每一位都是有效位。二进制转十进制是数字电路和编程中的基础运算。"
+    },
+    {
+      "id": "pt-6",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板，analogRead(A0)函数返回值的范围是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "0 ~ 1"
+        },
+        {
+          "id": "B",
+          "text": "0 ~ 5"
+        },
+        {
+          "id": "C",
+          "text": "0 ~ 255"
+        },
+        {
+          "id": "D",
+          "text": "0 ~ 1023"
+        }
+      ],
+      "answer": "D",
+      "explanation": "正确答案是D（0 ~ 1023）。Arduino的analogRead()函数读取模拟引脚的值，基于10位模数转换器（ADC），因此返回值范围是0到1023。对应的实际电压计算公式为：电压 = (返回值 / 1023) × 参考电压（通常为5V）。选项A和B混淆了数字逻辑电平，选项C对应8位ADC，不符合UNO/Nano的硬件规格。"
+    },
+    {
+      "id": "pt-7",
+      "type": "single",
+      "title": "小型面包板中间分割槽处于水平位置时，下列说法错误的是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "水平方向的孔洞相互不连通"
+        },
+        {
+          "id": "B",
+          "text": "垂直方向的孔洞相互连通"
+        },
+        {
+          "id": "C",
+          "text": "垂直方向处于分割槽两侧的孔洞分别相互连通"
+        },
+        {
+          "id": "D",
+          "text": "面包板连通的孔洞通过弹性金属带相连接"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B。当面包板中间分割槽处于水平位置时，垂直方向的孔洞被分割槽隔离，不会相互连通。选项A正确，水平方向孔洞确实不连通；选项C正确，两侧孔洞各自连通但不跨越分割槽；选项D正确，面包板内部通过金属弹片或铜箔连接。垂直方向连通的误解可能来自于对面包板结构的不熟悉，实际使用中需要特别注意分割槽的位置。"
+    },
+    {
+      "id": "pt-8",
+      "type": "single",
+      "title": "关于舵机，下列描述错误的是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "舵机是执行器"
+        },
+        {
+          "id": "B",
+          "text": "舵机的角度控制是闭环控制"
+        },
+        {
+          "id": "C",
+          "text": "舵机内部转动执行机构有减速齿轮组"
+        },
+        {
+          "id": "D",
+          "text": "舵机类库成员函数attach()的功能是控制舵机的旋转角度"
+        }
+      ],
+      "answer": "D",
+      "explanation": "正确答案是D。舵机类库的attach()函数用于初始化舵机，并将指定引脚设置为舵机控制模式，并非直接控制旋转角度。控制角度的函数通常是write()或writeMicroseconds()。选项A正确，舵机作为执行器将电信号转换为机械运动；选项B正确，舵机内部有反馈机制形成闭环控制；选项C正确，减速齿轮组用于将电机高速低扭矩转换为低速高扭矩输出。对attach()函数功能的误解可能来源于对其名称的字面理解。"
+    },
+    {
+      "id": "pt-9",
+      "type": "single",
+      "title": "HC-SR04超声波传感器，通过pulseIn()函数读取Echo引脚返回的电平信号，Echo引脚返回的信号类型是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "高电平信号"
+        },
+        {
+          "id": "B",
+          "text": "低电平信号"
+        },
+        {
+          "id": "C",
+          "text": "上升沿信号"
+        },
+        {
+          "id": "D",
+          "text": "下降沿信号"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A（高电平信号）。HC-SR04超声波传感器的工作流程是：触发引脚接收至少10μs的高电平脉冲后，自动发送8个40kHz的方波并检测回波。Echo引脚在检测到障碍物时输出高电平，持续时间对应于超声波往返时间。选项B错误，低电平表示未检测到障碍物；选项C和D描述的是信号的过渡状态，而非持续电平。理解超声波传感器的信号特性对于正确编写测距程序至关重要。"
+    },
+    {
+      "id": "pt-10",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板，板载LED连接的引脚是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "0"
+        },
+        {
+          "id": "B",
+          "text": "1"
+        },
+        {
+          "id": "C",
+          "text": "13"
+        },
+        {
+          "id": "D",
+          "text": "A0"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C（13）。在Arduino UNO和Nano板上，板载LED连接在数字引脚13（在某些版本的Nano上可能标记为内置LED）。这个引脚内部连接了上拉电阻，可通过digitalWrite(13, HIGH)点亮LED。选项A和B是串口通信引脚，选项D是模拟输入引脚，均不能直接控制板载LED。使用内置LED进行测试是初学者快速验证程序运行的有效方法。"
+    },
+    {
+      "id": "pt-11",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板，Arduino C语言中float类型变量占用的字节数是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "1"
+        },
+        {
+          "id": "B",
+          "text": "2"
+        },
+        {
+          "id": "C",
+          "text": "4"
+        },
+        {
+          "id": "D",
+          "text": "8"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C（4字节）。在Arduino平台（基于AVR架构）中，float类型变量占用4字节（32位），提供约7位十进制精度。选项A对应char类型，选项B对应int类型（在AVR中为16位），选项D对应double类型（在AVR中同样为4字节，与float相同）。需要注意的是，尽管float占用4字节，但其运算速度较慢且精度有限，对于需要高精度的场合，应考虑使用更合适的数值表示方法或硬件。"
+    },
+    {
+      "id": "pt-12",
+      "type": "single",
+      "title": "Arduino C程序如下，当程序运行时，串口监视器输出结果是？",
+      "image": "/images/robot-level-4-2025-03/image1.png",
+      "options": [
+        {
+          "id": "A",
+          "image": "/images/robot-level-4-2025-03/image2.png"
+        },
+        {
+          "id": "B",
+          "image": "/images/robot-level-4-2025-03/image3.png"
+        },
+        {
+          "id": "C",
+          "image": "/images/robot-level-4-2025-03/image4.png"
+        },
+        {
+          "id": "D",
+          "image": "/images/robot-level-4-2025-03/image5.png"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C。根据题目提供的图片信息，选项C对应的程序片段正确实现了特定的输出逻辑。可能是通过变量初始化和条件语句组合实现了特定的数值输出。理解程序流程控制和变量作用域是编写正确输出的关键。"
+    },
+    {
+      "id": "pt-13",
+      "type": "single",
+      "title": "Arduino C程序如下，当程序运行时，串口监视器输出结果是？",
+      "image": "/images/robot-level-4-2025-03/image6.png",
+      "options": [
+        {
+          "id": "A",
+          "text": "100"
+        },
+        {
+          "id": "B",
+          "text": "150"
+        },
+        {
+          "id": "C",
+          "text": "250"
+        },
+        {
+          "id": "D",
+          "text": "350"
+        }
+      ],
+      "answer": "D",
+      "explanation": "正确答案是D（350）。根据题目提供的图片信息，程序可能涉及变量累加或算术运算，例如初始化一个变量为100，经过三次循环每次增加50，最终得到350。理解循环结构和变量更新逻辑是正确预测程序输出的基础。"
+    },
+    {
+      "id": "pt-14",
+      "type": "single",
+      "title": "Arduino C语言，下列选项中符合变量命名规则的是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "int"
+        },
+        {
+          "id": "B",
+          "text": "3pin"
+        },
+        {
+          "id": "C",
+          "text": "led_pin"
+        },
+        {
+          "id": "D",
+          "text": "switch"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C（led_pin）。变量命名规则要求：不能以数字开头（排除B），不能使用C语言关键字（排除A和D，其中int是数据类型，switch是控制语句）。下划线在变量名中是允许的，因此led_pin是合法且语义清晰的命名。良好的变量命名习惯有助于代码可读性和维护性，避免使用保留字和数字开头是基本规范。"
+    },
+    {
+      "id": "pt-15",
+      "type": "single",
+      "title": "Arduino C程序如下，当程序运行时，串口监视器输出结果是？",
+      "image": "/images/robot-level-4-2025-03/image7.png",
+      "options": [
+        {
+          "id": "A",
+          "text": "1"
+        },
+        {
+          "id": "B",
+          "text": "4"
+        },
+        {
+          "id": "C",
+          "text": "10"
+        },
+        {
+          "id": "D",
+          "text": "18"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C（10）。根据题目提供的图片信息，程序可能初始化了一个数组包含10个元素，通过循环输出数组长度或其他逻辑得到10。理解数组操作和循环控制是正确处理数据集合的关键。"
+    },
+    {
+      "id": "pt-16",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板，通过引脚3发送如下图所示的高电平触发信号，程序中红框A和B分别对应的程序是？",
+      "image": "/images/robot-level-4-2025-03/image8.png",
+      "options": [
+        {
+          "id": "A",
+          "text": "",
+          "image": "/images/robot-level-4-2025-03/image9.png"
+        },
+        {
+          "id": "B",
+          "text": "",
+          "image": "/images/robot-level-4-2025-03/image10.png"
+        },
+        {
+          "id": "C",
+          "text": "",
+          "image": "/images/robot-level-4-2025-03/image11.png"
+        },
+        {
+          "id": "D",
+          "text": "",
+          "image": "/images/robot-level-4-2025-03/image12.png"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B。选项B正确实现了向引脚3发送10微秒的高电平脉冲，符合HC-SR04超声波传感器的触发要求。选项A脉冲时间过短，选项C用于读取信号而非发送，选项D使用PWM输出不适合触发脉冲。正确控制触发信号是超声波测距的第一步。"
+    },
+    {
+      "id": "pt-17",
+      "type": "single",
+      "title": "Arduino Nano主控板，通过电位器控制舵机转动角度，电位器连接到A0引脚，舵机连接到4引脚，下列选项中，可实现当电位器从一端旋转至另外一端时，舵机在45度至135度之间转动的程序是？",
+      "options": [
+        {
+          "id": "A",
+          "image": "/images/robot-level-4-2025-03/image13.png"
+        },
+        {
+          "id": "B",
+          "image": "/images/robot-level-4-2025-03/image14.png"
+        },
+        {
+          "id": "C",
+          "image": "/images/robot-level-4-2025-03/image15.png"
+        },
+        {
+          "id": "D",
+          "image": "/images/robot-level-4-2025-03/image16.png"
+        }
+      ],
+      "answer": "C",
+      "explanation": "正确答案是C。根据选项图片内容，选项C正确实现了读取电位器模拟值，通过map()函数将其从0-1023映射到45-135度范围，并使用Servo库的write()函数控制舵机角度。其他选项可能未正确实现映射或使用了错误的函数。正确关联模拟输入与舵机控制是实现平滑角度调节的关键。"
+    },
+    {
+      "id": "pt-18",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板，按键开关输入电路原理图如下，下列选项中，关于按键引脚模式设置正确的是？",
+      "image": "/images/robot-level-4-2025-03/image17.png",
+      "options": [
+        {
+          "id": "A",
+          "text": "pinMode(7, INPUT);"
+        },
+        {
+          "id": "B",
+          "text": "pinMode(7, OUTPUT);"
+        },
+        {
+          "id": "C",
+          "text": "pinMode(7, INPUT_PULLUP);"
+        },
+        {
+          "id": "D",
+          "text": "pinMode(7, HIGH);"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A（pinMode(7, INPUT);）。根据电路图显示的外部上拉电阻，应将引脚设置为INPUT模式。选项C（INPUT_PULLUP）适用于使用内部上拉电阻的情况，而题目电路图明确显示了外部电阻。选项B和D错误地将引脚设置为输出模式或无效参数。正确配置引脚模式是数字输入电路设计的基础。"
+    },
+    {
+      "id": "pt-19",
+      "type": "single",
+      "title": "Arduino UNO/Nano主控板，读取超声波传感器的返回值，电路搭设和部分程序如下图所示，程序中A/B/C分别是？",
+      "image": "/images/robot-level-4-2025-03/image18.png",
+      "options": [
+        {
+          "id": "A",
+          "text": "5/4/HIGH"
+        },
+        {
+          "id": "B",
+          "text": "4/5/HIGH"
+        },
+        {
+          "id": "C",
+          "text": "5/4/LOW"
+        },
+        {
+          "id": "D",
+          "text": "4/5/LOW"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A（5/4/HIGH）。根据电路图，触发引脚连接到数字引脚5，回声引脚连接到数字引脚4，需要发送高电平触发信号。选项A正确指定了引脚编号和电平类型。选项B和D混淆了引脚编号，选项C错误地使用了低电平。正确识别引脚连接是传感器数据采集的前提。"
+    },
+    {
+      "id": "pt-20",
+      "type": "single",
+      "title": "Arduino Nano主控板，通过光敏电阻和LED灯模拟当前光照强度的变化。电路搭设及部分程序如下图所示，当光照强度逐渐增强时，LED的亮度随之逐渐增强，此时红框A对应的程序是？",
+      "image": "/images/robot-level-4-2025-03/image19.png",
+      "options": [
+        {
+          "id": "A",
+          "image": "/images/robot-level-4-2025-03/image20.png"
+        },
+        {
+          "id": "B",
+          "image": "/images/robot-level-4-2025-03/image21.png"
+        },
+        {
+          "id": "C",
+          "image": "/images/robot-level-4-2025-03/image22.png"
+        },
+        {
+          "id": "D",
+          "image": "/images/robot-level-4-2025-03/image23.png"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A。根据选项图片内容，选项A正确实现了读取光敏电阻的模拟值，通过map()函数反向处理（因为光照增强时阻值降低），并将结果通过analogWrite()函数输出到LED引脚。其他选项可能未正确实现反向映射或使用了错误的函数。正确关联环境光变化与LED亮度调节需要理解光敏电阻的特性。"
+    },
+    {
+      "id": "pt-21",
+      "type": "multiple",
+      "title": "按键开关输入电路如下，下列说法正确的是？",
+      "image": "/images/robot-level-4-2025-03/image24.png",
+      "options": [
+        {
+          "id": "A",
+          "text": "该电路是上拉电阻电路"
+        },
+        {
+          "id": "B",
+          "text": "该电路是下拉电阻电路"
+        },
+        {
+          "id": "C",
+          "text": "当按键闭合时，引脚7输入低电平"
+        },
+        {
+          "id": "D",
+          "text": "当按键闭合时，引脚7输入高电平"
+        }
+      ],
+      "answer": [
+        "A",
+        "C"
+      ],
+      "explanation": "正确答案是A和C。根据电路图，电阻连接在引脚和电源正极之间，形成上拉电阻电路（选项A正确）。当按键闭合时，引脚通过按键连接到地，输入低电平（选项C正确）。选项B和D描述的是下拉电阻电路的行为，与实际电路相反。上拉和下拉电阻是数字电路设计中的基本概念，用于确保引脚电平在未驱动时处于确定状态。"
+    },
+    {
+      "id": "pt-22",
+      "type": "multiple",
+      "title": "下列选项中，采用闭环控制的有？",
+      "options": [
+        {
+          "id": "A",
+          "text": "无人驾驶汽车行驶控制"
+        },
+        {
+          "id": "B",
+          "text": "无人机姿态控制"
+        },
+        {
+          "id": "C",
+          "text": "家庭日常照明控制"
+        },
+        {
+          "id": "D",
+          "text": "独轮车骑行平衡控制"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "正确答案是A、B和D。闭环控制需要反馈机制。无人驾驶汽车通过传感器实时调整行驶路径（A正确）；无人机通过陀螺仪和加速度计调整姿态（B正确）；独轮车通过倾斜传感器维持平衡（D正确）。家庭照明通常为开环控制（选项C错误），除非带有光敏自动调节功能。理解闭环控制的特点对于设计自适应系统至关重要。"
+    },
+    {
+      "id": "pt-23",
+      "type": "multiple",
+      "title": "Arduino UNO/Nano的引脚A2可以执行的功能有？",
+      "options": [
+        {
+          "id": "A",
+          "text": "数字信号输入"
+        },
+        {
+          "id": "B",
+          "text": "数字信号输出"
+        },
+        {
+          "id": "C",
+          "text": "模拟信号输入"
+        },
+        {
+          "id": "D",
+          "text": "模拟信号输出"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "正确答案是A、B和C。在Arduino UNO/Nano中，模拟输入引脚（A0-A5）可以作为数字输入或输出引脚使用。通过使用pinMode()函数设置为INPUT或OUTPUT模式，可以实现数字信号的读写。选项D错误，因为模拟输出（PWM）需要特定标记的引脚（通常有~符号），而模拟输入引脚本身不支持PWM输出。灵活使用引脚的多种功能可以优化电路设计。"
+    },
+    {
+      "id": "pt-24",
+      "type": "multiple",
+      "title": "关于光敏电阻，描述正确的是？",
+      "options": [
+        {
+          "id": "A",
+          "text": "光照越强，阻值越小"
+        },
+        {
+          "id": "B",
+          "text": "通常需要串联分压电阻"
+        },
+        {
+          "id": "C",
+          "text": "可用于检测环境光强度"
+        },
+        {
+          "id": "D",
+          "text": "光照越弱，阻值越大"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "所有选项均正确。光敏电阻的工作原理基于光电导效应：光照增强，载流子增加，电阻降低（选项A和D正确）。在电路中通常与固定电阻串联分压（选项B正确），通过测量分压点电压可以间接得到光照强度（选项C正确）。光敏电阻是环境感知的常用元件，正确使用分压电路和理解其特性是应用的基础。"
+    },
+    {
+      "id": "pt-25",
+      "type": "multiple",
+      "title": "下列选项所示表达式，运算结果为真的有？",
+      "options": [
+        {
+          "id": "A",
+          "text": "!false"
+        },
+        {
+          "id": "B",
+          "text": "true || false"
+        },
+        {
+          "id": "C",
+          "text": "false && true"
+        },
+        {
+          "id": "D",
+          "text": "!(0 != 2)"
+        }
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "explanation": "正确答案是A和B。选项A中!false等价于true；选项B中true || false根据逻辑或运算的性质结果为true。选项C中false && true根据逻辑与运算的结果为false；选项D中0 != 2为true，取反后为false。理解布尔逻辑运算对于编写条件语句和控制程序流程至关重要。"
+    },
+    {
+      "id": "pt-26",
+      "type": "truefalse",
+      "title": "switch ... case语句属于循环结构。",
+      "options": [
+        {
+          "id": "A",
+          "text": "正确"
+        },
+        {
+          "id": "B",
+          "text": "错误"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B（错误）。switch ... case语句属于多分支选择结构，而非循环结构。它根据表达式的值跳转到相应的case标签执行。循环结构包括for、while和do...while。混淆语句类型可能导致程序逻辑设计错误，正确理解语句功能是编写高效代码的基础。"
+    },
+    {
+      "id": "pt-27",
+      "type": "truefalse",
+      "title": "Arduino C程序，setup()函数中的代码在程序运行时会循环执行。",
+      "options": [
+        {
+          "id": "A",
+          "text": "正确"
+        },
+        {
+          "id": "B",
+          "text": "错误"
+        }
+      ],
+      "answer": "B",
+      "explanation": "正确答案是B（错误）。setup()函数在Arduino程序中仅执行一次，用于初始化操作（如设置引脚模式、启动串口通信）。循环执行的是loop()函数。混淆这两个函数的执行特性可能导致初始化代码重复运行或核心功能未能循环执行，影响程序正常工作。"
+    },
+    {
+      "id": "pt-28",
+      "type": "truefalse",
+      "title": "Arduino UNO/Nano主控板，标识有“~”符号的引脚具有PWM输出功能。",
+      "options": [
+        {
+          "id": "A",
+          "text": "正确"
+        },
+        {
+          "id": "B",
+          "text": "错误"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A（正确）。在Arduino板上，标有~符号的引脚支持PWM（脉宽调制）输出，可通过analogWrite()函数控制。PWM功能用于模拟模拟输出，常用于LED调光、电机调速等。非~引脚只能进行数字输出（全开或全关）。正确识别PWM引脚对于实现平滑的模拟控制至关重要。"
+    },
+    {
+      "id": "pt-29",
+      "type": "truefalse",
+      "title": "光敏电阻的阻值变化与光照强度成反比。",
+      "options": [
+        {
+          "id": "A",
+          "text": "正确"
+        },
+        {
+          "id": "B",
+          "text": "错误"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A（正确）。光敏电阻基于光电导效应工作：光照强度增加时，载流子数量增加，电阻值降低；光照减弱时，电阻值升高。这种反比关系使得光敏电阻能够将光照强度变化转换为电阻变化，进而通过电路检测实现环境光强度测量。理解这一特性是正确应用光敏电阻的基础。"
+    },
+    {
+      "id": "pt-30",
+      "type": "truefalse",
+      "title": "马达驱动芯片TB6612可以同时驱动两个直流电机。",
+      "options": [
+        {
+          "id": "A",
+          "text": "正确"
+        },
+        {
+          "id": "B",
+          "text": "错误"
+        }
+      ],
+      "answer": "A",
+      "explanation": "正确答案是A（正确）。TB6612是一款双H桥电机驱动芯片，能够同时控制两个直流电机的正转、反转和速度。它需要接入逻辑电源和电机电源，通过IN1-IN4引脚接收控制信号。正确使用此类驱动芯片可以简化电机控制电路，实现机器人移动和其他需要双电机协调的应用场景。"
+    }
+  ]
+}

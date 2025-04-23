@@ -14,7 +14,7 @@ const emit = defineEmits<{
   (e: 'navigate', index: number): void
 }>()
 
-const getQuestionStatus = (questionId: string, index: number) => {
+const getQuestionStatus = (questionId: string, _index: number) => {
   const answer = props.userAnswers[questionId]
 
   if (!answer || !answer.isAnswered) {
