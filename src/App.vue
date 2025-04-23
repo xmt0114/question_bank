@@ -6,7 +6,9 @@ import { RouterView } from 'vue-router'
   <div class="app-container">
     <header class="app-header">
       <div class="header-content">
-        <h1 class="app-title">题库练习系统</h1>
+        <div class="title-container">
+          <h1 class="app-title">题库练习系统</h1>
+        </div>
       </div>
     </header>
 
@@ -59,7 +61,7 @@ body {
 .app-header {
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   text-align: center;
 }
 
@@ -67,14 +69,21 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .app-title {
   color: var(--primary-color);
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   text-align: center;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -83,15 +92,15 @@ body {
 
 .app-main {
   flex: 1;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .app-footer {
   background-color: #fff;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
   color: var(--text-color-secondary);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   border-top: 1px solid var(--border-color);
 }
 </style>

@@ -53,7 +53,7 @@ const goToSettings = () => {
       </div>
       <div v-else>
         <div class="home-header">
-          <h2>题库练习系统</h2>
+          <div></div>
           <el-button v-if="isAdminMode" type="info" @click="goToSettings">管理设置</el-button>
         </div>
 
@@ -159,7 +159,7 @@ const goToSettings = () => {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
 }
 
@@ -171,11 +171,10 @@ const goToSettings = () => {
 
 .home-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ebeef5;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .home-header h2 {
@@ -193,7 +192,7 @@ h1 {
 .selection-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.8rem;
 }
 
 .selection-section {
@@ -243,27 +242,30 @@ h1 {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  /* 预留出边框空间，避免选中时的布局跳动 */
+  border: 2px solid transparent;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card.active {
   border: 2px solid #409EFF;
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(64, 158, 255, 0.3);
 }
 
 /* 组织和类别卡片的图片样式 */
 .card-image {
-  height: 100px;
+  height: 80px;
+  width: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -279,7 +281,7 @@ h1 {
 
 /* 卡片标题样式 */
 .card-title {
-  padding: 0.75rem;
+  padding: 0.5rem;
   font-weight: 500;
   color: #303133;
   text-align: center;
@@ -287,6 +289,7 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  font-size: 0.9rem;
 }
 
 /* 组织卡片特殊样式 */
@@ -303,7 +306,7 @@ h1 {
 
 /* 级别卡片特殊样式 */
 .level-card {
-  height: 50px;
+  height: 40px;
   background-color: #E6A23C;
 }
 
@@ -313,7 +316,7 @@ h1 {
 
 /* 试卷卡片特殊样式 */
 .paper-card {
-  height: 50px;
+  height: 40px;
   background-color: #F56C6C;
 }
 
@@ -341,13 +344,14 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin: 1.5rem 0;
+  margin: 0.8rem 0;
 }
 
 .mode-buttons .el-button {
-  padding: 1.2rem 3rem;
-  font-size: 1.3rem;
+  padding: 1.2rem 4rem;
+  font-size: 1.4rem;
   font-weight: bold;
+  min-width: 180px;
 }
 
 /* 响应式调整 */
@@ -399,8 +403,8 @@ h1 {
 .selection-box {
   border: 2px solid #409EFF;
   border-radius: 6px;
-  padding: 1.5rem;
-  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  margin-bottom: 0.3rem;
   background-color: rgba(240, 249, 255, 0.5);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -408,16 +412,16 @@ h1 {
 
 .selection-box-title {
   position: absolute;
-  top: -18px;
+  top: -15px;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   color: #409EFF;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   border: 2px solid #409EFF;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 /* 调整各选择区域标题样式，使其更加突出 */
@@ -436,10 +440,13 @@ h1 {
 /* 暂无数据样式 */
 .no-data {
   width: 100%;
-  padding: 2rem 0;
+  height: 80px; /* 与卡片高度保持一致 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: #909399;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background-color: rgba(144, 147, 153, 0.1);
   border-radius: 4px;
 }
