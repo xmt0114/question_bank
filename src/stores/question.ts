@@ -169,23 +169,28 @@ export const useQuestionStore = defineStore('question', () => {
   function clearExamState() {
     console.log('Clearing exam state...')
 
-    // 重置考试相关状态
-    currentQuestionIndex.value = 0
-    userAnswers.value = {}
-    examStartTime.value = null
-    examEndTime.value = null
-    examMode.value = 'tutorial'
+    try {
+      // 重置考试相关状态
+      currentQuestionIndex.value = 0
+      userAnswers.value = {}
+      examStartTime.value = null
+      examEndTime.value = null
+      examMode.value = 'tutorial'
 
-    // 清除当前试卷缓存
-    const paperId = currentPaperId.value
-    if (paperId && paperCache.value[paperId]) {
-      console.log(`Clearing paper cache for ${paperId}`)
-      delete paperCache.value[paperId]
+      // 清除所有试卷缓存，确保完全重置
+      console.log('Clearing all paper cache')
+      Object.keys(paperCache.value).forEach(key => {
+        delete paperCache.value[key]
+      })
+      paperCache.value = {}
+
+      // 重置当前试卷ID
+      currentPaperId.value = ''
+
+      console.log('Exam state cleared successfully')
+    } catch (error) {
+      console.error('Error clearing exam state:', error)
     }
-
-    // 重置当前试卷ID
-    // 注意：这一步很重要，可以避免试图访问已清除的缓存
-    currentPaperId.value = ''
   }
 
   // 组织相关的计算属性和方法

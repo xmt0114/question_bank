@@ -56,8 +56,11 @@ const router = createRouter({
   ]
 })
 
+// 导入问题库状态管理
+import { useQuestionStore } from '@/stores/question'
+
 // 添加导航守卫，根据模式控制路由访问
-router.beforeEach((to, _from, next) => {
+router.beforeEach((to, from, next) => {
   // 如果是管理员模式，允许访问所有路由
   if (isAdminMode) {
     next()
@@ -68,6 +71,17 @@ router.beforeEach((to, _from, next) => {
   if (to.path.startsWith('/settings')) {
     next('/')
     return
+  }
+
+  // 如果从考试或讲解模式返回到首页，清除考试状态
+  if (to.path === '/' && (from.path === '/exam' || from.path === '/tutorial')) {
+    try {
+      const questionStore = useQuestionStore()
+      console.log('检测到从考试/讲解模式返回首页，清除状态')
+      questionStore.clearExamState()
+    } catch (error) {
+      console.error('清除考试状态时出错:', error)
+    }
   }
 
   next()

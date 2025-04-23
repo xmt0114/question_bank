@@ -15,6 +15,9 @@ const isAdminMode = import.meta.env.VITE_APP_MODE === 'admin'
 
 // 初始化选择
 onMounted(async () => {
+  // 先清除考试状态，确保不会有残留的状态
+  questionStore.clearExamState()
+  // 然后初始化选择
   await questionStore.initSelection()
 })
 
