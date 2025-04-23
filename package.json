@@ -12,6 +12,9 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@types/node": "^22.14.1",
     "element-plus": "^2.9.7",
     "pinia": "^3.0.2",
@@ -26,4 +29,3 @@
     "vue-tsc": "^2.2.8"
   }
 }
-

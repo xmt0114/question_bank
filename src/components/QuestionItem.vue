@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import type { Question } from '@/types/question'
 import { QuestionType } from '@/types/question'
+import speechService, { SpeechServiceStatus } from '@/services/speechService'
 
 const props = defineProps<{
   question: Question
@@ -14,6 +15,26 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'submit', answer: string | string[]): void
 }>()
+
+// 语音服务相关
+const speechAvailable = computed(() => speechService.isAvailable())
+const isSpeaking = ref(false)
+
+// 监听语音状态
+watch(() => speechService.getStatus(), (status) => {
+  isSpeaking.value = status === SpeechServiceStatus.SPEAKING
+}, { immediate: true })
+
+// 文本朗读函数
+const speakText = (text: string) => {
+  if (!speechAvailable.value) return
+
+  // 如果当前正在朗读，先停止
+  speechService.stop()
+
+  // 开始朗读新文本
+  speechService.speak(text)
+}
 
 const selectedAnswer = ref<string | string[]>(
   props.question.type === QuestionType.MultipleChoice ? [] : ''
@@ -45,7 +66,7 @@ const isCorrect = computed(() => {
 const handleSingleSelect = (optionId: string) => {
   if (props.disabled) return
   selectedAnswer.value = optionId
-  
+
   // 如果隐藏了提交按钮（在ExamMode模式下），选择选项后立即提交答案
   if (props.hideSubmitButton) {
     submitAnswer()
@@ -65,7 +86,7 @@ const handleMultipleSelect = (optionId: string) => {
   }
 
   selectedAnswer.value = multipleAnswer
-  
+
   // 如果隐藏了提交按钮（在ExamMode模式下），选择选项后立即提交答案
   // 多选题需要至少选择一项才提交
   if (props.hideSubmitButton && multipleAnswer.length > 0) {
@@ -99,13 +120,24 @@ const getOptionClass = (optionId: string) => {
   <div class="question-container">
     <div class="question-header">
       <div class="question-title">
-        <span class="question-type">
-          {{
-            question.type === QuestionType.SingleChoice ? '[单选题]' :
-            question.type === QuestionType.MultipleChoice ? '[多选题]' : '[判断题]'
-          }}
-        </span>
-        {{ question.title }}
+        <div class="title-content">
+          <span class="question-type">
+            {{
+              question.type === QuestionType.SingleChoice ? '[单选题]' :
+              question.type === QuestionType.MultipleChoice ? '[多选题]' : '[判断题]'
+            }}
+          </span>
+          {{ question.title }}
+          <button
+            v-if="speechAvailable"
+            class="speak-button"
+            :class="{ 'speaking': isSpeaking }"
+            @click.stop="speakText(question.title)"
+            title="朗读题目"
+          >
+            <font-awesome-icon :icon="['fas', 'volume-high']" />
+          </button>
+        </div>
       </div>
 
       <div v-if="question.image" class="question-image">
@@ -122,15 +154,26 @@ const getOptionClass = (optionId: string) => {
           :class="getOptionClass(option.id)"
           @click="handleSingleSelect(option.id)"
         >
-          <el-radio
-            v-model="selectedAnswer"
-            :label="option.id"
-            :disabled="disabled"
-          >
-            <span class="option-id">{{ option.id }}.</span>
-            <span v-if="option.text" class="option-text">{{ option.text }}</span>
-            <img v-if="option.image" :src="option.image" alt="选项图片" class="option-image">
-          </el-radio>
+          <div class="option-content">
+            <el-radio
+              v-model="selectedAnswer"
+              :label="option.id"
+              :disabled="disabled"
+            >
+              <span class="option-id">{{ option.id }}.</span>
+              <span v-if="option.text" class="option-text">{{ option.text }}</span>
+              <img v-if="option.image" :src="option.image" alt="选项图片" class="option-image">
+            </el-radio>
+            <button
+              v-if="speechAvailable && option.text"
+              class="speak-button"
+              :class="{ 'speaking': isSpeaking }"
+              @click.stop="speakText(option.text)"
+              title="朗读选项"
+            >
+              <font-awesome-icon :icon="['fas', 'volume-high']" />
+            </button>
+          </div>
         </div>
       </template>
 
@@ -142,20 +185,31 @@ const getOptionClass = (optionId: string) => {
           :class="getOptionClass(option.id)"
           @click="handleMultipleSelect(option.id)"
         >
-          <div class="checkbox-wrapper">
-            <input
-              type="checkbox"
-              :id="`option-${option.id}`"
-              :checked="Array.isArray(selectedAnswer) && selectedAnswer.includes(option.id)"
-              :disabled="disabled"
-              @change="handleMultipleSelect(option.id)"
-              class="custom-checkbox"
-            />
-            <label :for="`option-${option.id}`" class="checkbox-label">
-              <span class="option-id">{{ option.id }}.</span>
-              <span v-if="option.text" class="option-text">{{ option.text }}</span>
-              <img v-if="option.image" :src="option.image" alt="选项图片" class="option-image">
-            </label>
+          <div class="option-content">
+            <div class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                :id="`option-${option.id}`"
+                :checked="Array.isArray(selectedAnswer) && selectedAnswer.includes(option.id)"
+                :disabled="disabled"
+                @change="handleMultipleSelect(option.id)"
+                class="custom-checkbox"
+              />
+              <label :for="`option-${option.id}`" class="checkbox-label">
+                <span class="option-id">{{ option.id }}.</span>
+                <span v-if="option.text" class="option-text">{{ option.text }}</span>
+                <img v-if="option.image" :src="option.image" alt="选项图片" class="option-image">
+              </label>
+            </div>
+            <button
+              v-if="speechAvailable && option.text"
+              class="speak-button"
+              :class="{ 'speaking': isSpeaking }"
+              @click.stop="speakText(option.text)"
+              title="朗读选项"
+            >
+              <font-awesome-icon :icon="['fas', 'volume-high']" />
+            </button>
           </div>
         </div>
       </template>
@@ -215,6 +269,50 @@ const getOptionClass = (optionId: string) => {
   margin-bottom: 15px;
 }
 
+.title-content {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.speak-button {
+  margin-left: 10px;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #409EFF;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.speak-button:hover {
+  background-color: #66b1ff;
+  transform: scale(1.05);
+}
+
+.speak-button.speaking {
+  background-color: #67C23A;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .question-type {
   color: #409EFF;
   margin-right: 8px;
@@ -241,6 +339,12 @@ const getOptionClass = (optionId: string) => {
   border-radius: 4px;
   margin-bottom: 10px;
   transition: background-color 0.3s;
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .option:hover {

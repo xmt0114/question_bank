@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { onMounted } from 'vue'
+import speechService from './services/speechService'
+
+// 在应用加载时初始化语音服务
+onMounted(() => {
+  // 语音服务会在构造函数中自动初始化
+  console.log('语音服务状态:', speechService.getStatus())
+})
 </script>
 
 <template>
