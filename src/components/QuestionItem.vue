@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import type { Question } from '@/types/question'
 import { QuestionType } from '@/types/question'
 import speechService, { SpeechServiceStatus } from '@/services/speechService'
@@ -17,13 +17,24 @@ const emit = defineEmits<{
 }>()
 
 // 语音服务相关
-const speechAvailable = computed(() => speechService.isAvailable())
+const speechAvailable = computed(() => {
+  const available = speechService.isAvailable()
+  console.log('QuestionItem - 语音服务可用状态:', available)
+  return available
+})
 const isSpeaking = ref(false)
 
 // 监听语音状态
 watch(() => speechService.getStatus(), (status) => {
+  console.log('QuestionItem - 语音服务状态变化:', status)
   isSpeaking.value = status === SpeechServiceStatus.SPEAKING
 }, { immediate: true })
+
+// 在组件挂载时输出调试信息
+onMounted(() => {
+  console.log('QuestionItem 组件挂载 - 语音服务状态:', speechService.getStatus())
+  console.log('QuestionItem 组件挂载 - 语音服务可用状态:', speechAvailable.value)
+})
 
 // 文本朗读函数
 const speakText = (text: string) => {

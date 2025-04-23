@@ -30,12 +30,18 @@ class SpeechService {
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       this.synth = window.speechSynthesis;
 
+      // 添加调试日志
+      console.log('语音合成支持检测: 支持 speechSynthesis');
+      console.log('浏览器信息:', navigator.userAgent);
+
       // 加载可用的语音
       this.loadVoices();
 
       // 如果voices为空，可能需要等待voiceschanged事件
       if (this.voices.length === 0) {
+        console.log('语音列表为空，添加voiceschanged事件监听器');
         this.synth.addEventListener('voiceschanged', () => {
+          console.log('voiceschanged 事件触发');
           this.loadVoices();
         });
       }
@@ -52,17 +58,31 @@ class SpeechService {
     if (!this.synth) return;
 
     this.voices = this.synth.getVoices();
-
-    // 尝试找到中文语音
-    this.preferredVoice = this.voices.find(voice =>
-      voice.lang.includes('zh') || voice.lang.includes('cmn')
-    ) || null;
+    console.log('加载到的语音数量:', this.voices.length);
 
     if (this.voices.length > 0) {
+      // 输出所有可用的语音
+      this.voices.forEach((voice, index) => {
+        console.log(`语音 ${index + 1}:`, voice.name, voice.lang, voice.default ? '(默认)' : '');
+      });
+
+      // 尝试找到中文语音
+      this.preferredVoice = this.voices.find(voice =>
+        voice.lang.includes('zh') || voice.lang.includes('cmn')
+      ) || null;
+
+      if (this.preferredVoice) {
+        console.log('选择的中文语音:', this.preferredVoice.name, this.preferredVoice.lang);
+      } else {
+        console.log('未找到中文语音，使用默认语音');
+      }
+
       this.status = SpeechServiceStatus.READY;
+      console.log('语音服务状态设置为: READY');
     } else {
       // 如果没有可用的语音，设置为错误状态
       this.status = SpeechServiceStatus.ERROR;
+      console.warn('未找到可用的语音，语音服务状态设置为: ERROR');
     }
   }
 
@@ -77,7 +97,9 @@ class SpeechService {
    * 检查语音服务是否可用
    */
   public isAvailable(): boolean {
-    return this.status === SpeechServiceStatus.READY;
+    const available = this.status === SpeechServiceStatus.READY;
+    console.log('检查语音服务是否可用:', available, '当前状态:', this.status);
+    return available;
   }
 
   /**
