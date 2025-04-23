@@ -29,10 +29,10 @@ class SpeechService {
     // 检查浏览器是否支持语音合成
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       this.synth = window.speechSynthesis;
-      
+
       // 加载可用的语音
       this.loadVoices();
-      
+
       // 如果voices为空，可能需要等待voiceschanged事件
       if (this.voices.length === 0) {
         this.synth.addEventListener('voiceschanged', () => {
@@ -50,14 +50,14 @@ class SpeechService {
    */
   private loadVoices(): void {
     if (!this.synth) return;
-    
+
     this.voices = this.synth.getVoices();
-    
+
     // 尝试找到中文语音
-    this.preferredVoice = this.voices.find(voice => 
+    this.preferredVoice = this.voices.find(voice =>
       voice.lang.includes('zh') || voice.lang.includes('cmn')
     ) || null;
-    
+
     if (this.voices.length > 0) {
       this.status = SpeechServiceStatus.READY;
     } else {
@@ -95,35 +95,35 @@ class SpeechService {
 
     // 创建新的语音实例
     const utterance = new SpeechSynthesisUtterance(text);
-    
+
     // 设置语音
     if (this.preferredVoice) {
       utterance.voice = this.preferredVoice;
     }
-    
+
     // 设置语速和音调
     utterance.rate = 1.0;  // 正常语速
     utterance.pitch = 1.0; // 正常音调
-    
+
     // 设置事件处理
     utterance.onstart = () => {
       this.status = SpeechServiceStatus.SPEAKING;
     };
-    
+
     utterance.onend = () => {
       this.status = SpeechServiceStatus.READY;
       this.currentUtterance = null;
     };
-    
+
     utterance.onerror = (event) => {
       console.error('语音合成错误:', event);
       this.status = SpeechServiceStatus.ERROR;
       this.currentUtterance = null;
     };
-    
+
     // 保存当前朗读实例
     this.currentUtterance = utterance;
-    
+
     // 开始朗读
     this.synth.speak(utterance);
   }
@@ -133,10 +133,10 @@ class SpeechService {
    */
   public stop(): void {
     if (!this.synth) return;
-    
+
     this.synth.cancel();
     this.currentUtterance = null;
-    
+
     if (this.status === SpeechServiceStatus.SPEAKING) {
       this.status = SpeechServiceStatus.READY;
     }
@@ -147,6 +147,13 @@ class SpeechService {
    */
   public isSpeaking(): boolean {
     return this.status === SpeechServiceStatus.SPEAKING;
+  }
+
+  /**
+   * 获取当前朗读实例
+   */
+  public getCurrentUtterance(): SpeechSynthesisUtterance | null {
+    return this.currentUtterance;
   }
 }
 
