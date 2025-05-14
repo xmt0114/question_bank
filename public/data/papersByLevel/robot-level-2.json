@@ -1,7 +1,12 @@
 [
   {
     "id": "robot-level-2-2025-03",
-    "name": "2025年3月青少年机器人技术等级考试（二级）",
+    "name": "2025年3月",
+    "levelId": "robot-level-2"
+  },
+  {
+    "id": "robot-level-2-2024-12",
+    "name": "2024年12月",
     "levelId": "robot-level-2"
   }
 ]

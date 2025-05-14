@@ -1,6 +1,6 @@
 {
   "id": "robot-level-2-2025-03",
-  "name": "2025年3月青少年机器人技术等级考试（二级）",
+  "name": "2025年3月",
   "levelId": "robot-level-2",
   "questions": [
     {
@@ -545,7 +545,7 @@
       "id": "pt-22",
       "type": "single",
       "title": "如图，这是记里鼓车的模型，它的作用是？",
-      "image": "/images/robot-level-2-2025-03/image14.jpeg",
+      "image": "/images/robot-level-2-2025-03/image13.jpeg",
       "options": [
         {
           "id": "A",
@@ -596,7 +596,7 @@
       "id": "pt-24",
       "type": "single",
       "title": "如图，下列凸轮机构哪个采用了平底型从动件？",
-      "image": "/images/robot-level-2-2025-03/image15.jpeg",
+      "image": "/images/robot-level-2-2025-03/image14.jpeg",
       "options": [
         {
           "id": "A",
@@ -647,7 +647,7 @@
       "id": "pt-26",
       "type": "single",
       "title": "如图，一个小汽车正在上坡，它受到的力不包括？",
-      "image": "/images/robot-level-2-2025-03/image16.jpeg",
+      "image": "/images/robot-level-2-2025-03/image15.jpeg",
       "options": [
         {
           "id": "A",
@@ -698,7 +698,7 @@
       "id": "pt-28",
       "type": "single",
       "title": "如图，关于该自行车说法错误的是？",
-      "image": "/images/robot-level-2-2025-03/image17.jpeg",
+      "image": "/images/robot-level-2-2025-03/image16.jpeg",
       "options": [
         {
           "id": "A",
@@ -802,7 +802,7 @@
       "id": "pt-32",
       "type": "multiple",
       "title": "如图，关于该装置说法正确的2项是？",
-      "image": "/images/robot-level-2-2025-03/image18.jpeg",
+      "image": "/images/robot-level-2-2025-03/image17.jpeg",
       "options": [
         {
           "id": "A",
@@ -831,7 +831,7 @@
       "id": "pt-33",
       "type": "multiple",
       "title": "如图，下列哪3个场景增大了摩擦力？",
-      "image": "/images/robot-level-2-2025-03/image19.jpeg",
+      "image": "/images/robot-level-2-2025-03/image18.jpeg",
       "options": [
         {
           "id": "A",
@@ -889,7 +889,7 @@
       "id": "pt-35",
       "type": "multiple",
       "title": "如图，下列哪2个选项是不完全齿轮机构？",
-      "image": "/images/robot-level-2-2025-03/image20.jpeg",
+      "image": "/images/robot-level-2-2025-03/image19.jpeg",
       "options": [
         {
           "id": "A",
