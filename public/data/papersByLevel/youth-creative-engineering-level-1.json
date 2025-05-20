@@ -8,5 +8,15 @@
     "id": "youth-creative-engineering-2025-test2",
     "name": "初赛小学理论题2025测试2",
     "levelId": "youth-creative-engineering-level-1"
+  },
+  {
+    "id": "youth-creative-engineering-2025-test3",
+    "name": "初赛小学理论题2025测试3",
+    "levelId": "youth-creative-engineering-level-1"
+  },
+  {
+    "id": "youth-creative-engineering-2025-test2-newset",
+    "name": "初赛小学理论题2025测试4",
+    "levelId": "youth-creative-engineering-level-1"
   }
 ]
