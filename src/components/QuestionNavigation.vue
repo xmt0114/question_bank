@@ -1,18 +1,47 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { UserAnswer } from '@/types/question'
+import type { UserAnswer, Question } from '@/types/question'
+import { QuestionType } from '@/types/question'
 
 const props = defineProps<{
   currentIndex: number
   totalQuestions: number
   userAnswers: Record<string, UserAnswer>
   questionIds: string[]
+  questions: Question[]
   showResult?: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'navigate', index: number): void
 }>()
+
+const groupedQuestions = computed(() => {
+  if (!props.questions || props.questions.length === 0) return {}
+
+  const groups = {
+    [QuestionType.SingleChoice]: { type: '单选题', questions: [] },
+    [QuestionType.MultipleChoice]: { type: '多选题', questions: [] },
+    [QuestionType.TrueFalse]: { type: '判断题', questions: [] }
+  }
+
+  props.questions.forEach((question, index) => {
+    if (groups[question.type]) {
+      groups[question.type].questions.push({
+        question,
+        index
+      })
+    }
+  })
+
+  Object.keys(groups).forEach(key => {
+    if (groups[key].questions.length === 0) {
+      delete groups[key]
+    }
+  })
+
+  return groups
+})
 
 const getQuestionStatus = (questionId: string, _index: number) => {
   const answer = props.userAnswers[questionId]
@@ -58,7 +87,35 @@ const navigateToQuestion = (index: number) => {
       </div>
     </div>
 
-    <div class="question-buttons">
+    <div class="question-groups" v-if="questions && questions.length > 0">
+      <div 
+        v-for="(group, type) in groupedQuestions" 
+        :key="type" 
+        class="question-group"
+      >
+        <div class="question-group-header">
+          <div class="question-type-label">{{ group.type }}</div>
+          <div class="question-count">{{ group.questions.length }}题</div>
+        </div>
+        
+        <div class="question-buttons">
+          <button
+            v-for="item in group.questions"
+            :key="item.question.id"
+            class="question-button"
+            :class="[
+              getQuestionStatus(item.question.id, item.index),
+              { active: item.index === currentIndex }
+            ]"
+            @click="navigateToQuestion(item.index)"
+          >
+            {{ item.index + 1 }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-buttons" v-else>
       <button
         v-for="(questionId, index) in questionIds"
         :key="questionId"
@@ -127,11 +184,43 @@ const navigateToQuestion = (index: number) => {
   margin-left: 5px;
 }
 
+.question-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.question-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.question-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.question-type-label {
+  font-weight: bold;
+  color: #409EFF;
+  font-size: 14px;
+}
+
+.question-count {
+  font-size: 12px;
+  color: #606266;
+}
+
 .question-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .question-button {
@@ -184,6 +273,7 @@ const navigateToQuestion = (index: number) => {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin-top: 10px;
 }
 
 .legend-item {

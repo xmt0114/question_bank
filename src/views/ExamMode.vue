@@ -97,7 +97,7 @@ const nextQuestion = () => {
   } else {
     // 如果是最后一题，显示提示
     ElMessage({
-      message: '这是最后一题，请点击“提交试卷”按钮完成测试',
+      message: '这是最后一题，请点击"提交试卷"按钮完成测试',
       type: 'info'
     })
   }
@@ -227,6 +227,7 @@ const backToHome = async () => {
             :total-questions="totalQuestions"
             :user-answers="userAnswers"
             :question-ids="questionIds"
+            :questions="currentPaper?.questions || []"
             :show-result="examFinished"
             @navigate="navigateToQuestion"
           />

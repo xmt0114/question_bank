@@ -163,6 +163,7 @@
 
         <div class="question-actions">
           <el-button type="primary" @click="showAddQuestionDialog">添加题目</el-button>
+          <el-button type="primary" @click="sortQuestions">题目排序</el-button>
         </div>
 
         <el-collapse>
@@ -329,6 +330,67 @@
         </span>
       </template>
     </el-dialog>
+
+    <!-- 题目排序对话框 -->
+    <el-dialog
+      v-model="sortDialogVisible"
+      title="题目排序"
+      width="80%"
+    >
+      <div v-if="showQuestionTypeWarning" class="sort-warning">
+        <el-alert
+          title="题型顺序不规范"
+          type="warning"
+          description="当前试卷的题型顺序不规范，建议按照单选题、多选题、判断题的顺序排列。"
+          show-icon
+          :closable="false"
+        />
+        <div class="auto-sort-button">
+          <el-button type="primary" @click="autoSortQuestions">自动排序</el-button>
+        </div>
+      </div>
+      
+      <el-table :data="currentPaper?.questions || []" style="width: 100%">
+        <el-table-column type="index" width="50" />
+        <el-table-column label="题型" width="100">
+          <template #default="scope">
+            {{ getQuestionTypeName(scope.row.type) }}
+          </template>
+        </el-table-column>
+        <el-table-column label="题目内容" show-overflow-tooltip>
+          <template #default="scope">
+            {{ scope.row.title }}
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="150">
+          <template #default="scope">
+            <el-button 
+              type="primary" 
+              size="small" 
+              icon="ArrowUp" 
+              circle 
+              @click="moveQuestion(scope.$index, 'up')"
+              :disabled="scope.$index === 0"
+            />
+            <el-button 
+              type="primary" 
+              size="small" 
+              icon="ArrowDown" 
+              circle 
+              @click="moveQuestion(scope.$index, 'down')"
+              :disabled="scope.$index === currentPaper?.questions.length - 1"
+            />
+          </template>
+        </el-table-column>
+      </el-table>
+      
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="sortDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="saveSortedQuestions">保存</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -337,6 +399,7 @@ import { ref, reactive, computed, watch } from 'vue'
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import type { Paper, Level, Category, Organization } from '@/types/question'
 import * as apiService from '@/services/apiService'
+import { QuestionType } from '@/types/question'
 
 const organizations = ref<Organization[]>([])
 const categories = ref<Category[]>([])
@@ -357,6 +420,10 @@ const deleteQuestionDialogVisible = ref(false)
 const isEditQuestion = ref(false)
 const currentQuestionIndex = ref(-1)
 const questionFormRef = ref<FormInstance>()
+
+// 添加排序对话框状态
+const sortDialogVisible = ref(false)
+const showQuestionTypeWarning = ref(false)
 
 const selectedOrganizationId = ref('')
 const selectedCategoryId = ref('')
@@ -565,7 +632,7 @@ function resetForm() {
   form.questions = []
 }
 
-// 提交表单
+// 修改submitForm函数
 async function submitForm() {
   if (!formRef.value) return
 
@@ -577,6 +644,34 @@ async function submitForm() {
           name: form.name,
           levelId: form.levelId,
           questions: form.questions
+        }
+
+        // 如果是编辑模式且试卷中有题目，则验证题型顺序
+        if (isEdit.value && paperData.questions.length > 0) {
+          // 检查题型顺序是否合规
+          if (!validateQuestionTypeOrder(paperData.questions)) {
+            const suggested = getSuggestedQuestionOrder(paperData.questions);
+            
+            try {
+              await ElMessageBox.confirm(
+                '当前试卷的题型顺序不规范，建议按照单选题、多选题、判断题的顺序排列。是否自动调整题目顺序？',
+                '题型顺序警告',
+                {
+                  confirmButtonText: '自动调整',
+                  cancelButtonText: '手动调整',
+                  type: 'warning'
+                }
+              );
+              
+              // 用户选择自动调整
+              paperData.questions = suggested;
+              ElMessage.success('已自动调整题目顺序');
+            } catch (e) {
+              // 用户选择手动调整，展示建议
+              ElMessage.warning('请手动调整题目顺序，确保同一题型的题目连续排列');
+              return;
+            }
+          }
         }
 
         if (isEdit.value) {
@@ -747,46 +842,175 @@ async function confirmDeleteQuestion() {
   }
 }
 
-// 提交题目表单
+// 添加题目顺序验证函数
+function validateQuestionTypeOrder(questions) {
+  if (!questions || questions.length <= 1) return true;
+  
+  // 记录当前题型和上一个题型
+  let currentType = questions[0].type;
+  let typeChanges = 0;
+  
+  // 检查题型变化次数
+  for (let i = 1; i < questions.length; i++) {
+    if (questions[i].type !== currentType) {
+      currentType = questions[i].type;
+      typeChanges++;
+    }
+  }
+  
+  // 如果题型变化次数大于等于题型数量，说明题型有穿插
+  const uniqueTypes = new Set(questions.map(q => q.type));
+  return typeChanges < uniqueTypes.size;
+}
+
+// 获取题型顺序建议
+function getSuggestedQuestionOrder(questions) {
+  if (!questions || questions.length === 0) return [];
+  
+  // 按题型分组
+  const groups = {
+    'single': [],
+    'multiple': [],
+    'truefalse': []
+  };
+  
+  questions.forEach(q => {
+    if (groups[q.type]) {
+      groups[q.type].push({...q});
+    }
+  });
+  
+  // 推荐顺序：单选题 -> 多选题 -> 判断题
+  return [
+    ...groups['single'], 
+    ...groups['multiple'], 
+    ...groups['truefalse']
+  ];
+}
+
+// 修改submitQuestionForm函数
 async function submitQuestionForm() {
-  if (!questionFormRef.value || !currentPaper.value) return
+  if (!questionFormRef.value || !currentPaper.value) return;
 
   await questionFormRef.value.validate(async (valid) => {
     if (valid) {
       try {
-        // 构建题目数据
-        const questionData = {
+        const question = {
           id: questionForm.id,
           type: questionForm.type,
           title: questionForm.title,
-          image: questionForm.image || undefined,
-          options: questionForm.options,
+          image: questionForm.image || '',
+          options: JSON.parse(JSON.stringify(questionForm.options)),
           answer: questionForm.answer,
           explanation: questionForm.explanation
-        }
+        };
 
-        if (isEditQuestion.value && currentQuestionIndex.value !== -1) {
+        if (isEditQuestion.value) {
           // 编辑现有题目
-          // @ts-ignore
-          currentPaper.value.questions[currentQuestionIndex.value] = questionData
+          currentPaper.value.questions[currentQuestionIndex.value] = question;
         } else {
           // 添加新题目
-          // @ts-ignore
-          currentPaper.value.questions.push(questionData)
+          currentPaper.value.questions.push(question);
+        }
+
+        // 检查题型顺序是否合规
+        if (!validateQuestionTypeOrder(currentPaper.value.questions)) {
+          const suggested = getSuggestedQuestionOrder(currentPaper.value.questions);
+          
+          try {
+            await ElMessageBox.confirm(
+              '当前试卷的题型顺序不规范，建议按照单选题、多选题、判断题的顺序排列。是否自动调整题目顺序？',
+              '题型顺序警告',
+              {
+                confirmButtonText: '自动调整',
+                cancelButtonText: '手动调整',
+                type: 'warning'
+              }
+            );
+            
+            // 用户选择自动调整
+            currentPaper.value.questions = suggested;
+            ElMessage.success('已自动调整题目顺序');
+          } catch (e) {
+            // 用户选择手动调整，展示建议
+            ElMessage.warning('请手动调整题目顺序，确保同一题型的题目连续排列');
+            questionDialogVisible.value = false;
+            return;
+          }
         }
 
         // 更新试卷
-        // @ts-ignore
-        await apiService.updatePaper(currentPaper.value)
-
-        ElMessage.success(isEditQuestion.value ? '更新题目成功' : '添加题目成功')
-        questionDialogVisible.value = false
+        await apiService.updatePaper(currentPaper.value);
+        
+        ElMessage.success(isEditQuestion.value ? '编辑题目成功' : '添加题目成功');
+        questionDialogVisible.value = false;
       } catch (error) {
-        ElMessage.error(isEditQuestion.value ? '更新题目失败' : '添加题目失败')
-        console.error('Failed to save question:', error)
+        ElMessage.error(isEditQuestion.value ? '编辑题目失败' : '添加题目失败');
+        console.error('Failed to save question:', error);
       }
     }
-  })
+  });
+}
+
+// 重排题目函数
+function sortQuestions() {
+  if (!currentPaper.value) return
+  
+  sortDialogVisible.value = true
+  showQuestionTypeWarning.value = !validateQuestionTypeOrder(currentPaper.value.questions)
+}
+
+// 按题型自动排序
+async function autoSortQuestions() {
+  if (!currentPaper.value) return
+  
+  // 使用推荐顺序排序
+  const suggested = getSuggestedQuestionOrder(currentPaper.value.questions)
+  currentPaper.value.questions = suggested
+  
+  try {
+    // 更新试卷
+    await apiService.updatePaper(currentPaper.value)
+    ElMessage.success('题目排序成功')
+    sortDialogVisible.value = false
+  } catch (error) {
+    ElMessage.error('题目排序失败')
+    console.error('Failed to sort questions:', error)
+  }
+}
+
+// 移动题目位置
+async function moveQuestion(index: number, direction: 'up' | 'down') {
+  if (!currentPaper.value || !currentPaper.value.questions) return
+  
+  const questions = currentPaper.value.questions
+  const newIndex = direction === 'up' ? index - 1 : index + 1
+  
+  // 检查是否可以移动
+  if (newIndex < 0 || newIndex >= questions.length) return
+  
+  // 交换位置
+  const temp = questions[index]
+  questions[index] = questions[newIndex]
+  questions[newIndex] = temp
+  
+  // 检查题型顺序
+  showQuestionTypeWarning.value = !validateQuestionTypeOrder(questions)
+}
+
+// 保存排序结果
+async function saveSortedQuestions() {
+  if (!currentPaper.value) return
+  
+  try {
+    // 更新试卷
+    await apiService.updatePaper(currentPaper.value)
+    ElMessage.success('题目排序保存成功')
+    sortDialogVisible.value = false
+  } catch (error) {
+    ElMessage.error('题目排序保存失败')
+    console.error('Failed to save sorted questions:', error)
+  }
 }
 
 // 监听级别变化
@@ -900,6 +1124,17 @@ watch(selectedLevelId, (newVal) => {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.sort-warning {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.auto-sort-button {
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
