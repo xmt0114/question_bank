@@ -7,7 +7,6 @@
       "id": "pt-1",
       "type": "single",
       "title": "气球初始位置如下图所示，运行下列程序，气球会朝哪个方向移动？",
-      "image": "/images/graphic-level-1-2025-03/image1.png",
       "options": [
         {
           "id": "A",
@@ -27,43 +26,55 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。在图形化编程中，当设置角色移动方向时，水平向右通常对应默认的移动方向（90度）。其他选项错误的原因是：B选项垂直向下需要设置方向为-90度；C选项水平向左需要设置方向为180度；D选项垂直向上需要设置方向为90度并配合垂直移动指令。本题主要考察对角色运动方向设置的理解。"
+      "explanation": "正确答案是A。在图形化编程中，当设置角色移动方向时，水平向右通常对应默认的移动方向（90度）。其他选项错误的原因是：B选项垂直向下需要设置方向为-90度；C选项水平向左需要设置方向为180度；D选项垂直向上需要设置方向为90度并配合垂直移动指令。本题主要考察对角色运动方向设置的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image1.png"
+      ]
     },
     {
       "id": "pt-2",
       "type": "single",
       "title": "使用下列哪个选项可以将鹦鹉的翅膀变为灰色？",
-      "image": "/images/graphic-level-1-2025-03/image2.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image3.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image3.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image4.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image4.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image5.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image5.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image6.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image6.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D。在图形化编程的绘图工具中，填充工具（通常显示为油漆桶图标）用于将选中区域填充为指定颜色。其他选项可能分别是选择工具、线条工具或橡皮擦工具，这些工具无法直接改变颜色填充。本题考察对绘图工具功能的理解。"
+      "explanation": "正确答案是D。在图形化编程的绘图工具中，填充工具（通常显示为油漆桶图标）用于将选中区域填充为指定颜色。其他选项可能分别是选择工具、线条工具或橡皮擦工具，这些工具无法直接改变颜色填充。本题考察对绘图工具功能的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image2.png"
+      ]
     },
     {
       "id": "pt-3",
       "type": "single",
       "title": "点击一次红框处的按钮后，舞台区小猫显示为？",
-      "image": "/images/graphic-level-1-2025-03/image7.png",
       "options": [
         {
           "id": "A",
@@ -72,147 +83,195 @@
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image8.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image8.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image9.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image9.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image10.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image10.png"
+          ]
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。红框内的按钮是水平翻转按钮，点击后会将选中元素或整个图像进行左右翻转。选项A错误，因为翻转不会导致元素消失；选项C和D错误，因为它们显示的不是翻转后的效果。本题考察对图像翻转操作的理解。"
+      "explanation": "正确答案是B。红框内的按钮是水平翻转按钮，点击后会将选中元素或整个图像进行左右翻转。选项A错误，因为翻转不会导致元素消失；选项C和D错误，因为它们显示的不是翻转后的效果。本题考察对图像翻转操作的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image7.png"
+      ]
     },
     {
       "id": "pt-4",
       "type": "single",
       "title": "小猴子的默认旋转方式为“任意旋转”，下列哪个积木能让小猴子从左图变为右图，表演倒立？",
-      "image": "/images/graphic-level-1-2025-03/image11.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image13.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image13.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image14.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image14.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image15.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image15.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image16.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image16.png"
+          ]
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。小猴子默认面向90度方向（向右），要实现倒立效果，需要将其方向设置为-90度（向左）。选项A可能设置为180度（向后），选项C可能设置为旋转一定角度而不是直接改变方向，选项D可能设置为垂直方向而非水平翻转。本题考察对角色方向设置的理解。"
+      "explanation": "正确答案是B。小猴子默认面向90度方向（向右），要实现倒立效果，需要将其方向设置为-90度（向左）。选项A可能设置为180度（向后），选项C可能设置为旋转一定角度而不是直接改变方向，选项D可能设置为垂直方向而非水平翻转。本题考察对角色方向设置的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image11.png"
+      ]
     },
     {
       "id": "pt-5",
       "type": "single",
       "title": "角色初始位置如下图所示，小猫初始方向向右，运行下列哪个程序可以让小猫拿到香蕉？",
-      "image": "/images/graphic-level-1-2025-03/image17.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image18.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image18.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image19.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image19.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image20.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image20.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image21.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image21.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D。要让小猫拿到香蕉，正确的路径可以是先向右移动200步，再向上移动100步，或者先向上移动100步再向右移动200步。选项A和B可能只包含单一方向的移动，选项C可能移动顺序错误导致无法拿到香蕉。本题考察路径规划与编程指令的结合。"
+      "explanation": "正确答案是D。要让小猫拿到香蕉，正确的路径可以是先向右移动200步，再向上移动100步，或者先向上移动100步再向右移动200步。选项A和B可能只包含单一方向的移动，选项C可能移动顺序错误导致无法拿到香蕉。本题考察路径规划与编程指令的结合。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image17.png"
+      ]
     },
     {
       "id": "pt-6",
       "type": "single",
       "title": "小鸭初始位置和方向如下图所示，距离聚光灯舞台150步，下列哪个选项能让小鸭走到聚光灯舞台的位置？",
-      "image": "/images/graphic-level-1-2025-03/image22.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image23.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image23.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image24.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image24.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image25.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image25.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image26.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image26.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。小鸭初始面向-90度方向（向左），因此只需要 straightforward move 150 steps 即可到达目标位置。其他选项可能包含了不必要的方向改变或错误的移动距离，导致无法正确到达聚光灯舞台。本题考察初始方向与运动路径的关系。"
+      "explanation": "正确答案是A。小鸭初始面向-90度方向（向左），因此只需要 straightforward move 150 steps 即可到达目标位置。其他选项可能包含了不必要的方向改变或错误的移动距离，导致无法正确到达聚光灯舞台。本题考察初始方向与运动路径的关系。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image22.png"
+      ]
     },
     {
       "id": "pt-7",
       "type": "single",
       "title": "仔细观察下图中的图案，下列哪个选项放在问号处，是符合规律的？",
-      "image": "/images/graphic-level-1-2025-03/image27.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image28.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image28.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image29.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image29.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image30.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image30.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image31.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image31.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D。图案的规律是每次逆时针旋转90度。右上角图案旋转90度得到左上角图案，左上角图案旋转90度得到左下角图案，左下角图案旋转90度得到右下角图案。选项A、B、C不符合这一旋转规律。本题考察图形旋转规律的观察与推理能力。"
+      "explanation": "正确答案是D。图案的规律是每次逆时针旋转90度。右上角图案旋转90度得到左上角图案，左上角图案旋转90度得到左下角图案，左下角图案旋转90度得到右下角图案。选项A、B、C不符合这一旋转规律。本题考察图形旋转规律的观察与推理能力。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image27.png"
+      ]
     },
     {
       "id": "pt-8",
       "type": "single",
       "title": "根据下列数字的变化规律，空格处应该填入什么数字？",
-      "image": "/images/graphic-level-1-2025-03/image32.png",
       "options": [
         {
           "id": "A",
@@ -232,97 +291,130 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。这串数字的规律是每个数字比前一个大6（7，13，19...）。通过观察相邻数字的差值可以发现这一规律。选项A、C、D不符合这一等差数列的规律。本题考察数列规律的识别能力。"
+      "explanation": "正确答案是B。这串数字的规律是每个数字比前一个大6（7，13，19...）。通过观察相邻数字的差值可以发现这一规律。选项A、C、D不符合这一等差数列的规律。本题考察数列规律的识别能力。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image32.png"
+      ]
     },
     {
       "id": "pt-9",
       "type": "single",
       "title": "兔子的初始位置如下左图所示，从舞台最左端到最右端有300步，下列哪个选项的程序可以让兔子移动到舞台最右端？",
-      "image": "/images/graphic-level-1-2025-03/image33.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image35.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image35.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image36.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image36.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image37.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image37.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image38.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image38.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C。选项A、B、D的程序只能让兔子移动到舞台中间位置，因为它们可能设置了不足300步的移动距离或方向错误。只有选项C正确设置了从最左端到最右端所需的300步移动。本题考察舞台坐标与移动距离的关系。"
+      "explanation": "正确答案是C。选项A、B、D的程序只能让兔子移动到舞台中间位置，因为它们可能设置了不足300步的移动距离或方向错误。只有选项C正确设置了从最左端到最右端所需的300步移动。本题考察舞台坐标与移动距离的关系。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image33.png"
+      ]
     },
     {
       "id": "pt-10",
       "type": "single",
       "title": "程序运行前角色造型是“动作二”，运行下列哪个选项的程序，可以让角色从“动作三”变成“动作一”，再变成“动作二”？",
-      "image": "/images/graphic-level-1-2025-03/image39.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image40.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image40.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image41.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image41.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image42.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image42.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image43.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image43.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D。选项D的程序首先将造型切换到“动作三”，然后切换到“动作一”，最后回到“动作二”，符合题目要求。其他选项可能顺序错误或包含不必要的造型切换。本题考察对角色造型切换逻辑的理解。"
+      "explanation": "正确答案是D。选项D的程序首先将造型切换到“动作三”，然后切换到“动作一”，最后回到“动作二”，符合题目要求。其他选项可能顺序错误或包含不必要的造型切换。本题考察对角色造型切换逻辑的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image39.png"
+      ]
     },
     {
       "id": "pt-11",
       "type": "single",
       "title": "运行下列哪个选项的程序，可以显示“房间3”背景？",
-      "image": "/images/graphic-level-1-2025-03/image44.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image45.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image45.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image46.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image46.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image47.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image47.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image48.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image48.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D。选项D的程序明确指定了切换到“房间3”背景。其他选项可能切换到错误的背景或未正确使用背景切换积木。本题考察对背景切换操作的理解。"
+      "explanation": "正确答案是D。选项D的程序明确指定了切换到“房间3”背景。其他选项可能切换到错误的背景或未正确使用背景切换积木。本题考察对背景切换操作的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image44.png"
+      ]
     },
     {
       "id": "pt-12",
@@ -332,22 +424,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image49.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image49.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image50.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image50.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image51.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image51.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image52.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image52.png"
+          ]
         }
       ],
       "answer": "C",
@@ -357,7 +457,6 @@
       "id": "pt-13",
       "type": "single",
       "title": "桌子的一边放了8支笔，如果在相邻的两支笔之间摆放一块橡皮，一共要摆放几块橡皮？",
-      "image": "/images/graphic-level-1-2025-03/image53.png",
       "options": [
         {
           "id": "A",
@@ -377,13 +476,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。8支笔形成7个间隔，因此需要7块橡皮。这是一个经典的间隔问题，选项A少算了一个间隔，选项C和D错误地将橡皮数量与笔的数量等同或超过。本题考察间隔计算的基本数学概念。"
+      "explanation": "正确答案是B。8支笔形成7个间隔，因此需要7块橡皮。这是一个经典的间隔问题，选项A少算了一个间隔，选项C和D错误地将橡皮数量与笔的数量等同或超过。本题考察间隔计算的基本数学概念。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image53.png"
+      ]
     },
     {
       "id": "pt-14",
       "type": "single",
       "title": "已知2个香蕉等于4个草莓，1个西瓜等于3个香蕉，如下图所示，那么1个西瓜等于几个草莓？",
-      "image": "/images/graphic-level-1-2025-03/image54.png",
       "options": [
         {
           "id": "A",
@@ -403,37 +504,50 @@
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D。根据等量关系，2个香蕉=4个草莓 ⇒ 1个香蕉=2个草莓；1个西瓜=3个香蕉 ⇒1个西瓜=3×2=6个草莓。选项A、B、C没有正确转换等量关系。本题考察等量代换的数学思维。"
+      "explanation": "正确答案是D。根据等量关系，2个香蕉=4个草莓 ⇒ 1个香蕉=2个草莓；1个西瓜=3个香蕉 ⇒1个西瓜=3×2=6个草莓。选项A、B、C没有正确转换等量关系。本题考察等量代换的数学思维。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image54.png"
+      ]
     },
     {
       "id": "pt-15",
       "type": "single",
       "title": "程序运行前小鱼的造型为第一个造型，下列哪个选项能实现播放声音'Cave'的同时，立刻切换到下一个造型？",
-      "image": "/images/graphic-level-1-2025-03/image55.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image56.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image56.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image57.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image57.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image58.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image58.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image59.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image59.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。要同时播放声音并切换造型，需要使用“播放声音”积木而不是“播放声音等待播完”积木，这样造型切换可以立即执行。其他选项可能使用了错误的积木组合，导致声音播放完成后才切换造型。本题考察声音与造型切换的同步控制。"
+      "explanation": "正确答案是A。要同时播放声音并切换造型，需要使用“播放声音”积木而不是“播放声音等待播完”积木，这样造型切换可以立即执行。其他选项可能使用了错误的积木组合，导致声音播放完成后才切换造型。本题考察声音与造型切换的同步控制。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image55.png"
+      ]
     },
     {
       "id": "pt-16",
@@ -443,22 +557,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image60.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image60.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image61.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image61.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image62.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image62.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image63.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image63.png"
+          ]
         }
       ],
       "answer": "B",
@@ -497,22 +619,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image64.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image64.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image65.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image65.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image66.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image66.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image67.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image67.png"
+          ]
         }
       ],
       "answer": "D",
@@ -522,97 +652,126 @@
       "id": "pt-19",
       "type": "single",
       "title": "下列哪个选项能将角色Apple的名称修改为中文的“苹果”？",
-      "image": "/images/graphic-level-1-2025-03/image68.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image69.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image69.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image70.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image70.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image71.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image71.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image72.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image72.png"
+          ]
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。修改角色名称需要在角色属性面板中找到名称属性，并输入新的名称。选项B显示的是正确的属性编辑界面，而其他选项可能显示的是造型编辑、脚本编辑或其他无关设置。本题考察对角色属性修改操作的识别。"
+      "explanation": "正确答案是B。修改角色名称需要在角色属性面板中找到名称属性，并输入新的名称。选项B显示的是正确的属性编辑界面，而其他选项可能显示的是造型编辑、脚本编辑或其他无关设置。本题考察对角色属性修改操作的识别。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image68.png"
+      ]
     },
     {
       "id": "pt-20",
       "type": "single",
       "title": "一共有四个背景，当前背景是第一个背景，下列哪个选项可以切换成第四个背景？",
-      "image": "/images/graphic-level-1-2025-03/image73.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image74.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image74.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image75.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image75.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image76.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image76.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image77.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image77.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C。当前背景是第一个，要切换到第四个背景，正确的操作是使用“切换到背景”积木并指定“背景4”。选项A可能切换到背景2，选项B可能切换到背景3，选项D可能使用了错误的背景编号或逻辑。本题考察背景切换的具体操作方法。"
+      "explanation": "正确答案是C。当前背景是第一个，要切换到第四个背景，正确的操作是使用“切换到背景”积木并指定“背景4”。选项A可能切换到背景2，选项B可能切换到背景3，选项D可能使用了错误的背景编号或逻辑。本题考察背景切换的具体操作方法。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image73.png"
+      ]
     },
     {
       "id": "pt-21",
       "type": "single",
       "title": "蛋糕的造型如下图所示，下列哪个选项能够实现，每次点击绿旗，蜡烛先是点燃的，播放完'生日快乐'音乐后，蜡烛熄灭？",
-      "image": "/images/graphic-level-1-2025-03/image78.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image79.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image79.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image80.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image80.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image81.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image81.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image82.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image82.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C。正确的程序顺序是：首先切换到点燃的蜡烛造型，然后播放'生日快乐'音乐并等待播放完成，最后切换到熄灭的蜡烛造型。选项A可能没有等待音乐播放完成就切换造型，选项B可能顺序错误，选项D可能缺少必要的造型切换。本题考察事件顺序与同步控制的理解。"
+      "explanation": "正确答案是C。正确的程序顺序是：首先切换到点燃的蜡烛造型，然后播放'生日快乐'音乐并等待播放完成，最后切换到熄灭的蜡烛造型。选项A可能没有等待音乐播放完成就切换造型，选项B可能顺序错误，选项D可能缺少必要的造型切换。本题考察事件顺序与同步控制的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image78.png"
+      ]
     },
     {
       "id": "pt-22",
       "type": "single",
       "title": "小瓢虫的位置和方向如下图所示，沿着绿色方块走到红色方块的位置，需要左转几次？",
-      "image": "/images/graphic-level-1-2025-03/image83.png",
       "options": [
         {
           "id": "A",
@@ -632,37 +791,50 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。根据路径规划，小瓢虫需要在第2个绿色方块处左转1次，在第4个绿色方块处左转第2次，在第6个绿色方块处左转第3次，总共需要左转3次。选项A少算了一次转向，选项C和D多算了转向次数。本题考察路径规划与转向次数的计算能力。"
+      "explanation": "正确答案是B。根据路径规划，小瓢虫需要在第2个绿色方块处左转1次，在第4个绿色方块处左转第2次，在第6个绿色方块处左转第3次，总共需要左转3次。选项A少算了一次转向，选项C和D多算了转向次数。本题考察路径规划与转向次数的计算能力。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image83.png"
+      ]
     },
     {
       "id": "pt-23",
       "type": "single",
       "title": "扫帚默认面向90方向，它的旋转方式设为左右翻转，下列程序和效果正确的是？",
-      "image": "/images/graphic-level-1-2025-03/image84.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image85.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image85.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image86.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image86.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image87.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image87.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image88.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image88.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C。当角色设置为左右翻转后，方向大于0小于180时面向90方向，方向小于0大于-180时面向-90方向。选项C正确展示了这一效果，其他选项可能方向设置或翻转方式错误。本题考察旋转方式与方向设置的综合应用。"
+      "explanation": "正确答案是C。当角色设置为左右翻转后，方向大于0小于180时面向90方向，方向小于0大于-180时面向-90方向。选项C正确展示了这一效果，其他选项可能方向设置或翻转方式错误。本题考察旋转方式与方向设置的综合应用。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image84.png"
+      ]
     },
     {
       "id": "pt-24",
@@ -672,22 +844,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image91.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image91.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image92.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image92.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image93.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image93.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image94.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image94.png"
+          ]
         }
       ],
       "answer": "D",
@@ -697,31 +877,41 @@
       "id": "pt-25",
       "type": "single",
       "title": "点击下列哪个按钮可以让声音从左图变为右图？",
-      "image": "/images/graphic-level-1-2025-03/image95.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image97.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image97.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image98.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image98.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image99.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image99.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-1-2025-03/image100.png"
+          "images": [
+            "/images/graphic-level-1-2025-03/image100.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C。实现声音反转效果需要使用反转按钮，通常显示为带有反转箭头的图标。选项A可能是音效增强按钮，选项B可能是音量调节按钮，选项D可能是播放速度调整按钮。本题考察对声音效果修改工具的识别。"
+      "explanation": "正确答案是C。实现声音反转效果需要使用反转按钮，通常显示为带有反转箭头的图标。选项A可能是音效增强按钮，选项B可能是音量调节按钮，选项D可能是播放速度调整按钮。本题考察对声音效果修改工具的识别。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image95.png"
+      ]
     },
     {
       "id": "pt-26",
@@ -744,7 +934,6 @@
       "id": "pt-27",
       "type": "truefalse",
       "title": "点击绿旗后，按十次空格键，最终切换为“bear-b”造型。",
-      "image": "/images/graphic-level-1-2025-03/image101.png",
       "options": [
         {
           "id": "A",
@@ -756,13 +945,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。根据造型切换逻辑，每次按下空格键都会切换到“bear-b”造型。经过十次按键后，最终造型仍然是“bear-b”。题目中的说法正确，选项B错误。本题考察对造型切换逻辑的理解。"
+      "explanation": "正确答案是A。根据造型切换逻辑，每次按下空格键都会切换到“bear-b”造型。经过十次按键后，最终造型仍然是“bear-b”。题目中的说法正确，选项B错误。本题考察对造型切换逻辑的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image101.png"
+      ]
     },
     {
       "id": "pt-28",
       "type": "truefalse",
       "title": "分别运行下列两个程序，舞台上小猫不会有任何变化。",
-      "image": "/images/graphic-level-1-2025-03/image103.png",
       "options": [
         {
           "id": "A",
@@ -774,7 +965,10 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。如果两个程序都涉及左右翻转操作，且没有超过翻转的对称轴，那么小猫的方向不会发生变化。题目中的说法正确，选项B错误。本题考察对翻转操作效果的理解。"
+      "explanation": "正确答案是A。如果两个程序都涉及左右翻转操作，且没有超过翻转的对称轴，那么小猫的方向不会发生变化。题目中的说法正确，选项B错误。本题考察对翻转操作效果的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image103.png"
+      ]
     },
     {
       "id": "pt-29",
@@ -797,7 +991,6 @@
       "id": "pt-30",
       "type": "truefalse",
       "title": "点击红框处按钮，可以将舞台变为“全屏模式”。",
-      "image": "/images/graphic-level-1-2025-03/image105.png",
       "options": [
         {
           "id": "A",
@@ -809,7 +1002,10 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。红框处按钮实际功能是将舞台变为“最小舞台模式”，而非全屏模式。全屏模式通常需要通过其他途径激活。题目中的说法错误，选项A错误。本题考察对舞台显示模式按钮的识别。"
+      "explanation": "正确答案是B。红框处按钮实际功能是将舞台变为“最小舞台模式”，而非全屏模式。全屏模式通常需要通过其他途径激活。题目中的说法错误，选项A错误。本题考察对舞台显示模式按钮的识别。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image105.png"
+      ]
     },
     {
       "id": "pt-31",
@@ -832,7 +1028,6 @@
       "id": "pt-32",
       "type": "truefalse",
       "title": "如下图所示，当点击“机械化”按钮处理声音后，声音将只能保持机械化，无法再恢复到机械化处理前的声音。",
-      "image": "/images/graphic-level-1-2025-03/image106.png",
       "options": [
         {
           "id": "A",
@@ -844,13 +1039,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。处理后的音效可以通过点击“返回”按钮恢复到原始状态。题目中的说法错误，选项A错误。本题考察对音效处理可逆性的理解。"
+      "explanation": "正确答案是B。处理后的音效可以通过点击“返回”按钮恢复到原始状态。题目中的说法错误，选项A错误。本题考察对音效处理可逆性的理解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image106.png"
+      ]
     },
     {
       "id": "pt-33",
       "type": "truefalse",
       "title": "默认小猫角色，初始位置在舞台中央，初始方向为水平向右，分别运行下列两个程序后，舞台上显示的效果是一样的。",
-      "image": "/images/graphic-level-1-2025-03/image107.png",
       "options": [
         {
           "id": "A",
@@ -862,13 +1059,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。如果先设置方向再移动，角色会按照新方向移动；如果先移动再设置方向，角色先按默认方向移动后再改变方向，最终位置会不同。题目中的说法错误，选项A错误。本题考察指令顺序对执行效果的影响。"
+      "explanation": "正确答案是B。如果先设置方向再移动，角色会按照新方向移动；如果先移动再设置方向，角色先按默认方向移动后再改变方向，最终位置会不同。题目中的说法错误，选项A错误。本题考察指令顺序对执行效果的影响。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image107.png"
+      ]
     },
     {
       "id": "pt-34",
       "type": "truefalse",
       "title": "从角色库添加角色，角色初始方向为面向90方向，旋转方式为任意旋转。",
-      "image": "/images/graphic-level-1-2025-03/image108.png",
       "options": [
         {
           "id": "A",
@@ -880,13 +1079,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。从角色库添加的所有角色默认面向90度方向（水平向右），旋转方式默认为任意旋转。题目中的说法正确，选项B错误。本题考察对角色库默认设置的了解。"
+      "explanation": "正确答案是A。从角色库添加的所有角色默认面向90度方向（水平向右），旋转方式默认为任意旋转。题目中的说法正确，选项B错误。本题考察对角色库默认设置的了解。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image108.png"
+      ]
     },
     {
       "id": "pt-35",
       "type": "truefalse",
       "title": "点击下图红框处的按钮可以让鸽子消失。",
-      "image": "/images/graphic-level-1-2025-03/image109.png",
       "options": [
         {
           "id": "A",
@@ -898,7 +1099,10 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。红框处按钮是“隐藏角色”按钮，通常显示为带斜线的小眼睛图标，点击后角色会从舞台上消失。题目中的说法正确，选项B错误。本题考察对角色可见性控制按钮的识别。"
+      "explanation": "正确答案是A。红框处按钮是“隐藏角色”按钮，通常显示为带斜线的小眼睛图标，点击后角色会从舞台上消失。题目中的说法正确，选项B错误。本题考察对角色可见性控制按钮的识别。",
+      "images": [
+        "/images/graphic-level-1-2025-03/image109.png"
+      ]
     }
   ]
 }

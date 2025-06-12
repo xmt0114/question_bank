@@ -7,7 +7,6 @@
       "id": "pt-1",
       "type": "single",
       "title": "如图，结构最稳定的是？",
-      "image": "/images/robot-level-1-2025-03/image1.jpeg",
       "options": [
         {
           "id": "A",
@@ -27,7 +26,10 @@
         }
       ],
       "answer": "B",
-      "explanation": "结构稳定性与重心位置和支撑面大小有关。选项B的结构重心低且支撑面大，因此最稳定。其他选项要么重心较高，要么支撑面较小，稳定性较差。"
+      "explanation": "结构稳定性与重心位置和支撑面大小有关。选项B的结构重心低且支撑面大，因此最稳定。其他选项要么重心较高，要么支撑面较小，稳定性较差。",
+      "images": [
+        "/images/robot-level-1-2025-03/image1.jpeg"
+      ]
     },
     {
       "id": "pt-2",
@@ -83,7 +85,6 @@
       "id": "pt-4",
       "type": "single",
       "title": "如图，下列齿轮组采用了垂直啮合的是？",
-      "image": "/images/robot-level-1-2025-03/image2.jpeg",
       "options": [
         {
           "id": "A",
@@ -103,13 +104,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "垂直啮合的齿轮组通常是圆柱齿轮以90度角度相互啮合。选项B展示了这种垂直传动结构，而其他选项可能是平行啮合或其他类型的齿轮组合。"
+      "explanation": "垂直啮合的齿轮组通常是圆柱齿轮以90度角度相互啮合。选项B展示了这种垂直传动结构，而其他选项可能是平行啮合或其他类型的齿轮组合。",
+      "images": [
+        "/images/robot-level-1-2025-03/image2.jpeg"
+      ]
     },
     {
       "id": "pt-5",
       "type": "single",
       "title": "如图，以下哪个是冠齿轮？",
-      "image": "/images/robot-level-1-2025-03/image3.jpeg",
       "options": [
         {
           "id": "A",
@@ -129,7 +132,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "冠齿轮（又称伞齿轮）是一种用于传递相交轴之间的旋转运动的齿轮，通常呈圆锥形。选项D展示了冠齿轮的典型结构，其他选项可能是圆柱齿轮或其他类型齿轮。"
+      "explanation": "冠齿轮（又称伞齿轮）是一种用于传递相交轴之间的旋转运动的齿轮，通常呈圆锥形。选项D展示了冠齿轮的典型结构，其他选项可能是圆柱齿轮或其他类型齿轮。",
+      "images": [
+        "/images/robot-level-1-2025-03/image3.jpeg"
+      ]
     },
     {
       "id": "pt-6",
@@ -235,7 +241,6 @@
       "id": "pt-10",
       "type": "single",
       "title": "如图，使用扳手拧螺母相当于使用了什么机构？",
-      "image": "/images/robot-level-1-2025-03/image4.jpeg",
       "options": [
         {
           "id": "A",
@@ -255,13 +260,15 @@
         }
       ],
       "answer": "D",
-      "explanation": "扳手通过轮轴原理工作。手柄部分相当于轮，螺母接触部分相当于轴。转动轮可以带动轴旋转，从而拧紧或松开螺母。其他选项不符合扳手的工作原理。"
+      "explanation": "扳手通过轮轴原理工作。手柄部分相当于轮，螺母接触部分相当于轴。转动轮可以带动轴旋转，从而拧紧或松开螺母。其他选项不符合扳手的工作原理。",
+      "images": [
+        "/images/robot-level-1-2025-03/image4.jpeg"
+      ]
     },
     {
       "id": "pt-11",
       "type": "single",
       "title": "如图，使用以下工具相当于使用费力杠杆的是？",
-      "image": "/images/robot-level-1-2025-03/image5.jpeg",
       "options": [
         {
           "id": "A",
@@ -281,13 +288,15 @@
         }
       ],
       "answer": "D",
-      "explanation": "费力杠杆的特点是动力臂小于阻力臂。选项D展示的工具符合这一特征，虽然费力，但可以节省作用距离。其他选项可能是省力杠杆或等臂杠杆。"
+      "explanation": "费力杠杆的特点是动力臂小于阻力臂。选项D展示的工具符合这一特征，虽然费力，但可以节省作用距离。其他选项可能是省力杠杆或等臂杠杆。",
+      "images": [
+        "/images/robot-level-1-2025-03/image5.jpeg"
+      ]
     },
     {
       "id": "pt-12",
       "type": "single",
       "title": "如图，下列选项中能配合该工具使用的零件是？",
-      "image": "/images/robot-level-1-2025-03/image6.jpeg",
       "options": [
         {
           "id": "A",
@@ -307,7 +316,10 @@
         }
       ],
       "answer": "A",
-      "explanation": "根据工具的结构和功能，选项A的零件在形状和连接方式上与该工具匹配，能够实现有效的配合。其他选项的零件形状或连接方式不匹配。"
+      "explanation": "根据工具的结构和功能，选项A的零件在形状和连接方式上与该工具匹配，能够实现有效的配合。其他选项的零件形状或连接方式不匹配。",
+      "images": [
+        "/images/robot-level-1-2025-03/image6.jpeg"
+      ]
     },
     {
       "id": "pt-13",
@@ -338,7 +350,6 @@
       "id": "pt-14",
       "type": "single",
       "title": "如图，此图片中该工具的作用是？",
-      "image": "/images/robot-level-1-2025-03/image7.jpeg",
       "options": [
         {
           "id": "A",
@@ -358,7 +369,10 @@
         }
       ],
       "answer": "A",
-      "explanation": "图中工具是羊角锤，其主要功能是利用杠杆原理拔出钉子。选项B和C描述的功能不符合羊角锤的主要用途；选项D明显错误。"
+      "explanation": "图中工具是羊角锤，其主要功能是利用杠杆原理拔出钉子。选项B和C描述的功能不符合羊角锤的主要用途；选项D明显错误。",
+      "images": [
+        "/images/robot-level-1-2025-03/image7.jpeg"
+      ]
     },
     {
       "id": "pt-15",
@@ -389,7 +403,6 @@
       "id": "pt-16",
       "type": "single",
       "title": "如图，下列哪个是机器人？",
-      "image": "/images/robot-level-1-2025-03/image8.jpeg",
       "options": [
         {
           "id": "A",
@@ -409,7 +422,10 @@
         }
       ],
       "answer": "C",
-      "explanation": "选项C展示的具有自动控制、感应和执行功能的设备符合机器人的基本定义。其他选项可能只是机械结构或简单的自动化装置，不具备机器人的完整特征。"
+      "explanation": "选项C展示的具有自动控制、感应和执行功能的设备符合机器人的基本定义。其他选项可能只是机械结构或简单的自动化装置，不具备机器人的完整特征。",
+      "images": [
+        "/images/robot-level-1-2025-03/image8.jpeg"
+      ]
     },
     {
       "id": "pt-17",
@@ -440,7 +456,6 @@
       "id": "pt-18",
       "type": "single",
       "title": "如图，下列说法正确的是？",
-      "image": "/images/robot-level-1-2025-03/image9.jpeg",
       "options": [
         {
           "id": "A",
@@ -460,13 +475,15 @@
         }
       ],
       "answer": "C",
-      "explanation": "图中展示的是蜗轮蜗杆机构，用于传递交错轴之间的运动。选项A、B描述的机构与图中不符；选项D无法判断主动件，因为图中未明确动力输入方向。"
+      "explanation": "图中展示的是蜗轮蜗杆机构，用于传递交错轴之间的运动。选项A、B描述的机构与图中不符；选项D无法判断主动件，因为图中未明确动力输入方向。",
+      "images": [
+        "/images/robot-level-1-2025-03/image9.jpeg"
+      ]
     },
     {
       "id": "pt-19",
       "type": "single",
       "title": "如图，哪个是羊角锤？",
-      "image": "/images/robot-level-1-2025-03/image10.jpeg",
       "options": [
         {
           "id": "A",
@@ -486,13 +503,15 @@
         }
       ],
       "answer": "C",
-      "explanation": "选项C展示了羊角锤的典型外形，包括锤头和用于拔钉的羊角部分。其他选项可能展示的是其他类型的锤子或工具，不具备羊角锤的特征。"
+      "explanation": "选项C展示了羊角锤的典型外形，包括锤头和用于拔钉的羊角部分。其他选项可能展示的是其他类型的锤子或工具，不具备羊角锤的特征。",
+      "images": [
+        "/images/robot-level-1-2025-03/image10.jpeg"
+      ]
     },
     {
       "id": "pt-20",
       "type": "single",
       "title": "如图，摆动周期最大的单摆是？",
-      "image": "/images/robot-level-1-2025-03/image11.jpeg",
       "options": [
         {
           "id": "A",
@@ -512,13 +531,15 @@
         }
       ],
       "answer": "D",
-      "explanation": "单摆的周期与摆长有关，摆长越长周期越大。选项D的单摆摆长最长，因此周期最大。其他选项的摆长较短，周期较小。"
+      "explanation": "单摆的周期与摆长有关，摆长越长周期越大。选项D的单摆摆长最长，因此周期最大。其他选项的摆长较短，周期较小。",
+      "images": [
+        "/images/robot-level-1-2025-03/image11.jpeg"
+      ]
     },
     {
       "id": "pt-21",
       "type": "single",
       "title": "如图，下列选项中最省力的是？",
-      "image": "/images/robot-level-1-2025-03/image12.jpeg",
       "options": [
         {
           "id": "A",
@@ -538,13 +559,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "选项A展示的杠杆结构动力臂最长，阻力臂最短，因此最省力。其他选项的动力臂相对较短，或阻力臂较长，省力效果较差。"
+      "explanation": "选项A展示的杠杆结构动力臂最长，阻力臂最短，因此最省力。其他选项的动力臂相对较短，或阻力臂较长，省力效果较差。",
+      "images": [
+        "/images/robot-level-1-2025-03/image12.jpeg"
+      ]
     },
     {
       "id": "pt-22",
       "type": "single",
       "title": "如图，盘山公路应用了什么机构？",
-      "image": "/images/robot-level-1-2025-03/image13.jpeg",
       "options": [
         {
           "id": "A",
@@ -564,7 +587,10 @@
         }
       ],
       "answer": "A",
-      "explanation": "盘山公路利用斜面原理，通过延长距离来降低坡度，使车辆更容易攀爬。其他选项的机构与盘山公路的设计原理不符。"
+      "explanation": "盘山公路利用斜面原理，通过延长距离来降低坡度，使车辆更容易攀爬。其他选项的机构与盘山公路的设计原理不符。",
+      "images": [
+        "/images/robot-level-1-2025-03/image13.jpeg"
+      ]
     },
     {
       "id": "pt-23",
@@ -595,7 +621,6 @@
       "id": "pt-24",
       "type": "single",
       "title": "如图，使用起瓶器相当于使用杠杆，此杠杆的动力作用点是？",
-      "image": "/images/robot-level-1-2025-03/image14.jpeg",
       "options": [
         {
           "id": "A",
@@ -615,13 +640,15 @@
         }
       ],
       "answer": "D",
-      "explanation": "起瓶器作为杠杆应用，动力作用点通常是施加力的位置。选项D对应的位置是手施加力的地方，因此是动力作用点。其他选项对应支点或阻力点。"
+      "explanation": "起瓶器作为杠杆应用，动力作用点通常是施加力的位置。选项D对应的位置是手施加力的地方，因此是动力作用点。其他选项对应支点或阻力点。",
+      "images": [
+        "/images/robot-level-1-2025-03/image14.jpeg"
+      ]
     },
     {
       "id": "pt-25",
       "type": "single",
       "title": "如图，关于该图片说法正确的是？",
-      "image": "/images/robot-level-1-2025-03/image15.jpeg",
       "options": [
         {
           "id": "A",
@@ -641,13 +668,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "图中齿轮以垂直方式相互啮合，属于垂直传动。选项A描述的是平行啮合；选项C是滑轮组，与齿轮无关；选项D无法判断齿轮大小关系，因为图中未提供明确尺寸对比。"
+      "explanation": "图中齿轮以垂直方式相互啮合，属于垂直传动。选项A描述的是平行啮合；选项C是滑轮组，与齿轮无关；选项D无法判断齿轮大小关系，因为图中未提供明确尺寸对比。",
+      "images": [
+        "/images/robot-level-1-2025-03/image15.jpeg"
+      ]
     },
     {
       "id": "pt-26",
       "type": "single",
       "title": "如图，下列放在地上的物体哪个最稳定？",
-      "image": "/images/robot-level-1-2025-03/image16.jpeg",
       "options": [
         {
           "id": "A",
@@ -667,7 +696,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "物体稳定性与重心位置和支撑面有关。选项D的物体具有较低的重心和较大的支撑面，因此最稳定。其他选项要么重心较高，要么支撑面较小，稳定性较差。"
+      "explanation": "物体稳定性与重心位置和支撑面有关。选项D的物体具有较低的重心和较大的支撑面，因此最稳定。其他选项要么重心较高，要么支撑面较小，稳定性较差。",
+      "images": [
+        "/images/robot-level-1-2025-03/image16.jpeg"
+      ]
     },
     {
       "id": "pt-27",
@@ -748,7 +780,6 @@
       "id": "pt-30",
       "type": "single",
       "title": "如图，该滑轮组有几个定滑轮?",
-      "image": "/images/robot-level-1-2025-03/image17.jpeg",
       "options": [
         {
           "id": "A",
@@ -768,7 +799,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "图中滑轮组包含3个定滑轮。定滑轮固定不动，用于改变力的方向。通过仔细观察滑轮的安装方式和功能，可以确定数量。"
+      "explanation": "图中滑轮组包含3个定滑轮。定滑轮固定不动，用于改变力的方向。通过仔细观察滑轮的安装方式和功能，可以确定数量。",
+      "images": [
+        "/images/robot-level-1-2025-03/image17.jpeg"
+      ]
     },
     {
       "id": "pt-31",
@@ -860,7 +894,6 @@
       "id": "pt-34",
       "type": "multiple",
       "title": "如图，下列哪2个建筑应用了三角形结构增加稳定性？",
-      "image": "/images/robot-level-1-2025-03/image18.jpeg",
       "options": [
         {
           "id": "A",
@@ -883,13 +916,15 @@
         "A",
         "D"
       ],
-      "explanation": "三角形结构具有很高的稳定性，常用于建筑中。选项A和D的建筑明显应用了三角形结构来增强稳定性。其他选项的建筑可能采用其他结构形式。"
+      "explanation": "三角形结构具有很高的稳定性，常用于建筑中。选项A和D的建筑明显应用了三角形结构来增强稳定性。其他选项的建筑可能采用其他结构形式。",
+      "images": [
+        "/images/robot-level-1-2025-03/image18.jpeg"
+      ]
     },
     {
       "id": "pt-35",
       "type": "multiple",
       "title": "如图，下列哪3个场景应用了杠杆？",
-      "image": "/images/robot-level-1-2025-03/image19.jpeg",
       "options": [
         {
           "id": "A",
@@ -913,7 +948,10 @@
         "B",
         "C"
       ],
-      "explanation": "选项A、B和C的场景中都包含杠杆的应用，例如撬棍、剪刀等。选项D的场景可能不涉及杠杆，而是其他类型的简单机械。"
+      "explanation": "选项A、B和C的场景中都包含杠杆的应用，例如撬棍、剪刀等。选项D的场景可能不涉及杠杆，而是其他类型的简单机械。",
+      "images": [
+        "/images/robot-level-1-2025-03/image19.jpeg"
+      ]
     },
     {
       "id": "pt-36",

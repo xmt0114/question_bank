@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
-import type { Question } from '@/types/question'
+import type { Question, Option } from '@/types/question'
 import { QuestionType } from '@/types/question'
 import speechService, { SpeechServiceStatus } from '@/services/speechService'
 
@@ -15,6 +15,18 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'submit', answer: string | string[]): void
 }>()
+
+// 判断题目是否有图片
+const hasQuestionImages = computed(() => {
+  return (props.question.image && props.question.image.length > 0) || 
+         (props.question.images && props.question.images.length > 0)
+})
+
+// 判断选项是否有图片
+const hasOptionImages = (option: Option) => {
+  return (option.image && option.image.length > 0) || 
+         (option.images && option.images.length > 0)
+}
 
 // 语音服务相关
 const speechAvailable = computed(() => {
@@ -151,8 +163,16 @@ const getOptionClass = (optionId: string) => {
         </div>
       </div>
 
-      <div v-if="question.image" class="question-image">
-        <img :src="question.image" alt="题目图片">
+      <!-- 题目图片显示 - 支持多图片 -->
+      <div v-if="hasQuestionImages" class="question-images">
+        <!-- 兼容旧数据 - 单图片 -->
+        <div v-if="question.image && !question.images" class="question-image">
+          <img :src="question.image" alt="题目图片">
+        </div>
+        <!-- 新数据 - 多图片 -->
+        <div v-else-if="question.images" v-for="(image, index) in question.images" :key="index" class="question-image">
+          <img :src="image" :alt="`题目图片${index + 1}`">
+        </div>
       </div>
     </div>
 
@@ -165,25 +185,43 @@ const getOptionClass = (optionId: string) => {
           :class="getOptionClass(option.id)"
           @click="handleSingleSelect(option.id)"
         >
-          <div class="option-content">
-            <el-radio
-              v-model="selectedAnswer"
-              :label="option.id"
-              :disabled="disabled"
-            >
-              <span class="option-id">{{ option.id }}.</span>
-              <span v-if="option.text" class="option-text">{{ option.text }}</span>
-              <img v-if="option.image" :src="option.image" alt="选项图片" class="option-image">
-            </el-radio>
-            <button
-              v-if="speechAvailable && option.text"
-              class="speak-button"
-              :class="{ 'speaking': isSpeaking }"
-              @click.stop="speakText(option.text)"
-              title="朗读选项"
-            >
-              <font-awesome-icon :icon="['fas', 'volume-high']" />
-            </button>
+          <div class="option-row">
+            <div class="option-text-wrapper">
+              <el-radio
+                v-model="selectedAnswer"
+                :label="option.id"
+                :disabled="disabled"
+              >
+                <span class="option-id">{{ option.id }}.</span>
+                <span v-if="option.text" class="option-text">{{ option.text }}</span>
+              </el-radio>
+            </div>
+            
+            <div class="button-wrapper">
+              <button
+                v-if="speechAvailable && option.text"
+                class="speak-button"
+                :class="{ 'speaking': isSpeaking }"
+                @click.stop="speakText(option.text)"
+                title="朗读选项"
+              >
+                <font-awesome-icon :icon="['fas', 'volume-high']" />
+              </button>
+            </div>
+          </div>
+          
+          <!-- 选项图片显示 - 支持多图片 - 移到单独一行显示 -->
+          <div v-if="hasOptionImages(option)" class="option-images-container">
+            <div class="option-images">
+              <!-- 兼容旧数据 - 单图片 -->
+              <img v-if="option.image && !option.images" :src="option.image" alt="选项图片" class="option-image">
+              <!-- 新数据 - 多图片 -->
+              <img v-else-if="option.images" v-for="(image, index) in option.images" 
+                   :key="index" 
+                   :src="image" 
+                   :alt="`选项${option.id}图片${index + 1}`" 
+                   class="option-image">
+            </div>
           </div>
         </div>
       </template>
@@ -196,31 +234,49 @@ const getOptionClass = (optionId: string) => {
           :class="getOptionClass(option.id)"
           @click="handleMultipleSelect(option.id)"
         >
-          <div class="option-content">
-            <div class="checkbox-wrapper">
-              <input
-                type="checkbox"
-                :id="`option-${option.id}`"
-                :checked="Array.isArray(selectedAnswer) && selectedAnswer.includes(option.id)"
-                :disabled="disabled"
-                @change="handleMultipleSelect(option.id)"
-                class="custom-checkbox"
-              />
-              <label :for="`option-${option.id}`" class="checkbox-label">
-                <span class="option-id">{{ option.id }}.</span>
-                <span v-if="option.text" class="option-text">{{ option.text }}</span>
-                <img v-if="option.image" :src="option.image" alt="选项图片" class="option-image">
-              </label>
+          <div class="option-row">
+            <div class="option-text-wrapper">
+              <div class="checkbox-wrapper">
+                <input
+                  type="checkbox"
+                  :id="`option-${option.id}`"
+                  :checked="Array.isArray(selectedAnswer) && selectedAnswer.includes(option.id)"
+                  :disabled="disabled"
+                  @change="handleMultipleSelect(option.id)"
+                  class="custom-checkbox"
+                />
+                <label :for="`option-${option.id}`" class="checkbox-label">
+                  <span class="option-id">{{ option.id }}.</span>
+                  <span v-if="option.text" class="option-text">{{ option.text }}</span>
+                </label>
+              </div>
             </div>
-            <button
-              v-if="speechAvailable && option.text"
-              class="speak-button"
-              :class="{ 'speaking': isSpeaking }"
-              @click.stop="speakText(option.text)"
-              title="朗读选项"
-            >
-              <font-awesome-icon :icon="['fas', 'volume-high']" />
-            </button>
+            
+            <div class="button-wrapper">
+              <button
+                v-if="speechAvailable && option.text"
+                class="speak-button"
+                :class="{ 'speaking': isSpeaking }"
+                @click.stop="speakText(option.text)"
+                title="朗读选项"
+              >
+                <font-awesome-icon :icon="['fas', 'volume-high']" />
+              </button>
+            </div>
+          </div>
+          
+          <!-- 选项图片显示 - 支持多图片 - 移到单独一行显示 -->
+          <div v-if="hasOptionImages(option)" class="option-images-container">
+            <div class="option-images">
+              <!-- 兼容旧数据 - 单图片 -->
+              <img v-if="option.image && !option.images" :src="option.image" alt="选项图片" class="option-image">
+              <!-- 新数据 - 多图片 -->
+              <img v-else-if="option.images" v-for="(image, index) in option.images" 
+                   :key="index" 
+                   :src="image" 
+                   :alt="`选项${option.id}图片${index + 1}`" 
+                   class="option-image">
+            </div>
           </div>
         </div>
       </template>
@@ -330,15 +386,26 @@ const getOptionClass = (optionId: string) => {
   font-weight: bold;
 }
 
-.question-image {
+/* 多图片布局样式 */
+.question-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
   margin-top: 15px;
+}
+
+.question-image {
+  flex: 0 0 auto;
+  max-width: 80%; /* 增大最大宽度，从48%改为80% */
   text-align: center;
 }
 
 .question-image img {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 400px; /* 增大最大高度，从300px改为400px */
   border-radius: 4px;
+  object-fit: contain; /* 保持图片比例 */
 }
 
 .question-options {
@@ -355,6 +422,7 @@ const getOptionClass = (optionId: string) => {
 .option-content {
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -367,11 +435,58 @@ const getOptionClass = (optionId: string) => {
   font-weight: bold;
 }
 
-.option-image {
-  max-width: 100%;
-  max-height: 150px;
+.option-text-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+/* 新增选项行布局 */
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* 选项图片容器 */
+.option-images-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
+}
+
+/* 多图片选项样式 */
+.option-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+}
+
+.option-image {
+  min-width: 120px; /* 从100px增加到120px */
+  max-width: 200px; /* 从150px增加到200px */
+  max-height: 160px; /* 从120px增加到160px */
   border-radius: 4px;
+  object-fit: contain; /* 保持图片比例 */
+}
+
+/* 如果只有一张图片，允许它更大一些 */
+.option-images:has(img:only-child) .option-image {
+  min-width: 150px; /* 从120px增加到150px */
+  max-width: 250px; /* 从180px增加到250px */
+  max-height: 200px; /* 从150px增加到200px */
 }
 
 .option-correct {
@@ -435,6 +550,7 @@ const getOptionClass = (optionId: string) => {
 .checkbox-wrapper {
   display: flex;
   align-items: flex-start;
+  min-width: 0;
 }
 
 .custom-checkbox {
@@ -443,6 +559,7 @@ const getOptionClass = (optionId: string) => {
   width: 16px;
   height: 16px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .checkbox-label {
@@ -450,5 +567,10 @@ const getOptionClass = (optionId: string) => {
   flex-wrap: wrap;
   cursor: pointer;
   flex: 1;
+  min-width: 0;
+}
+
+.option-text {
+  word-break: break-word;
 }
 </style>

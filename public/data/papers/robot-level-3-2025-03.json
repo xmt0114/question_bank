@@ -7,7 +7,6 @@
       "id": "pt-1",
       "type": "single",
       "title": "程序模块如下，串口监视器输出的值是？",
-      "image": "/images/robot-level-3-2025-03/image1.png",
       "options": [
         {
           "id": "A",
@@ -27,7 +26,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "在程序模块中，如果存在循环或变量累加操作，最终输出值可能为 15。例如，一个从 0 到 5 的累加循环（0+1+2+3+4+5=15）。选项 A、B、C 的值不符合常见累加或循环输出逻辑。"
+      "explanation": "在程序模块中，如果存在循环或变量累加操作，最终输出值可能为 15。例如，一个从 0 到 5 的累加循环（0+1+2+3+4+5=15）。选项 A、B、C 的值不符合常见累加或循环输出逻辑。",
+      "images": [
+        "/images/robot-level-3-2025-03/image1.png"
+      ]
     },
     {
       "id": "pt-2",
@@ -58,7 +60,6 @@
       "id": "pt-3",
       "type": "single",
       "title": "程序模块如下，串口监视器输出的值是？",
-      "image": "/images/robot-level-3-2025-03/image2.png",
       "options": [
         {
           "id": "A",
@@ -78,7 +79,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "如果程序模块包含嵌套循环或变量递增操作，最终输出值可能为 55。例如，双重循环累加（1+2+3+4+5+6+7+8+9+10=55）。选项 A（25）、B（30）、C（45）均不符合常见嵌套循环的累加结果。"
+      "explanation": "如果程序模块包含嵌套循环或变量递增操作，最终输出值可能为 55。例如，双重循环累加（1+2+3+4+5+6+7+8+9+10=55）。选项 A（25）、B（30）、C（45）均不符合常见嵌套循环的累加结果。",
+      "images": [
+        "/images/robot-level-3-2025-03/image2.png"
+      ]
     },
     {
       "id": "pt-4",
@@ -113,22 +117,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image3.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image3.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image4.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image4.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image5.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image5.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image6.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image6.png"
+          ]
         }
       ],
       "answer": "B",
@@ -238,7 +250,6 @@
       "id": "pt-10",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，通过超声波传感器检测的距离来控制板载LED灯，程序如下图所示，下列说法正确的是？",
-      "image": "/images/robot-level-3-2025-03/image7.png",
       "options": [
         {
           "id": "A",
@@ -258,37 +269,50 @@
         }
       ],
       "answer": "C",
-      "explanation": "根据程序逻辑，当超声波传感器检测到的距离大于 5 厘米时，触发板载 LED 点亮。选项 A 和 B 涉及距离小于等于或小于 5 厘米的情况，与程序条件判断相反；选项 D（大于等于 5 厘米）包含了临界值，但程序可能严格设置为大于 5 厘米才触发。理解条件判断的边界值对于精确控制至关重要，错误的条件设置可能导致传感器响应不符合预期。"
+      "explanation": "根据程序逻辑，当超声波传感器检测到的距离大于 5 厘米时，触发板载 LED 点亮。选项 A 和 B 涉及距离小于等于或小于 5 厘米的情况，与程序条件判断相反；选项 D（大于等于 5 厘米）包含了临界值，但程序可能严格设置为大于 5 厘米才触发。理解条件判断的边界值对于精确控制至关重要，错误的条件设置可能导致传感器响应不符合预期。",
+      "images": [
+        "/images/robot-level-3-2025-03/image7.png"
+      ]
     },
     {
       "id": "pt-11",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，电路搭设如下图所示，通过引脚6控制LED灯的亮灭，下列选项中，能让LED灯点亮的程序模块是？",
-      "image": "/images/robot-level-3-2025-03/image8.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image9.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image9.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image10.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image10.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image11.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image11.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image11.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image11.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "正确选项 A 的程序模块将引脚 6 设置为高电平（数字输出 1），从而使 LED 灯点亮。其他选项可能将引脚设置为低电平（熄灭 LED）或错误配置了引脚模式（如输入模式而非输出模式）。在数字输出控制中，高电平提供电压使 LED 导通发光，而低电平则切断电流。理解数字引脚的电平控制是基础的 Arduino 编程技能。"
+      "explanation": "正确选项 A 的程序模块将引脚 6 设置为高电平（数字输出 1），从而使 LED 灯点亮。其他选项可能将引脚设置为低电平（熄灭 LED）或错误配置了引脚模式（如输入模式而非输出模式）。在数字输出控制中，高电平提供电压使 LED 导通发光，而低电平则切断电流。理解数字引脚的电平控制是基础的 Arduino 编程技能。",
+      "images": [
+        "/images/robot-level-3-2025-03/image8.png"
+      ]
     },
     {
       "id": "pt-12",
@@ -348,22 +372,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image12.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image12.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image13.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image13.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image14.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image14.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image15.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image15.png"
+          ]
         }
       ],
       "answer": "A",
@@ -377,22 +409,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image16.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image16.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image17.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image17.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image18.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image18.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image19.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image19.png"
+          ]
         }
       ],
       "answer": "B",
@@ -427,7 +467,6 @@
       "id": "pt-17",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，下图程序运行时，板载LED灯闪烁的次数是？",
-      "image": "/images/robot-level-3-2025-03/image20.png",
       "options": [
         {
           "id": "A",
@@ -447,13 +486,15 @@
         }
       ],
       "answer": "D",
-      "explanation": "如果程序包含嵌套循环或多次调用闪烁函数，板载 LED 可能闪烁 6 次。例如，外层循环执行 2 次，每次内部循环闪烁 3 次（2×3=6）。选项 A（1 次）、B（2 次）、C（3 次）均不符合常见嵌套循环的累积效果。理解循环嵌套对于精确控制设备行为至关重要，错误的循环结构可能导致设备动作不符合预期。"
+      "explanation": "如果程序包含嵌套循环或多次调用闪烁函数，板载 LED 可能闪烁 6 次。例如，外层循环执行 2 次，每次内部循环闪烁 3 次（2×3=6）。选项 A（1 次）、B（2 次）、C（3 次）均不符合常见嵌套循环的累积效果。理解循环嵌套对于精确控制设备行为至关重要，错误的循环结构可能导致设备动作不符合预期。",
+      "images": [
+        "/images/robot-level-3-2025-03/image20.png"
+      ]
     },
     {
       "id": "pt-18",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，下图程序中，变量val的返回值范围是？",
-      "image": "/images/robot-level-3-2025-03/image21.png",
       "options": [
         {
           "id": "A",
@@ -473,13 +514,15 @@
         }
       ],
       "answer": "D",
-      "explanation": "Arduino 的模拟输入引脚（如 A0-A5）返回 10 位分辨率的值，范围为 0 到 1023（选项 D）。0 代表最小电压（通常为 0V），1023 代表参考电压（通常为 5V）。选项 A（仅 0）和 B（0/1）适用于数字输入，选项 C（0~255）对应 8 位分辨率。理解模拟输入的分辨率对于正确读取传感器数据至关重要，错误的值范围可能导致数据解释错误。"
+      "explanation": "Arduino 的模拟输入引脚（如 A0-A5）返回 10 位分辨率的值，范围为 0 到 1023（选项 D）。0 代表最小电压（通常为 0V），1023 代表参考电压（通常为 5V）。选项 A（仅 0）和 B（0/1）适用于数字输入，选项 C（0~255）对应 8 位分辨率。理解模拟输入的分辨率对于正确读取传感器数据至关重要，错误的值范围可能导致数据解释错误。",
+      "images": [
+        "/images/robot-level-3-2025-03/image21.png"
+      ]
     },
     {
       "id": "pt-19",
       "type": "single",
       "title": "Arduino Nano主控板，通过按键控制LED灯，按键模块连接到引脚2，LED灯模块连接到引脚3，程序如下，下列选项中说法正确的是？",
-      "image": "/images/robot-level-3-2025-03/image22.png",
       "options": [
         {
           "id": "A",
@@ -499,7 +542,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "如果程序未正确处理按键抖动或状态转换逻辑，可能导致 LED 灯亮灭状态不确定（选项 D）。例如，程序可能遗漏了按键去抖动处理，导致信号不稳定；或者状态转换逻辑存在漏洞，使 LED 行为不可预测。选项 A、B、C 假设了确定性行为，但实际程序缺陷可能导致异常结果。在嵌入式编程中，处理硬件信号的可靠性至关重要，忽视细节可能导致系统不稳定。"
+      "explanation": "如果程序未正确处理按键抖动或状态转换逻辑，可能导致 LED 灯亮灭状态不确定（选项 D）。例如，程序可能遗漏了按键去抖动处理，导致信号不稳定；或者状态转换逻辑存在漏洞，使 LED 行为不可预测。选项 A、B、C 假设了确定性行为，但实际程序缺陷可能导致异常结果。在嵌入式编程中，处理硬件信号的可靠性至关重要，忽视细节可能导致系统不稳定。",
+      "images": [
+        "/images/robot-level-3-2025-03/image22.png"
+      ]
     },
     {
       "id": "pt-20",
@@ -509,22 +555,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image23.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image23.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image24.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image24.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image25.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image25.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/robot-level-3-2025-03/image26.png"
+          "images": [
+            "/images/robot-level-3-2025-03/image26.png"
+          ]
         }
       ],
       "answer": "D",
@@ -534,7 +588,6 @@
       "id": "pt-21",
       "type": "multiple",
       "title": "Arduino UNO/Nano主控板，电位器连接到A0引脚，下图程序运行时，当电位器旋转至端部，变量potVal值可能是？",
-      "image": "/images/robot-level-3-2025-03/image27.png",
       "options": [
         {
           "id": "A",
@@ -557,13 +610,15 @@
         "A",
         "B"
       ],
-      "explanation": "电位器旋转至端部时，可能输出最小值 0（选项 A）或最大值 1023（但选项 B 为 255，可能存在程序映射操作）。如果程序将 10 位分辨率（0-1023）映射到 8 位（0-255），则选项 B 成为可能。选项 C（1023）是原始模拟读取的最大值，选项 D（不能确定）忽略了可能的程序映射处理。理解模拟信号处理和数据映射对于正确解释传感器数据至关重要。"
+      "explanation": "电位器旋转至端部时，可能输出最小值 0（选项 A）或最大值 1023（但选项 B 为 255，可能存在程序映射操作）。如果程序将 10 位分辨率（0-1023）映射到 8 位（0-255），则选项 B 成为可能。选项 C（1023）是原始模拟读取的最大值，选项 D（不能确定）忽略了可能的程序映射处理。理解模拟信号处理和数据映射对于正确解释传感器数据至关重要。",
+      "images": [
+        "/images/robot-level-3-2025-03/image27.png"
+      ]
     },
     {
       "id": "pt-22",
       "type": "multiple",
       "title": "如图所示电路，下列说法正确的是？",
-      "image": "/images/robot-level-3-2025-03/image28.png",
       "options": [
         {
           "id": "A",
@@ -587,13 +642,15 @@
         "B",
         "D"
       ],
-      "explanation": "该电路是串联电路（选项 A 正确），因为电流路径只有一条，所有组件依次连接。根据欧姆定律，当电源电压升高时，电流确实会增大（选项 B 正确）。在串联电路中，所有电阻通过的电流相同（选项 D 正确），但电阻两端的电压分配取决于电阻值（选项 C 错误）。掌握串联电路的基本特性对于电路分析和故障排除至关重要。"
+      "explanation": "该电路是串联电路（选项 A 正确），因为电流路径只有一条，所有组件依次连接。根据欧姆定律，当电源电压升高时，电流确实会增大（选项 B 正确）。在串联电路中，所有电阻通过的电流相同（选项 D 正确），但电阻两端的电压分配取决于电阻值（选项 C 错误）。掌握串联电路的基本特性对于电路分析和故障排除至关重要。",
+      "images": [
+        "/images/robot-level-3-2025-03/image28.png"
+      ]
     },
     {
       "id": "pt-23",
       "type": "multiple",
       "title": "如图所示A/B/C/D四个电路中，当按键开关按下后，LED灯点亮的是？",
-      "image": "/images/robot-level-3-2025-03/image29.png",
       "options": [
         {
           "id": "A",
@@ -616,7 +673,10 @@
         "B",
         "D"
       ],
-      "explanation": "电路 B 和 D 中，按键按下后形成完整电流路径，使 LED 点亮。电路 A 可能存在断路或错误连接，电路 C 的 LED 可能极性接反或电阻值不当。理解基本电路连接和电流路径对于调试和设计电子项目至关重要，错误的连接可能导致设备不工作或损坏组件。"
+      "explanation": "电路 B 和 D 中，按键按下后形成完整电流路径，使 LED 点亮。电路 A 可能存在断路或错误连接，电路 C 的 LED 可能极性接反或电阻值不当。理解基本电路连接和电流路径对于调试和设计电子项目至关重要，错误的连接可能导致设备不工作或损坏组件。",
+      "images": [
+        "/images/robot-level-3-2025-03/image29.png"
+      ]
     },
     {
       "id": "pt-24",
@@ -715,7 +775,6 @@
       "id": "pt-28",
       "type": "truefalse",
       "title": "变量A的值为2，变量B的值为3，下图程序模块的运算结果是真。",
-      "image": "/images/robot-level-3-2025-03/image30.png",
       "options": [
         {
           "id": "A",
@@ -727,7 +786,10 @@
         }
       ],
       "answer": "A",
-      "explanation": "如果程序模块执行的是比较运算（如 A < B），结果确实为真（选项 A 正确）。变量 A=2，B=3，满足 A 小于 B 的条件。理解基本运算符和逻辑判断对于编程至关重要，错误的条件判断可能导致程序逻辑错误。"
+      "explanation": "如果程序模块执行的是比较运算（如 A < B），结果确实为真（选项 A 正确）。变量 A=2，B=3，满足 A 小于 B 的条件。理解基本运算符和逻辑判断对于编程至关重要，错误的条件判断可能导致程序逻辑错误。",
+      "images": [
+        "/images/robot-level-3-2025-03/image30.png"
+      ]
     },
     {
       "id": "pt-29",

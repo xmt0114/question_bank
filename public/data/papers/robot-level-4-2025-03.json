@@ -282,33 +282,42 @@
       "id": "pt-12",
       "type": "single",
       "title": "Arduino C程序如下，当程序运行时，串口监视器输出结果是？",
-      "image": "/images/robot-level-4-2025-03/image1.png",
       "options": [
         {
           "id": "A",
-          "image": "/images/robot-level-4-2025-03/image2.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image2.png"
+          ]
         },
         {
           "id": "B",
-          "image": "/images/robot-level-4-2025-03/image3.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image3.png"
+          ]
         },
         {
           "id": "C",
-          "image": "/images/robot-level-4-2025-03/image4.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image4.png"
+          ]
         },
         {
           "id": "D",
-          "image": "/images/robot-level-4-2025-03/image5.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image5.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C。根据题目提供的图片信息，选项C对应的程序片段正确实现了特定的输出逻辑。可能是通过变量初始化和条件语句组合实现了特定的数值输出。理解程序流程控制和变量作用域是编写正确输出的关键。"
+      "explanation": "正确答案是C。根据题目提供的图片信息，选项C对应的程序片段正确实现了特定的输出逻辑。可能是通过变量初始化和条件语句组合实现了特定的数值输出。理解程序流程控制和变量作用域是编写正确输出的关键。",
+      "images": [
+        "/images/robot-level-4-2025-03/image1.png"
+      ]
     },
     {
       "id": "pt-13",
       "type": "single",
       "title": "Arduino C程序如下，当程序运行时，串口监视器输出结果是？",
-      "image": "/images/robot-level-4-2025-03/image6.png",
       "options": [
         {
           "id": "A",
@@ -328,7 +337,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "正确答案是D（350）。根据题目提供的图片信息，程序可能涉及变量累加或算术运算，例如初始化一个变量为100，经过三次循环每次增加50，最终得到350。理解循环结构和变量更新逻辑是正确预测程序输出的基础。"
+      "explanation": "正确答案是D（350）。根据题目提供的图片信息，程序可能涉及变量累加或算术运算，例如初始化一个变量为100，经过三次循环每次增加50，最终得到350。理解循环结构和变量更新逻辑是正确预测程序输出的基础。",
+      "images": [
+        "/images/robot-level-4-2025-03/image6.png"
+      ]
     },
     {
       "id": "pt-14",
@@ -359,7 +371,6 @@
       "id": "pt-15",
       "type": "single",
       "title": "Arduino C程序如下，当程序运行时，串口监视器输出结果是？",
-      "image": "/images/robot-level-4-2025-03/image7.png",
       "options": [
         {
           "id": "A",
@@ -379,37 +390,50 @@
         }
       ],
       "answer": "C",
-      "explanation": "正确答案是C（10）。根据题目提供的图片信息，程序可能初始化了一个数组包含10个元素，通过循环输出数组长度或其他逻辑得到10。理解数组操作和循环控制是正确处理数据集合的关键。"
+      "explanation": "正确答案是C（10）。根据题目提供的图片信息，程序可能初始化了一个数组包含10个元素，通过循环输出数组长度或其他逻辑得到10。理解数组操作和循环控制是正确处理数据集合的关键。",
+      "images": [
+        "/images/robot-level-4-2025-03/image7.png"
+      ]
     },
     {
       "id": "pt-16",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，通过引脚3发送如下图所示的高电平触发信号，程序中红框A和B分别对应的程序是？",
-      "image": "/images/robot-level-4-2025-03/image8.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/robot-level-4-2025-03/image9.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image9.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/robot-level-4-2025-03/image10.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image10.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/robot-level-4-2025-03/image11.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image11.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/robot-level-4-2025-03/image12.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image12.png"
+          ]
         }
       ],
       "answer": "B",
-      "explanation": "正确答案是B。选项B正确实现了向引脚3发送10微秒的高电平脉冲，符合HC-SR04超声波传感器的触发要求。选项A脉冲时间过短，选项C用于读取信号而非发送，选项D使用PWM输出不适合触发脉冲。正确控制触发信号是超声波测距的第一步。"
+      "explanation": "正确答案是B。选项B正确实现了向引脚3发送10微秒的高电平脉冲，符合HC-SR04超声波传感器的触发要求。选项A脉冲时间过短，选项C用于读取信号而非发送，选项D使用PWM输出不适合触发脉冲。正确控制触发信号是超声波测距的第一步。",
+      "images": [
+        "/images/robot-level-4-2025-03/image8.png"
+      ]
     },
     {
       "id": "pt-17",
@@ -418,19 +442,27 @@
       "options": [
         {
           "id": "A",
-          "image": "/images/robot-level-4-2025-03/image13.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image13.png"
+          ]
         },
         {
           "id": "B",
-          "image": "/images/robot-level-4-2025-03/image14.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image14.png"
+          ]
         },
         {
           "id": "C",
-          "image": "/images/robot-level-4-2025-03/image15.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image15.png"
+          ]
         },
         {
           "id": "D",
-          "image": "/images/robot-level-4-2025-03/image16.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image16.png"
+          ]
         }
       ],
       "answer": "C",
@@ -440,7 +472,6 @@
       "id": "pt-18",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，按键开关输入电路原理图如下，下列选项中，关于按键引脚模式设置正确的是？",
-      "image": "/images/robot-level-4-2025-03/image17.png",
       "options": [
         {
           "id": "A",
@@ -460,13 +491,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A（pinMode(7, INPUT);）。根据电路图显示的外部上拉电阻，应将引脚设置为INPUT模式。选项C（INPUT_PULLUP）适用于使用内部上拉电阻的情况，而题目电路图明确显示了外部电阻。选项B和D错误地将引脚设置为输出模式或无效参数。正确配置引脚模式是数字输入电路设计的基础。"
+      "explanation": "正确答案是A（pinMode(7, INPUT);）。根据电路图显示的外部上拉电阻，应将引脚设置为INPUT模式。选项C（INPUT_PULLUP）适用于使用内部上拉电阻的情况，而题目电路图明确显示了外部电阻。选项B和D错误地将引脚设置为输出模式或无效参数。正确配置引脚模式是数字输入电路设计的基础。",
+      "images": [
+        "/images/robot-level-4-2025-03/image17.png"
+      ]
     },
     {
       "id": "pt-19",
       "type": "single",
       "title": "Arduino UNO/Nano主控板，读取超声波传感器的返回值，电路搭设和部分程序如下图所示，程序中A/B/C分别是？",
-      "image": "/images/robot-level-4-2025-03/image18.png",
       "options": [
         {
           "id": "A",
@@ -486,39 +519,51 @@
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A（5/4/HIGH）。根据电路图，触发引脚连接到数字引脚5，回声引脚连接到数字引脚4，需要发送高电平触发信号。选项A正确指定了引脚编号和电平类型。选项B和D混淆了引脚编号，选项C错误地使用了低电平。正确识别引脚连接是传感器数据采集的前提。"
+      "explanation": "正确答案是A（5/4/HIGH）。根据电路图，触发引脚连接到数字引脚5，回声引脚连接到数字引脚4，需要发送高电平触发信号。选项A正确指定了引脚编号和电平类型。选项B和D混淆了引脚编号，选项C错误地使用了低电平。正确识别引脚连接是传感器数据采集的前提。",
+      "images": [
+        "/images/robot-level-4-2025-03/image18.png"
+      ]
     },
     {
       "id": "pt-20",
       "type": "single",
       "title": "Arduino Nano主控板，通过光敏电阻和LED灯模拟当前光照强度的变化。电路搭设及部分程序如下图所示，当光照强度逐渐增强时，LED的亮度随之逐渐增强，此时红框A对应的程序是？",
-      "image": "/images/robot-level-4-2025-03/image19.png",
       "options": [
         {
           "id": "A",
-          "image": "/images/robot-level-4-2025-03/image20.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image20.png"
+          ]
         },
         {
           "id": "B",
-          "image": "/images/robot-level-4-2025-03/image21.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image21.png"
+          ]
         },
         {
           "id": "C",
-          "image": "/images/robot-level-4-2025-03/image22.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image22.png"
+          ]
         },
         {
           "id": "D",
-          "image": "/images/robot-level-4-2025-03/image23.png"
+          "images": [
+            "/images/robot-level-4-2025-03/image23.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "正确答案是A。根据选项图片内容，选项A正确实现了读取光敏电阻的模拟值，通过map()函数反向处理（因为光照增强时阻值降低），并将结果通过analogWrite()函数输出到LED引脚。其他选项可能未正确实现反向映射或使用了错误的函数。正确关联环境光变化与LED亮度调节需要理解光敏电阻的特性。"
+      "explanation": "正确答案是A。根据选项图片内容，选项A正确实现了读取光敏电阻的模拟值，通过map()函数反向处理（因为光照增强时阻值降低），并将结果通过analogWrite()函数输出到LED引脚。其他选项可能未正确实现反向映射或使用了错误的函数。正确关联环境光变化与LED亮度调节需要理解光敏电阻的特性。",
+      "images": [
+        "/images/robot-level-4-2025-03/image19.png"
+      ]
     },
     {
       "id": "pt-21",
       "type": "multiple",
       "title": "按键开关输入电路如下，下列说法正确的是？",
-      "image": "/images/robot-level-4-2025-03/image24.png",
       "options": [
         {
           "id": "A",
@@ -541,7 +586,10 @@
         "A",
         "C"
       ],
-      "explanation": "正确答案是A和C。根据电路图，电阻连接在引脚和电源正极之间，形成上拉电阻电路（选项A正确）。当按键闭合时，引脚通过按键连接到地，输入低电平（选项C正确）。选项B和D描述的是下拉电阻电路的行为，与实际电路相反。上拉和下拉电阻是数字电路设计中的基本概念，用于确保引脚电平在未驱动时处于确定状态。"
+      "explanation": "正确答案是A和C。根据电路图，电阻连接在引脚和电源正极之间，形成上拉电阻电路（选项A正确）。当按键闭合时，引脚通过按键连接到地，输入低电平（选项C正确）。选项B和D描述的是下拉电阻电路的行为，与实际电路相反。上拉和下拉电阻是数字电路设计中的基本概念，用于确保引脚电平在未驱动时处于确定状态。",
+      "images": [
+        "/images/robot-level-4-2025-03/image24.png"
+      ]
     },
     {
       "id": "pt-22",

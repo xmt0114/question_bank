@@ -32,7 +32,6 @@
       "id": "pt-2",
       "type": "single",
       "title": "根据下表中的排列规律，在空格里填上适当的数。",
-      "image": "/images/graphic-level-2-2025-03/image1.png",
       "options": [
         {
           "id": "A",
@@ -52,133 +51,175 @@
         }
       ],
       "answer": "A",
-      "explanation": "分析表格数据可发现，按行看，12+6=18，8+7=15，即每行中间数字等于两边数字之和。因此空格处应填12，选项A正确。选项B、C、D均不符合此规律。"
+      "explanation": "分析表格数据可发现，按行看，12+6=18，8+7=15，即每行中间数字等于两边数字之和。因此空格处应填12，选项A正确。选项B、C、D均不符合此规律。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image1.png"
+      ]
     },
     {
       "id": "pt-3",
       "type": "single",
       "title": "从所给的四个选项中，选择最合适的一个填入问号处，使其呈现一定的规律性。",
-      "image": "/images/graphic-level-2-2025-03/image2.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image3.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image3.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image4.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image4.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image5.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image5.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image6.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image6.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "整体观察发现，小圆圈和小三角均在移动。分开来看，小三角每次顺时针平移两格，符合此规律的只有选项C；小圆圈每次逆时针平移三格，验证后选项C也符合。选项A、B、D的移动规律不符合。"
+      "explanation": "整体观察发现，小圆圈和小三角均在移动。分开来看，小三角每次顺时针平移两格，符合此规律的只有选项C；小圆圈每次逆时针平移三格，验证后选项C也符合。选项A、B、D的移动规律不符合。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image2.png"
+      ]
     },
     {
       "id": "pt-4",
       "type": "single",
       "title": "虫子的初始位置和方向如下图所示，下列哪个选项能使虫子只能在白色区域移动？",
-      "image": "/images/graphic-level-2-2025-03/image7.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image8.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image8.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image9.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image9.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image10.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image10.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image11.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image11.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "要使虫子只能在白色区域移动，需要虫子碰到蓝色区域后退并转动角度。选项A符合此逻辑，而选项B、C、D未体现碰到蓝色区域后的正确反应，可能导致虫子进入蓝色区域。"
+      "explanation": "要使虫子只能在白色区域移动，需要虫子碰到蓝色区域后退并转动角度。选项A符合此逻辑，而选项B、C、D未体现碰到蓝色区域后的正确反应，可能导致虫子进入蓝色区域。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image7.png"
+      ]
     },
     {
       "id": "pt-5",
       "type": "single",
       "title": "角色初始位置如下图所示，下列哪个选项可以使小猫碰到老鼠后大小增加10？",
-      "image": "/images/graphic-level-2-2025-03/image12.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image13.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image13.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image14.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image14.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image15.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image15.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image16.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image16.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "选项A的程序逻辑是当小猫碰到老鼠时，大小增加10，符合题目要求。选项B、C、D的逻辑不符合，例如选项B可能未检测到碰撞或大小变化错误。"
+      "explanation": "选项A的程序逻辑是当小猫碰到老鼠时，大小增加10，符合题目要求。选项B、C、D的逻辑不符合，例如选项B可能未检测到碰撞或大小变化错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image12.png"
+      ]
     },
     {
       "id": "pt-6",
       "type": "single",
       "title": "角色初始位置如下左图所示，角色鸭子运行下列哪个选项的程序，舞台上角色变成如下右图所示的效果？",
-      "image": "/images/graphic-level-2-2025-03/image17.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image19.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image19.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image20.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image20.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image21.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image21.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image22.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image22.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "根据图示，鸭子原本在青蛙和蜻蜓下方。要使鸭子显示在最上方，需要前移2层。选项D符合此操作，而其他选项可能移动层数不足或方向错误。"
+      "explanation": "根据图示，鸭子原本在青蛙和蜻蜓下方。要使鸭子显示在最上方，需要前移2层。选项D符合此操作，而其他选项可能移动层数不足或方向错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image17.png"
+      ]
     },
     {
       "id": "pt-7",
       "type": "single",
       "title": "运行下列程序后，音量的值是？",
-      "image": "/images/graphic-level-2-2025-03/image23.png",
       "options": [
         {
           "id": "A",
@@ -198,13 +239,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "程序中算式结果为-12，初始音量为100。音量变化为100-12=88。选项B正确。选项A、C、D数值计算错误。"
+      "explanation": "程序中算式结果为-12，初始音量为100。音量变化为100-12=88。选项B正确。选项A、C、D数值计算错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image23.png"
+      ]
     },
     {
       "id": "pt-8",
       "type": "single",
       "title": "运行下列程序后，角色的坐标是？",
-      "image": "/images/graphic-level-2-2025-03/image24.png",
       "options": [
         {
           "id": "A",
@@ -224,7 +267,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "点击绿旗后，角色先移动60步至(60,0)，然后重复执行10次，每次x和y坐标各增加10。最终坐标为(60+10×10, 0+10×10)=(160,100)，选项D正确。其他选项计算步数或方向错误。"
+      "explanation": "点击绿旗后，角色先移动60步至(60,0)，然后重复执行10次，每次x和y坐标各增加10。最终坐标为(60+10×10, 0+10×10)=(160,100)，选项D正确。其他选项计算步数或方向错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image24.png"
+      ]
     },
     {
       "id": "pt-9",
@@ -234,22 +280,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image25.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image25.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image26.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image26.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image27.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image27.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image28.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image28.png"
+          ]
         }
       ],
       "answer": "A",
@@ -259,7 +313,6 @@
       "id": "pt-10",
       "type": "single",
       "title": "角色初始位置如下左图所示，小鱼程序的流程图如下右图所示，运行程序后，小鱼会说？",
-      "image": "/images/graphic-level-2-2025-03/image29.png",
       "options": [
         {
           "id": "A",
@@ -279,13 +332,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "根据流程图，当小鱼碰到鲨鱼时，会说‘啊鲨鱼，快跑！’2秒。题目中显示小鱼碰到了鲨鱼，因此选项A正确。选项B、C、D的对话内容或顺序不符合条件。"
+      "explanation": "根据流程图，当小鱼碰到鲨鱼时，会说‘啊鲨鱼，快跑！’2秒。题目中显示小鱼碰到了鲨鱼，因此选项A正确。选项B、C、D的对话内容或顺序不符合条件。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image29.png"
+      ]
     },
     {
       "id": "pt-11",
       "type": "single",
       "title": "运行下列程序后，角色的坐标是？",
-      "image": "/images/graphic-level-2-2025-03/image31.png",
       "options": [
         {
           "id": "A",
@@ -305,73 +360,95 @@
         }
       ],
       "answer": "B",
-      "explanation": "角色初始位置为(0,0)，程序判断条件为true时，x坐标增加10。因此最终坐标为(10,0)，选项B正确。其他选项可能误解了坐标变化的方向或数值。"
+      "explanation": "角色初始位置为(0,0)，程序判断条件为true时，x坐标增加10。因此最终坐标为(10,0)，选项B正确。其他选项可能误解了坐标变化的方向或数值。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image31.png"
+      ]
     },
     {
       "id": "pt-12",
       "type": "single",
       "title": "角色初始位置如下图所示，下列哪个选项能实现，按下一次↑键后，小猴子先向上跳起，再落回原地？",
-      "image": "/images/graphic-level-2-2025-03/image32.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image33.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image33.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image34.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image34.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image35.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image35.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image36.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image36.png"
+          ]
         }
       ],
       "answer": "A",
-      "explanation": "要实现小猴子先向上跳起再落回原地，需要先增加Y坐标再减少相同数值。选项A符合此逻辑，其他选项可能缺少减少步骤或数值不匹配。"
+      "explanation": "要实现小猴子先向上跳起再落回原地，需要先增加Y坐标再减少相同数值。选项A符合此逻辑，其他选项可能缺少减少步骤或数值不匹配。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image32.png"
+      ]
     },
     {
       "id": "pt-13",
       "type": "single",
       "title": "汽车的初始位置为(-150,-100)，运行一次下列哪个选项的程序，可以让汽车经过(150,-100)的位置？",
-      "image": "/images/graphic-level-2-2025-03/image37.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image38.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image38.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image39.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image39.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image40.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image40.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image41.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image41.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "汽车初始坐标(-150,-100)，要经过(150,-100)，需向右（90方向）前进至少300步。选项D通过重复执行实现足够距离，而选项A、B、C的前进距离不足或方向错误。"
+      "explanation": "汽车初始坐标(-150,-100)，要经过(150,-100)，需向右（90方向）前进至少300步。选项D通过重复执行实现足够距离，而选项A、B、C的前进距离不足或方向错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image37.png"
+      ]
     },
     {
       "id": "pt-14",
       "type": "single",
       "title": "角色初始位置如下图所示，每个格子的长度为100，小猫运行程序后，最终停在哪个格子上？",
-      "image": "/images/graphic-level-2-2025-03/image42.png",
       "options": [
         {
           "id": "A",
@@ -391,13 +468,15 @@
         }
       ],
       "answer": "C",
-      "explanation": "根据程序，小猫先向右移动100步到达⑥号格子，未碰到苹果，因此停止。选项C正确。选项A、B、D的位置不符合移动逻辑。"
+      "explanation": "根据程序，小猫先向右移动100步到达⑥号格子，未碰到苹果，因此停止。选项C正确。选项A、B、D的位置不符合移动逻辑。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image42.png"
+      ]
     },
     {
       "id": "pt-15",
       "type": "single",
       "title": "多次点击“响一点”按钮，哪个区域声音的音量会变大？",
-      "image": "/images/graphic-level-2-2025-03/image44.png",
       "options": [
         {
           "id": "A",
@@ -417,13 +496,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "根据图示，②号区域被选中，多次点击‘响一点’按钮会使其音量变大。选项B正确。其他选项未被选中，音量不会变化。"
+      "explanation": "根据图示，②号区域被选中，多次点击‘响一点’按钮会使其音量变大。选项B正确。其他选项未被选中，音量不会变化。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image44.png"
+      ]
     },
     {
       "id": "pt-16",
       "type": "single",
       "title": "角色初始位置如下图所示，小鱼角色运行程序后，下列说法正确的是？",
-      "image": "/images/graphic-level-2-2025-03/image45.png",
       "options": [
         {
           "id": "A",
@@ -443,37 +524,50 @@
         }
       ],
       "answer": "D",
-      "explanation": "程序显示小鱼先滑行到珊瑚位置，但未碰到螃蟹，因此不会触发说‘你好’的动作。选项D正确。选项A、B、C描述错误。"
+      "explanation": "程序显示小鱼先滑行到珊瑚位置，但未碰到螃蟹，因此不会触发说‘你好’的动作。选项D正确。选项A、B、C描述错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image45.png"
+      ]
     },
     {
       "id": "pt-17",
       "type": "single",
       "title": "下列哪个选项的程序能实现让角色在房间不停地来回走？",
-      "image": "/images/graphic-level-2-2025-03/image47.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image48.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image48.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image49.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image49.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image50.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image50.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image51.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image51.png"
+          ]
         }
       ],
       "answer": "D",
-      "explanation": "选项D的程序包含重复执行和碰到边缘时旋转180度，实现来回走动。选项A、B、C缺少重复或转向逻辑，无法实现持续来回移动。"
+      "explanation": "选项D的程序包含重复执行和碰到边缘时旋转180度，实现来回走动。选项A、B、C缺少重复或转向逻辑，无法实现持续来回移动。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image47.png"
+      ]
     },
     {
       "id": "pt-18",
@@ -483,22 +577,30 @@
         {
           "id": "A",
           "text": "重复执行",
-          "image": "/images/graphic-level-2-2025-03/image52.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image52.png"
+          ]
         },
         {
           "id": "B",
           "text": "重复执行（）次",
-          "image": "/images/graphic-level-2-2025-03/image53.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image53.png"
+          ]
         },
         {
           "id": "C",
           "text": "重复执行直到",
-          "image": "/images/graphic-level-2-2025-03/image54.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image54.png"
+          ]
         },
         {
           "id": "D",
           "text": "如果...那么...",
-          "image": "/images/graphic-level-2-2025-03/image55.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image55.png"
+          ]
         }
       ],
       "answer": "D",
@@ -512,22 +614,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image56.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image56.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image57.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image57.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image58.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image58.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image59.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image59.png"
+          ]
         }
       ],
       "answer": "B",
@@ -537,31 +647,41 @@
       "id": "pt-20",
       "type": "single",
       "title": "小鸡的初始位置如下图所示，下列哪个选项能实现，小鸡移动到房子黑色门后消失？",
-      "image": "/images/graphic-level-2-2025-03/image60.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image61.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image61.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image62.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image62.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image63.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image63.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image64.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image64.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "选项C的程序检测小鸡碰到黑色门后隐藏，符合要求。其他选项可能检测颜色错误或缺少隐藏步骤。"
+      "explanation": "选项C的程序检测小鸡碰到黑色门后隐藏，符合要求。其他选项可能检测颜色错误或缺少隐藏步骤。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image60.png"
+      ]
     },
     {
       "id": "pt-21",
@@ -571,22 +691,30 @@
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image65.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image65.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image66.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image66.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image67.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image67.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image68.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image68.png"
+          ]
         }
       ],
       "answer": "C",
@@ -596,37 +724,46 @@
       "id": "pt-22",
       "type": "single",
       "title": "运行下列程序，舞台上可以看到？",
-      "image": "/images/graphic-level-2-2025-03/image69.png",
       "options": [
         {
           "id": "A",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image70.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image70.png"
+          ]
         },
         {
           "id": "B",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image71.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image71.png"
+          ]
         },
         {
           "id": "C",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image72.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image72.png"
+          ]
         },
         {
           "id": "D",
           "text": "",
-          "image": "/images/graphic-level-2-2025-03/image73.png"
+          "images": [
+            "/images/graphic-level-2-2025-03/image73.png"
+          ]
         }
       ],
       "answer": "C",
-      "explanation": "程序执行后，只有第一次移动20步会画线，后续因抬笔不再画线。选项C显示一段短实线，正确。其他选项图形不符。"
+      "explanation": "程序执行后，只有第一次移动20步会画线，后续因抬笔不再画线。选项C显示一段短实线，正确。其他选项图形不符。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image69.png"
+      ]
     },
     {
       "id": "pt-23",
       "type": "single",
       "title": "要想画出如下图所示的图形，右边程序的①②处应填写？",
-      "image": "/images/graphic-level-2-2025-03/image74.png",
       "options": [
         {
           "id": "A",
@@ -646,13 +783,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "图形显示先粗后细，因此画笔粗细应先增后减。选项A（①填1，②填-1）符合，其他选项变化顺序错误。"
+      "explanation": "图形显示先粗后细，因此画笔粗细应先增后减。选项A（①填1，②填-1）符合，其他选项变化顺序错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image74.png"
+      ]
     },
     {
       "id": "pt-24",
       "type": "single",
       "title": "角色初始大小为100，运行下列程序后，角色的大小是？",
-      "image": "/images/graphic-level-2-2025-03/image76.png",
       "options": [
         {
           "id": "A",
@@ -672,7 +811,10 @@
         }
       ],
       "answer": "D",
-      "explanation": "程序条件成立时，将大小设为10。选项D正确。其他选项未正确反映条件执行结果。"
+      "explanation": "程序条件成立时，将大小设为10。选项D正确。其他选项未正确反映条件执行结果。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image76.png"
+      ]
     },
     {
       "id": "pt-25",
@@ -703,7 +845,6 @@
       "id": "pt-26",
       "type": "truefalse",
       "title": "蝴蝶初始位置如下图所示，运行程序后，按下一次→键，蝴蝶可以水平向右移动10步。",
-      "image": "/images/graphic-level-2-2025-03/image77.png",
       "options": [
         {
           "id": "A",
@@ -715,13 +856,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "程序中x坐标增加10实现向右移动，选项A正确。选项B错误。"
+      "explanation": "程序中x坐标增加10实现向右移动，选项A正确。选项B错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image77.png"
+      ]
     },
     {
       "id": "pt-27",
       "type": "truefalse",
       "title": "点击绿旗，运行下列程序，不做任何操作，会播放声音Cave。",
-      "image": "/images/graphic-level-2-2025-03/image79.png",
       "options": [
         {
           "id": "A",
@@ -733,13 +876,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "程序要求同时碰到鼠标指针并按下空格键才播放声音，仅点击绿旗不会触发。选项B正确，选项A错误。"
+      "explanation": "程序要求同时碰到鼠标指针并按下空格键才播放声音，仅点击绿旗不会触发。选项B正确，选项A错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image79.png"
+      ]
     },
     {
       "id": "pt-28",
       "type": "truefalse",
       "title": "运行下列程序后，按下空格键，雪花角色会逐渐消失，再逐渐显示。",
-      "image": "/images/graphic-level-2-2025-03/image80.png",
       "options": [
         {
           "id": "A",
@@ -751,13 +896,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "虚像特效数值增大使角色透明，程序实现逐渐消失和显示。选项A正确，选项B错误。"
+      "explanation": "虚像特效数值增大使角色透明，程序实现逐渐消失和显示。选项A正确，选项B错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image80.png"
+      ]
     },
     {
       "id": "pt-29",
       "type": "truefalse",
       "title": "默认小猫角色，初始方向为水平向右，运行一次下列程序后，舞台上能画出如下左图所示的图案。",
-      "image": "/images/graphic-level-2-2025-03/image82.png",
       "options": [
         {
           "id": "A",
@@ -769,13 +916,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "程序绘制倒立和正立三角形，与图示一致。选项A正确，选项B错误。"
+      "explanation": "程序绘制倒立和正立三角形，与图示一致。选项A正确，选项B错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image82.png"
+      ]
     },
     {
       "id": "pt-30",
       "type": "truefalse",
       "title": "气球的程序如下图所示，运行程序后，多次按下空格键，气球会不断变小。",
-      "image": "/images/graphic-level-2-2025-03/image84.png",
       "options": [
         {
           "id": "A",
@@ -787,13 +936,15 @@
         }
       ],
       "answer": "B",
-      "explanation": "程序多次按下空格键后，气球大小会被重新设置为100，不会持续变小。选项B正确，选项A错误。"
+      "explanation": "程序多次按下空格键后，气球大小会被重新设置为100，不会持续变小。选项B正确，选项A错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image84.png"
+      ]
     },
     {
       "id": "pt-31",
       "type": "truefalse",
       "title": "箭头初始位置如下图所示，运行程序后，箭头会朝下。",
-      "image": "/images/graphic-level-2-2025-03/image86.png",
       "options": [
         {
           "id": "A",
@@ -805,13 +956,15 @@
         }
       ],
       "answer": "A",
-      "explanation": "程序执行后箭头方向为180度（向下），选项A正确，选项B错误。"
+      "explanation": "程序执行后箭头方向为180度（向下），选项A正确，选项B错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image86.png"
+      ]
     },
     {
       "id": "pt-32",
       "type": "truefalse",
       "title": "小猫的程序如下图所示，初始位置为(0,0)，点击小猫后，小猫会瞬间移到(100,100)。",
-      "image": "/images/graphic-level-2-2025-03/image88.png",
       "options": [
         {
           "id": "A",
@@ -823,7 +976,10 @@
         }
       ],
       "answer": "B",
-      "explanation": "程序中条件不成立，小猫会滑行而非瞬间移动到(100,100)。选项B正确，选项A错误。"
+      "explanation": "程序中条件不成立，小猫会滑行而非瞬间移动到(100,100)。选项B正确，选项A错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image88.png"
+      ]
     },
     {
       "id": "pt-33",
@@ -863,7 +1019,6 @@
       "id": "pt-35",
       "type": "truefalse",
       "title": "小猫角色的程序如下图所示，点击绿旗后，先按下右键，再按下左键，小猫会先向右移动100步，再向左移动100步。",
-      "image": "/images/graphic-level-2-2025-03/image89.png",
       "options": [
         {
           "id": "A",
@@ -875,7 +1030,10 @@
         }
       ],
       "answer": "B",
-      "explanation": "程序执行完毕后，按键不会触发移动，选项B正确，选项A错误。"
+      "explanation": "程序执行完毕后，按键不会触发移动，选项B正确，选项A错误。",
+      "images": [
+        "/images/graphic-level-2-2025-03/image89.png"
+      ]
     }
   ]
 }

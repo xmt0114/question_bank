@@ -8,6 +8,7 @@ export interface Option {
   id: string;
   text?: string;
   image?: string;
+  images?: string[];
 }
 
 export interface Question {
@@ -15,6 +16,7 @@ export interface Question {
   type: QuestionType;
   title: string;
   image?: string;
+  images?: string[];
   options: Option[];
   answer: string | string[];
   explanation: string;
