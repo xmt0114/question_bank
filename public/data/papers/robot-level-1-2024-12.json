@@ -4,48 +4,6 @@
   "levelId": "robot-level-1",
   "questions": [
     {
-      "id": "pt-multi-image-demo",
-      "type": "single",
-      "title": "观察下列图片中的机械结构，哪一个选项正确描述了其工作原理？",
-      "images": [
-        "/images/robot-level-1-2024-12/image1.jpeg",
-        "/images/robot-level-1-2024-12/image2.jpeg",
-        "/images/robot-level-1-2024-12/image3.jpeg"
-      ],
-      "options": [
-        {
-          "id": "A",
-          "text": "这些都是使用杠杆原理的结构",
-          "images": [
-            "/images/robot-level-1-2024-12/image4.jpeg",
-            "/images/robot-level-1-2024-12/image5.jpeg"
-          ]
-        },
-        {
-          "id": "B",
-          "text": "这些都是使用齿轮传动的结构",
-          "images": [
-            "/images/robot-level-1-2024-12/image6.jpeg",
-            "/images/robot-level-1-2024-12/image7.jpeg"
-          ]
-        },
-        {
-          "id": "C",
-          "text": "这些结构分别使用了杠杆、齿轮和工具原理",
-          "images": [
-            "/images/robot-level-1-2024-12/image8.jpeg",
-            "/images/robot-level-1-2024-12/image9.jpeg"
-          ]
-        },
-        {
-          "id": "D",
-          "text": "这些结构都属于复杂机械，不能用简单机械原理解释"
-        }
-      ],
-      "answer": "C",
-      "explanation": "正确选项C：这些结构分别使用了不同的机械原理。第一张图展示了杠杆原理，第二张图展示了齿轮传动，第三张图展示了工具应用。这个题目展示了系统支持在题干和选项中显示多张图片的功能。"
-    },
-    {
       "id": "pt-1",
       "type": "single",
       "title": "如图，下列场景使用了省力杠杆，它的阻力作用点是？",

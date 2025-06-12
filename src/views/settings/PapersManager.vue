@@ -181,8 +181,10 @@
               <p><strong>题目类型：</strong> {{ getQuestionTypeName(question.type) }}</p>
               <p><strong>题目内容：</strong> {{ question.title }}</p>
 
-              <div v-if="question.image" class="question-image">
-                <img :src="question.image" alt="题目图片" style="max-width: 100%; max-height: 300px;">
+              <div v-if="question.images && question.images.length > 0" class="question-image">
+                <div v-for="(img, imgIndex) in question.images" :key="imgIndex" class="image-item">
+                  <img :src="img" alt="题目图片" style="max-width: 100%; max-height: 300px;">
+                </div>
               </div>
 
               <div class="question-options">
@@ -190,7 +192,9 @@
                 <ul>
                   <li v-for="option in question.options" :key="option.id">
                     {{ option.id }}: {{ option.text }}
-                    <img v-if="option.image" :src="option.image" alt="选项图片" style="max-width: 100px; max-height: 60px;">
+                    <div v-if="option.images && option.images.length > 0" class="option-images">
+                      <img v-for="(img, imgIndex) in option.images" :key="imgIndex" :src="img" alt="选项图片" style="max-width: 100px; max-height: 60px; margin-right: 5px;">
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -257,8 +261,19 @@
           <el-input v-model="questionForm.title" type="textarea" :rows="3" placeholder="请输入题目内容" />
         </el-form-item>
 
-        <el-form-item label="题目图片" prop="image">
-          <el-input v-model="questionForm.image" placeholder="请输入图片URL（可选）" />
+        <el-form-item label="题目图片" prop="images">
+          <div class="image-container">
+            <div v-for="(img, imgIndex) in questionForm.images" :key="imgIndex" class="image-input-item">
+              <el-input v-model="questionForm.images[imgIndex]" placeholder="请输入图片URL">
+                <template #append>
+                  <el-button type="danger" @click="removeImage(imgIndex)">删除</el-button>
+                </template>
+              </el-input>
+            </div>
+            <div class="add-image-button">
+              <el-button type="primary" @click="addImage">添加图片</el-button>
+            </div>
+          </div>
         </el-form-item>
 
         <el-divider>选项</el-divider>
@@ -279,8 +294,19 @@
               <el-button v-if="index > 1" type="danger" @click="removeOption(index)">删除</el-button>
             </el-col>
           </el-row>
-          <el-form-item label="选项图片" :prop="`options.${index}.image`">
-            <el-input v-model="option.image" placeholder="请输入图片URL（可选）" />
+          <el-form-item label="选项图片" :prop="`options.${index}.images`">
+            <div class="image-container">
+              <div v-for="(img, imgIndex) in option.images" :key="imgIndex" class="image-input-item">
+                <el-input v-model="option.images[imgIndex]" placeholder="请输入图片URL">
+                  <template #append>
+                    <el-button type="danger" @click="removeOptionImage(index, imgIndex)">删除</el-button>
+                  </template>
+                </el-input>
+              </div>
+              <div class="add-image-button">
+                <el-button type="primary" @click="addOptionImage(index)">添加图片</el-button>
+              </div>
+            </div>
           </el-form-item>
         </div>
 
@@ -441,10 +467,10 @@ const questionForm = reactive({
   id: '',
   type: 'single',
   title: '',
-  image: '',
+  images: [] as string[],
   options: [
-    { id: 'A', text: '', image: '' },
-    { id: 'B', text: '', image: '' }
+    { id: 'A', text: '', images: [] as string[] },
+    { id: 'B', text: '', images: [] as string[] }
   ],
   answer: '',
   explanation: ''
@@ -740,10 +766,10 @@ function resetQuestionForm() {
   questionForm.id = generateQuestionId()
   questionForm.type = 'single'
   questionForm.title = ''
-  questionForm.image = ''
+  questionForm.images = []
   questionForm.options = [
-    { id: 'A', text: '', image: '' },
-    { id: 'B', text: '', image: '' }
+    { id: 'A', text: '', images: [] as string[] },
+    { id: 'B', text: '', images: [] as string[] }
   ]
   questionForm.answer = ''
   questionForm.explanation = ''
@@ -763,7 +789,7 @@ function addOption() {
     questionForm.options.push({
       id: optionIds[nextIndex],
       text: '',
-      image: ''
+      images: []
     })
   } else {
     ElMessage.warning('最多只能添加8个选项')
@@ -809,8 +835,25 @@ function handleEditQuestion(question: any, index: number) {
   questionForm.id = question.id
   questionForm.type = question.type
   questionForm.title = question.title
-  questionForm.image = question.image || ''
-  questionForm.options = JSON.parse(JSON.stringify(question.options))
+  
+  // 兼容旧版本：如果有image字段但没有images字段，创建包含单个image的images数组
+  if (question.image && (!question.images || question.images.length === 0)) {
+    questionForm.images = [question.image]
+  } else {
+    questionForm.images = question.images || []
+  }
+  
+  // 复制选项，并处理选项中的图片字段
+  questionForm.options = JSON.parse(JSON.stringify(question.options)).map((opt: any) => {
+    // 兼容旧版本：如果选项有image字段但没有images字段，创建包含单个image的images数组
+    if (opt.image && (!opt.images || opt.images.length === 0)) {
+      opt.images = [opt.image]
+    } else if (!opt.images) {
+      opt.images = []
+    }
+    return opt
+  })
+  
   questionForm.answer = question.answer
   questionForm.explanation = question.explanation
 
@@ -899,7 +942,7 @@ async function submitQuestionForm() {
           id: questionForm.id,
           type: questionForm.type as QuestionType,
           title: questionForm.title,
-          image: questionForm.image || '',
+          images: questionForm.images || [],
           options: JSON.parse(JSON.stringify(questionForm.options)),
           answer: questionForm.answer,
           explanation: questionForm.explanation
@@ -1019,6 +1062,32 @@ async function saveSortedQuestions() {
     ElMessage.error('题目排序保存失败')
     console.error('Failed to save sorted questions:', error)
   }
+}
+
+// 添加题目图片
+function addImage() {
+  if (!questionForm.images) {
+    questionForm.images = []
+  }
+  questionForm.images.push('')
+}
+
+// 删除题目图片
+function removeImage(index: number) {
+  questionForm.images.splice(index, 1)
+}
+
+// 添加选项图片
+function addOptionImage(optionIndex: number) {
+  if (!questionForm.options[optionIndex].images) {
+    questionForm.options[optionIndex].images = []
+  }
+  questionForm.options[optionIndex].images.push('')
+}
+
+// 删除选项图片
+function removeOptionImage(optionIndex: number, imgIndex: number) {
+  questionForm.options[optionIndex].images.splice(imgIndex, 1)
 }
 
 // 监听级别变化
@@ -1143,6 +1212,48 @@ watch(selectedLevelId, (newVal) => {
 
 .auto-sort-button {
   margin-top: 10px;
+}
+
+.image-item {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.image-input-item {
+  margin-bottom: 10px;
+}
+
+.option-images {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.image-item {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.image-input-item {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.add-image-button {
+  margin-top: 5px;
+}
+
+.option-images {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  gap: 8px;
 }
 
 @media (max-width: 768px) {
