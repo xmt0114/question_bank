@@ -281,7 +281,7 @@ const backToHome = async () => {
             :show-result="examFinished"
             :disabled="examFinished"
             :hide-submit-button="true"
-            @submit="(answer) => handleSubmitAnswer(answer, currentQuestion.id)"
+            @submit="(answer) => handleSubmitAnswer(answer, currentQuestion?.id || '')"
           />
         </div>
 

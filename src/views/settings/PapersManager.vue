@@ -378,7 +378,7 @@
               icon="ArrowDown" 
               circle 
               @click="moveQuestion(scope.$index, 'down')"
-              :disabled="scope.$index === currentPaper?.questions.length - 1"
+              :disabled="scope.$index === (currentPaper?.questions?.length ?? 0) - 1"
             />
           </template>
         </el-table-column>
@@ -396,8 +396,8 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue'
-import { ElMessage, FormInstance, FormRules } from 'element-plus'
-import type { Paper, Level, Category, Organization } from '@/types/question'
+import { ElMessage, FormInstance, FormRules, ElMessageBox } from 'element-plus'
+import type { Paper, Level, Category, Organization, Question } from '@/types/question'
 import * as apiService from '@/services/apiService'
 import { QuestionType } from '@/types/question'
 
@@ -843,7 +843,7 @@ async function confirmDeleteQuestion() {
 }
 
 // 添加题目顺序验证函数
-function validateQuestionTypeOrder(questions) {
+function validateQuestionTypeOrder(questions: Question[]): boolean {
   if (!questions || questions.length <= 1) return true;
   
   // 记录当前题型和上一个题型
@@ -859,23 +859,23 @@ function validateQuestionTypeOrder(questions) {
   }
   
   // 如果题型变化次数大于等于题型数量，说明题型有穿插
-  const uniqueTypes = new Set(questions.map(q => q.type));
+  const uniqueTypes = new Set(questions.map((q: Question) => q.type));
   return typeChanges < uniqueTypes.size;
 }
 
 // 获取题型顺序建议
-function getSuggestedQuestionOrder(questions) {
+function getSuggestedQuestionOrder(questions: Question[]): Question[] {
   if (!questions || questions.length === 0) return [];
   
   // 按题型分组
-  const groups = {
+  const groups: Record<string, Question[]> = {
     'single': [],
     'multiple': [],
     'truefalse': []
   };
   
-  questions.forEach(q => {
-    if (groups[q.type]) {
+  questions.forEach((q: Question) => {
+    if (q.type in groups) {
       groups[q.type].push({...q});
     }
   });
@@ -897,7 +897,7 @@ async function submitQuestionForm() {
       try {
         const question = {
           id: questionForm.id,
-          type: questionForm.type,
+          type: questionForm.type as QuestionType,
           title: questionForm.title,
           image: questionForm.image || '',
           options: JSON.parse(JSON.stringify(questionForm.options)),
@@ -907,14 +907,18 @@ async function submitQuestionForm() {
 
         if (isEditQuestion.value) {
           // 编辑现有题目
-          currentPaper.value.questions[currentQuestionIndex.value] = question;
+          if (currentPaper.value && currentPaper.value.questions) {
+            currentPaper.value.questions[currentQuestionIndex.value] = question;
+          }
         } else {
           // 添加新题目
-          currentPaper.value.questions.push(question);
+          if (currentPaper.value && currentPaper.value.questions) {
+            currentPaper.value.questions.push(question);
+          }
         }
 
         // 检查题型顺序是否合规
-        if (!validateQuestionTypeOrder(currentPaper.value.questions)) {
+        if (currentPaper.value && currentPaper.value.questions && !validateQuestionTypeOrder(currentPaper.value.questions)) {
           const suggested = getSuggestedQuestionOrder(currentPaper.value.questions);
           
           try {
@@ -929,7 +933,9 @@ async function submitQuestionForm() {
             );
             
             // 用户选择自动调整
-            currentPaper.value.questions = suggested;
+            if (currentPaper.value) {
+              currentPaper.value.questions = suggested;
+            }
             ElMessage.success('已自动调整题目顺序');
           } catch (e) {
             // 用户选择手动调整，展示建议
@@ -940,7 +946,9 @@ async function submitQuestionForm() {
         }
 
         // 更新试卷
-        await apiService.updatePaper(currentPaper.value);
+        if (currentPaper.value) {
+          await apiService.updatePaper(currentPaper.value);
+        }
         
         ElMessage.success(isEditQuestion.value ? '编辑题目成功' : '添加题目成功');
         questionDialogVisible.value = false;

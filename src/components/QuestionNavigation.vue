@@ -19,14 +19,14 @@ const emit = defineEmits<{
 const groupedQuestions = computed(() => {
   if (!props.questions || props.questions.length === 0) return {}
 
-  const groups = {
+  const groups: Record<string, { type: string, questions: Array<{ question: Question, index: number }> }> = {
     [QuestionType.SingleChoice]: { type: '单选题', questions: [] },
     [QuestionType.MultipleChoice]: { type: '多选题', questions: [] },
     [QuestionType.TrueFalse]: { type: '判断题', questions: [] }
   }
 
   props.questions.forEach((question, index) => {
-    if (groups[question.type]) {
+    if (question.type in groups) {
       groups[question.type].questions.push({
         question,
         index
@@ -40,7 +40,7 @@ const groupedQuestions = computed(() => {
     }
   })
 
-  return groups
+  return groups as Record<string, { type: string, questions: Array<{ question: Question, index: number }> }>
 })
 
 const getQuestionStatus = (questionId: string, _index: number) => {
