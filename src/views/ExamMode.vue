@@ -13,6 +13,8 @@ const questionStore = useQuestionStore()
 
 const examFinished = ref(false)
 const storeLoading = computed(() => questionStore.loading)
+// 增加显示模式状态，'single'表示单题显示，'full'表示整卷显示
+const displayMode = ref('single')
 
 onMounted(async () => {
   const paperId = route.query.paper as string
@@ -26,6 +28,11 @@ onMounted(async () => {
   // 初始化题目
   await questionStore.startExam(paperId, 'exam')
 })
+
+// 切换显示模式
+const toggleDisplayMode = () => {
+  displayMode.value = displayMode.value === 'single' ? 'full' : 'single'
+}
 
 const currentQuestion = computed(() => questionStore.currentQuestion)
 const currentQuestionIndex = computed(() => questionStore.currentQuestionIndex)
@@ -46,10 +53,10 @@ const currentUserAnswer = computed(() => {
   return answer?.isAnswered ? answer.answer : undefined
 })
 
-const handleSubmitAnswer = (answer: string | string[]) => {
-  if (!currentQuestion.value) return
+const handleSubmitAnswer = (answer: string | string[], questionId: string) => {
+  if (!questionId) return
 
-  questionStore.submitAnswer(currentQuestion.value.id, answer)
+  questionStore.submitAnswer(questionId, answer)
 }
 
 // 提交当前题目的答案（如果有选择但未提交）
@@ -67,7 +74,7 @@ const submitCurrentAnswer = () => {
     // 如果有选择但未提交
     if (checkboxes.length > 0 && (!answer || !answer.isAnswered)) {
       const answers = Array.from(checkboxes).map(cb => (cb as HTMLInputElement).id.replace('option-', ''))
-      handleSubmitAnswer(answers)
+      handleSubmitAnswer(answers, questionId)
     }
   } else {
     // 单选题或判断题
@@ -76,7 +83,7 @@ const submitCurrentAnswer = () => {
     // 如果有选择但未提交
     if (selectedRadio && (!answer || !answer.isAnswered)) {
       const radioValue = (selectedRadio as HTMLInputElement).id.replace('option-', '')
-      handleSubmitAnswer(radioValue)
+      handleSubmitAnswer(radioValue, questionId)
     }
   }
 }
@@ -85,6 +92,18 @@ const navigateToQuestion = (index: number) => {
   // 在跳转前提交当前题目的答案
   submitCurrentAnswer()
   questionStore.goToQuestion(index)
+  
+  // 移除自动切换到单题模式的逻辑，让用户保持在当前模式下
+  // 整卷模式下，导航将滚动到对应题目
+  if (displayMode.value === 'full') {
+    // 延迟一下，确保DOM已更新
+    setTimeout(() => {
+      const questionElement = document.getElementById(`full-question-${index}`)
+      if (questionElement) {
+        questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 50)
+  }
 }
 
 const nextQuestion = () => {
@@ -206,6 +225,10 @@ const backToHome = async () => {
         </div>
 
         <div v-if="!examFinished" class="exam-actions">
+          <!-- 添加显示模式切换按钮 -->
+          <el-button type="info" @click="toggleDisplayMode">
+            {{ displayMode === 'single' ? '整卷模式' : '单题模式' }}
+          </el-button>
           <el-button @click="backToHome">返回首页</el-button>
           <el-button type="primary" @click="submitExam">提交试卷</el-button>
         </div>
@@ -233,7 +256,8 @@ const backToHome = async () => {
           />
         </div>
 
-        <div class="question-content">
+        <!-- 单题模式 -->
+        <div v-if="displayMode === 'single'" class="question-content">
           <div v-if="!examFinished" class="navigation-buttons">
             <el-button
               :disabled="isFirstQuestion"
@@ -257,8 +281,36 @@ const backToHome = async () => {
             :show-result="examFinished"
             :disabled="examFinished"
             :hide-submit-button="true"
-            @submit="handleSubmitAnswer"
+            @submit="(answer) => handleSubmitAnswer(answer, currentQuestion.id)"
           />
+        </div>
+
+        <!-- 整卷模式 -->
+        <div v-else class="full-paper-content">
+          <div 
+            v-for="(question, index) in currentPaper?.questions" 
+            :key="question.id" 
+            class="full-paper-question"
+            :id="`full-question-${index}`"
+          >
+            <div class="question-header">
+              <div class="question-number">第 {{ index + 1 }} 题</div>
+              <div class="question-status" :class="userAnswers[question.id]?.isAnswered ? 'answered' : 'unanswered'">
+                {{ userAnswers[question.id]?.isAnswered ? '已作答' : '未作答' }}
+              </div>
+            </div>
+            
+            <QuestionItem
+              :question="question"
+              :user-answer="userAnswers[question.id]?.answer"
+              :show-result="examFinished"
+              :disabled="examFinished"
+              :hide-submit-button="true"
+              @submit="(answer) => handleSubmitAnswer(answer, question.id)"
+            />
+            
+            <el-divider />
+          </div>
         </div>
       </div>
     </template>
@@ -343,6 +395,11 @@ const backToHome = async () => {
 .navigation-sidebar {
   width: 250px;
   flex-shrink: 0;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
 }
 
 .question-content {
@@ -354,6 +411,53 @@ const backToHome = async () => {
 
 .question-content > div:last-child {
   min-height: 400px;
+}
+
+/* 整卷模式样式 */
+.full-paper-content {
+  flex-grow: 1;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.full-paper-question {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ebeef5;
+}
+
+.question-number {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #409EFF;
+}
+
+.question-status {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+}
+
+.question-status.answered {
+  background-color: #f0f9eb;
+  color: #67c23a;
+}
+
+.question-status.unanswered {
+  background-color: #fef0f0;
+  color: #f56c6c;
 }
 
 .exam-result {
@@ -379,6 +483,8 @@ const backToHome = async () => {
   .navigation-sidebar {
     width: 100%;
     margin-bottom: 1.5rem;
+    position: static;
+    max-height: none;
   }
 }
 
