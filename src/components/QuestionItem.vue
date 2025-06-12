@@ -144,13 +144,17 @@ const getOptionClass = (optionId: string) => {
     <div class="question-header">
       <div class="question-title">
         <div class="title-content">
-          <span class="question-type">
-            {{
-              question.type === QuestionType.SingleChoice ? '[单选题]' :
-              question.type === QuestionType.MultipleChoice ? '[多选题]' : '[判断题]'
-            }}
-          </span>
-          {{ question.title }}
+          <div class="question-type-wrapper">
+            <span class="question-type">
+              {{
+                question.type === QuestionType.SingleChoice ? '[单选题]' :
+                question.type === QuestionType.MultipleChoice ? '[多选题]' : '[判断题]'
+              }}
+            </span>
+          </div>
+          <div class="question-title-text">
+            {{ question.title }}
+          </div>
           <button
             v-if="speechAvailable"
             class="speak-button"
@@ -342,8 +346,27 @@ const getOptionClass = (optionId: string) => {
   position: relative;
 }
 
+.question-type-wrapper {
+  flex-shrink: 0;
+  width: 70px; /* 固定宽度 */
+  display: flex;
+  align-items: center;
+}
+
+.question-type {
+  color: #409EFF;
+  font-weight: bold;
+  white-space: nowrap; /* 防止换行 */
+}
+
+.question-title-text {
+  flex: 1;
+  min-width: 0;
+  margin-right: 10px; /* 为朗读按钮留出空间 */
+}
+
 .speak-button {
-  margin-left: 10px;
+  margin-left: 5px;
   flex-shrink: 0;
   width: 30px;
   height: 30px;
@@ -378,12 +401,6 @@ const getOptionClass = (optionId: string) => {
   100% {
     transform: scale(1);
   }
-}
-
-.question-type {
-  color: #409EFF;
-  margin-right: 8px;
-  font-weight: bold;
 }
 
 /* 多图片布局样式 */
