@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuestionStore } from '@/stores/question'
 import QuestionItem from '@/components/QuestionItem.vue'
+import HandsOnQuestionItem from '@/components/HandsOnQuestionItem.vue'
 import QuestionNavigation from '@/components/QuestionNavigation.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { QuestionType } from '@/types/question'
@@ -53,38 +54,64 @@ const currentUserAnswer = computed(() => {
   return answer?.isAnswered ? answer.answer : undefined
 })
 
-const handleSubmitAnswer = (answer: string | string[], questionId: string) => {
+// 检查当前题目是否为实操题
+const isHandsOnQuestion = computed(() => {
+  return currentQuestion.value?.type === QuestionType.HandsOn
+})
+
+const handleSubmitAnswer = (answer: string | string[] | null, questionId: string) => {
   if (!questionId) return
 
-  questionStore.submitAnswer(questionId, answer)
+  try {
+    // 如果是实操题，不需要提交答案，但需要标记为已完成
+    const question = currentPaper.value?.questions.find(q => q.id === questionId)
+    if (question?.type === QuestionType.HandsOn) {
+      questionStore.submitAnswer(questionId, null);
+      return;
+    }
+
+    questionStore.submitAnswer(questionId, answer)
+  } catch (error) {
+    console.error('处理答案提交时出错:', error)
+  }
 }
 
 // 提交当前题目的答案（如果有选择但未提交）
 const submitCurrentAnswer = () => {
   if (!currentQuestion.value || examFinished.value) return
 
-  const questionId = currentQuestion.value.id
-  const answer = questionStore.userAnswers[questionId]
-
-  // 如果是多选题
-  if (currentQuestion.value.type === QuestionType.MultipleChoice) {
-    // 获取所有选中的复选框
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked')
-
-    // 如果有选择但未提交
-    if (checkboxes.length > 0 && (!answer || !answer.isAnswered)) {
-      const answers = Array.from(checkboxes).map(cb => (cb as HTMLInputElement).id.replace('option-', ''))
-      handleSubmitAnswer(answers, questionId)
+  try {
+    // 如果是实操题，不需要提交答案
+    if (currentQuestion.value.type === QuestionType.HandsOn) {
+      questionStore.submitAnswer(currentQuestion.value.id, null as any);
+      return;
     }
-  } else {
-    // 单选题或判断题
-    const selectedRadio = document.querySelector('input[type="radio"]:checked')
 
-    // 如果有选择但未提交
-    if (selectedRadio && (!answer || !answer.isAnswered)) {
-      const radioValue = (selectedRadio as HTMLInputElement).id.replace('option-', '')
-      handleSubmitAnswer(radioValue, questionId)
+    const questionId = currentQuestion.value.id
+    const answer = questionStore.userAnswers[questionId]
+
+    // 如果是多选题
+    if (currentQuestion.value.type === QuestionType.MultipleChoice) {
+      // 获取所有选中的复选框
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked')
+
+      // 如果有选择但未提交
+      if (checkboxes.length > 0 && (!answer || !answer.isAnswered)) {
+        const answers = Array.from(checkboxes).map(cb => (cb as HTMLInputElement).id.replace('option-', ''))
+        handleSubmitAnswer(answers, questionId)
+      }
+    } else {
+      // 单选题或判断题
+      const selectedRadio = document.querySelector('input[type="radio"]:checked')
+
+      // 如果有选择但未提交
+      if (selectedRadio && (!answer || !answer.isAnswered)) {
+        const radioValue = (selectedRadio as HTMLInputElement).id.replace('option-', '')
+        handleSubmitAnswer(radioValue, questionId)
+      }
     }
+  } catch (error) {
+    console.error('提交当前答案时出错:', error)
   }
 }
 
@@ -274,15 +301,22 @@ const backToHome = async () => {
             </el-button>
           </div>
 
-          <QuestionItem
-            v-if="currentQuestion"
-            :question="currentQuestion"
-            :user-answer="currentUserAnswer"
-            :show-result="examFinished"
-            :disabled="examFinished"
-            :hide-submit-button="true"
-            @submit="(answer) => handleSubmitAnswer(answer, currentQuestion?.id || '')"
-          />
+          <!-- 根据题型选择不同的组件 -->
+          <template v-if="currentQuestion">
+            <HandsOnQuestionItem
+              v-if="isHandsOnQuestion"
+              :question="currentQuestion"
+            />
+            <QuestionItem
+              v-else
+              :question="currentQuestion"
+              :user-answer="currentUserAnswer"
+              :show-result="examFinished"
+              :disabled="examFinished"
+              :hide-submit-button="true"
+              @submit="(answer) => handleSubmitAnswer(answer, currentQuestion?.id || '')"
+            />
+          </template>
         </div>
 
         <!-- 整卷模式 -->
@@ -295,12 +329,25 @@ const backToHome = async () => {
           >
             <div class="question-header">
               <div class="question-number">第 {{ index + 1 }} 题</div>
-              <div class="question-status" :class="userAnswers[question.id]?.isAnswered ? 'answered' : 'unanswered'">
+              <div 
+                v-if="question.type !== QuestionType.HandsOn" 
+                class="question-status" 
+                :class="userAnswers[question.id]?.isAnswered ? 'answered' : 'unanswered'"
+              >
                 {{ userAnswers[question.id]?.isAnswered ? '已作答' : '未作答' }}
+              </div>
+              <div v-else class="question-status answered">
+                实操题
               </div>
             </div>
             
+            <!-- 根据题型选择不同的组件 -->
+            <HandsOnQuestionItem
+              v-if="question.type === QuestionType.HandsOn"
+              :question="question"
+            />
             <QuestionItem
+              v-else
               :question="question"
               :user-answer="userAnswers[question.id]?.answer"
               :show-result="examFinished"

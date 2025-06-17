@@ -1,7 +1,8 @@
 export enum QuestionType {
   SingleChoice = 'single',
   MultipleChoice = 'multiple',
-  TrueFalse = 'truefalse'
+  TrueFalse = 'truefalse',
+  HandsOn = 'handson'
 }
 
 export interface Option {
@@ -17,8 +18,9 @@ export interface Question {
   title: string;
   image?: string;
   images?: string[];
+  richContent?: string; // 富文本内容，用于实操题的图文混排
   options: Option[];
-  answer: string | string[];
+  answer: string | string[] | null;
   explanation: string;
 }
 
@@ -57,7 +59,7 @@ export interface Paper {
 
 export interface UserAnswer {
   questionId: string;
-  answer: string | string[];
+  answer: string | string[] | null;
   isCorrect: boolean;
   isAnswered: boolean;
 }

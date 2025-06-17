@@ -11,13 +11,30 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
+// 提供静态文件服务
+app.use('/uploads', express.static(path.join(__dirname, '..', 'public', 'uploads')));
+app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+
 // 设置文件上传
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'uploads'));
+    // 根据文件类型选择不同的目标目录
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, path.join(__dirname, '..', 'public', 'uploads'));
+    } else {
+      cb(null, path.join(__dirname, 'uploads'));
+    }
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
+    // 为图片创建统一格式的文件名，避免中文编码问题
+    if (file.mimetype.startsWith('image/')) {
+      const fileExt = path.extname(file.originalname);
+      const fileName = `img_${Date.now()}_${Math.floor(Math.random() * 1000)}${fileExt}`;
+      cb(null, fileName);
+    } else {
+      // 对于非图片文件，使用时间戳命名
+      cb(null, Date.now() + '-' + file.originalname);
+    }
   }
 });
 
@@ -27,6 +44,12 @@ const upload = multer({ storage: storage });
 const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+// 确保图片上传目录存在
+const imageUploadsDir = path.join(__dirname, '..', 'public', 'uploads');
+if (!fs.existsSync(imageUploadsDir)) {
+  fs.mkdirSync(imageUploadsDir, { recursive: true });
 }
 
 // 数据文件路径
@@ -610,6 +633,31 @@ app.post('/api/upload/paper', upload.single('file'), (req, res) => {
   } catch (error) {
     console.error('Error processing uploaded file:', error);
     res.status(500).json({ error: 'Failed to process uploaded file' });
+  }
+});
+
+// 图片上传API
+app.post('/api/upload/image', upload.single('file'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: '没有上传文件' });
+    }
+
+    // 验证文件类型
+    if (!req.file.mimetype.startsWith('image/')) {
+      return res.status(400).json({ error: '只能上传图片文件' });
+    }
+
+    // 返回图片URL
+    const imageUrl = `/uploads/${req.file.filename}`;
+    
+    res.status(201).json({ 
+      url: imageUrl,
+      message: '图片上传成功' 
+    });
+  } catch (error) {
+    console.error('图片上传处理错误:', error);
+    res.status(500).json({ error: '图片上传失败' });
   }
 });
 

@@ -1,0 +1,17 @@
+{
+  "id": "robot-level-1-2025-03-2",
+  "name": "2025年3月实操",
+  "levelId": "robot-level-1",
+  "questions": [
+    {
+      "id": "q-mbzxb5yg0484i",
+      "type": "handson",
+      "title": "器材说明：考生作答时不指定任何器材，所搭建的模型在外形、结构、功能方面满足题目要求即可。以下样例模型...",
+      "images": [],
+      "richContent": "<p><span style=\"font-family: 宋体;\">器材说明：</span></p><p><span style=\"font-family: 宋体;\">考生作答时不指定任何器材，所搭建的模型在外形、结构、功能方面满足题目要求即可。以下样例模型选自经中国电子学会评审通过的青少年机器人技术等级考试一级、二级适用器材。仅供参考，不作为考试评分的唯一依据。</span></p><p> </p><p><span style=\"font-family: 宋体;\">案例样图：</span></p><p><span style=\"font-family: 宋体;\">以下列举了相关器材模型样例，考生可任选其一作为参考。</span></p><p><span style=\"font-family: 宋体;\">样例</span>1</p><p><img src=\"/uploads/img_1750129104901_628.png\" alt=\"matlab题目.png\" data-href=\"/uploads/img_1750129104901_628.png\" style=\"\"/></p><p>样例二：</p><p><img src=\"/uploads/img_1750129405892_600.png\" alt=\"领课步骤.png\" data-href=\"/uploads/img_1750129405892_600.png\" style=\"\"/></p>",
+      "options": [],
+      "answer": null,
+      "explanation": "我"
+    }
+  ]
+}

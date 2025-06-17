@@ -154,3 +154,23 @@ export async function uploadPaperFile(file: File, levelId: string): Promise<Pape
     throw error
   }
 }
+
+// 图片上传API
+export async function uploadImage(formData: FormData): Promise<{url: string}> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/upload/image`, {
+      method: 'POST',
+      body: formData
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.error || `Image upload failed with status ${response.status}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Image upload error:', error)
+    throw error
+  }
+}

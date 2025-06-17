@@ -170,7 +170,7 @@
           <el-collapse-item
             v-for="(question, index) in currentPaper.questions"
             :key="question.id"
-            :title="`${index + 1}. ${question.title.substring(0, 50)}${question.title.length > 50 ? '...' : ''}`"
+            :title="`${index + 1}. ${getQuestionTitle(question)}`"
           >
             <div class="question-detail">
               <div class="question-actions">
@@ -179,7 +179,15 @@
               </div>
 
               <p><strong>题目类型：</strong> {{ getQuestionTypeName(question.type) }}</p>
-              <p><strong>题目内容：</strong> {{ question.title }}</p>
+              
+              <!-- 普通题目显示标题文本 -->
+              <p v-if="question.type !== 'handson'"><strong>题目内容：</strong> {{ question.title }}</p>
+              
+              <!-- 实操题显示富文本内容（精简版） -->
+              <div v-else>
+                <p><strong>题目内容：</strong></p>
+                <div class="rich-content-preview-compact" v-html="question.richContent"></div>
+              </div>
 
               <div v-if="question.images && question.images.length > 0" class="question-image">
                 <div v-for="(img, imgIndex) in question.images" :key="imgIndex" class="image-item">
@@ -187,19 +195,19 @@
                 </div>
               </div>
 
-              <div class="question-options">
+              <div v-if="question.type !== 'handson'" class="question-options">
                 <p><strong>选项：</strong></p>
                 <ul>
                   <li v-for="option in question.options" :key="option.id">
                     {{ option.id }}: {{ option.text }}
                     <div v-if="option.images && option.images.length > 0" class="option-images">
-                      <img v-for="(img, imgIndex) in option.images" :key="imgIndex" :src="img" alt="选项图片" style="max-width: 100px; max-height: 60px; margin-right: 5px;">
+                      <img v-for="(_, imgIndex) in option.images" :key="imgIndex" :src="option.images[imgIndex]" alt="选项图片" style="max-width: 100px; max-height: 60px; margin-right: 5px;">
                     </div>
                   </li>
                 </ul>
               </div>
 
-              <p><strong>答案：</strong> {{ Array.isArray(question.answer) ? question.answer.join(', ') : question.answer }}</p>
+              <p v-if="question.type !== 'handson'"><strong>答案：</strong> {{ Array.isArray(question.answer) ? question.answer.join(', ') : question.answer }}</p>
               <p><strong>解析：</strong> {{ question.explanation }}</p>
             </div>
           </el-collapse-item>
@@ -249,21 +257,58 @@
         :rules="questionRules"
         label-width="100px"
       >
-        <el-form-item label="题目类型" prop="type">
-          <el-select v-model="questionForm.type" placeholder="请选择题目类型">
+        <el-form-item label="题目类型">
+          <el-select v-model="questionForm.type">
             <el-option label="单选题" value="single" />
             <el-option label="多选题" value="multiple" />
             <el-option label="判断题" value="truefalse" />
+            <el-option label="实操题" value="handson" />
           </el-select>
         </el-form-item>
 
-        <el-form-item label="题目内容" prop="title">
+        <!-- 非实操题的题目内容 -->
+        <el-form-item v-if="questionForm.type !== 'handson'" label="题目内容" prop="title">
           <el-input v-model="questionForm.title" type="textarea" :rows="3" placeholder="请输入题目内容" />
         </el-form-item>
 
+        <!-- 实操题的富文本编辑器 -->
+        <el-form-item v-if="questionForm.type === 'handson'" label="富文本内容" prop="richContent">
+          <div class="rich-editor-container">
+            <el-alert
+              title="支持编辑带格式的内容（图片、表格等）"
+              type="info"
+              :closable="false"
+              show-icon
+              style="margin-bottom: 10px;"
+            />
+            
+            <!-- WangEditor 编辑器组件 -->
+            <div class="editor-container">
+              <Toolbar
+                style="border-bottom: 1px solid #ccc"
+                :editor="editorRef"
+                :defaultConfig="toolbarConfig"
+                :mode="mode"
+              />
+              <Editor
+                style="height: 300px; overflow-y: hidden;"
+                v-model="editorHtml"
+                :defaultConfig="editorConfig"
+                :mode="mode"
+                @onCreated="handleCreated"
+                @onChange="handleEditorChange"
+              />
+            </div>
+            
+            <div class="preview-header">预览</div>
+            <div class="rich-content-preview-compact" v-html="questionForm.richContent"></div>
+          </div>
+        </el-form-item>
+
         <el-form-item label="题目图片" prop="images">
-          <div class="image-container">
-            <div v-for="(img, imgIndex) in questionForm.images" :key="imgIndex" class="image-input-item">
+          <!-- 仅在非实操题时显示 -->
+          <div v-if="questionForm.type !== 'handson'" class="image-container">
+            <div v-for="(_, imgIndex) in questionForm.images" :key="imgIndex" class="image-input-item">
               <el-input v-model="questionForm.images[imgIndex]" placeholder="请输入图片URL">
                 <template #append>
                   <el-button type="danger" @click="removeImage(imgIndex)">删除</el-button>
@@ -278,45 +323,47 @@
 
         <el-divider>选项</el-divider>
 
-        <div v-for="(option, index) in questionForm.options" :key="index" class="option-item">
-          <el-row :gutter="20">
-            <el-col :span="4">
-              <el-form-item :label="`选项${option.id}`" :prop="`options.${index}.id`">
-                <el-input v-model="option.id" disabled />
-              </el-form-item>
-            </el-col>
-            <el-col :span="16">
-              <el-form-item label="选项内容" :prop="`options.${index}.text`">
-                <el-input v-model="option.text" placeholder="请输入选项内容" />
-              </el-form-item>
-            </el-col>
-            <el-col :span="4" class="option-actions">
-              <el-button v-if="index > 1" type="danger" @click="removeOption(index)">删除</el-button>
-            </el-col>
-          </el-row>
-          <el-form-item label="选项图片" :prop="`options.${index}.images`">
-            <div class="image-container">
-              <div v-for="(img, imgIndex) in option.images" :key="imgIndex" class="image-input-item">
-                <el-input v-model="option.images[imgIndex]" placeholder="请输入图片URL">
-                  <template #append>
-                    <el-button type="danger" @click="removeOptionImage(index, imgIndex)">删除</el-button>
-                  </template>
-                </el-input>
+        <template v-if="questionForm.type !== 'handson'">
+          <div v-for="(option, index) in questionForm.options" :key="index" class="option-item">
+            <el-row :gutter="20">
+              <el-col :span="4">
+                <el-form-item :label="`选项${option.id}`" :prop="`options.${index}.id`">
+                  <el-input v-model="option.id" disabled />
+                </el-form-item>
+              </el-col>
+              <el-col :span="16">
+                <el-form-item label="选项内容" :prop="`options.${index}.text`">
+                  <el-input v-model="option.text" placeholder="请输入选项内容" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="4" class="option-actions">
+                <el-button v-if="index > 1" type="danger" @click="removeOption(index)">删除</el-button>
+              </el-col>
+            </el-row>
+            <el-form-item label="选项图片" :prop="`options.${index}.images`">
+              <div class="image-container">
+                <div v-for="(_, imgIndex) in option.images" :key="imgIndex" class="image-input-item">
+                  <el-input v-model="option.images[imgIndex]" placeholder="请输入图片URL">
+                    <template #append>
+                      <el-button type="danger" @click="removeOptionImage(index, imgIndex)">删除</el-button>
+                    </template>
+                  </el-input>
+                </div>
+                <div class="add-image-button">
+                  <el-button type="primary" @click="addOptionImage(index)">添加图片</el-button>
+                </div>
               </div>
-              <div class="add-image-button">
-                <el-button type="primary" @click="addOptionImage(index)">添加图片</el-button>
-              </div>
-            </div>
-          </el-form-item>
-        </div>
+            </el-form-item>
+          </div>
 
-        <el-form-item>
-          <el-button type="primary" @click="addOption">添加选项</el-button>
-        </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="addOption">添加选项</el-button>
+          </el-form-item>
+        </template>
 
         <el-divider></el-divider>
 
-        <el-form-item label="正确答案" prop="answer">
+        <el-form-item :label="questionForm.type === 'multiple' ? '正确答案（多选）' : '正确答案'">
           <el-select
             v-if="questionForm.type === 'single' || questionForm.type === 'truefalse'"
             v-model="questionForm.answer"
@@ -385,7 +432,7 @@
         </el-table-column>
         <el-table-column label="题目内容" show-overflow-tooltip>
           <template #default="scope">
-            {{ scope.row.title }}
+            {{ getQuestionTitle(scope.row) }}
           </template>
         </el-table-column>
         <el-table-column label="操作" width="150">
@@ -421,11 +468,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from 'vue'
-import { ElMessage, FormInstance, FormRules, ElMessageBox } from 'element-plus'
-import type { Paper, Level, Category, Organization, Question } from '@/types/question'
+import { ref, reactive, computed, watch, onMounted, onBeforeUnmount, onActivated } from 'vue'
+import { ElMessage, ElMessageBox, ElLoading, FormInstance, FormRules } from 'element-plus'
 import * as apiService from '@/services/apiService'
+import type { Organization, Category, Level, Paper, Question } from '@/types/question'
 import { QuestionType } from '@/types/question'
+// 引入WangEditor
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import type { IEditorConfig, IToolbarConfig, IDomEditor } from '@wangeditor/editor'
+import '@wangeditor/editor/dist/css/style.css'
 
 const organizations = ref<Organization[]>([])
 const categories = ref<Category[]>([])
@@ -468,6 +519,7 @@ const questionForm = reactive({
   type: 'single',
   title: '',
   images: [] as string[],
+  richContent: '',
   options: [
     { id: 'A', text: '', images: [] as string[] },
     { id: 'B', text: '', images: [] as string[] }
@@ -475,6 +527,66 @@ const questionForm = reactive({
   answer: '',
   explanation: ''
 })
+
+// WangEditor 相关变量
+const editorRef = ref<IDomEditor | null>(null)
+const editorHtml = ref('')
+const mode = ref('default') // 编辑器模式，默认为default
+const toolbarConfig: Partial<IToolbarConfig> = {
+  excludeKeys: [
+    'uploadVideo', // 禁用视频上传
+    'insertVideo', // 禁用视频插入
+    'group-video', // 禁用视频分组
+    'insertLink', // 禁用插入链接
+    'group-link' // 禁用链接分组
+  ]
+}
+const editorConfig: Partial<IEditorConfig> = {
+  placeholder: '请输入内容...',
+  MENU_CONF: {
+    // 图片上传配置
+    uploadImage: {
+      // 自定义上传图片的回调函数
+      customUpload(file: File, insertFn: (url: string, alt: string, href: string) => void) {
+        // 创建FormData对象
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        // 显示上传中提示
+        const loading = ElLoading.service({
+          lock: true,
+          text: '图片上传中...',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+        
+        // 调用上传API
+        apiService.uploadImage(formData)
+          .then((res: any) => {
+            // 获取图片URL并插入编辑器
+            const url = res.url;
+            insertFn(url, file.name, url);
+            ElMessage.success('图片上传成功');
+          })
+          .catch((err: any) => {
+            console.error('图片上传失败:', err);
+            ElMessage.error('图片上传失败');
+            
+            // 如果上传失败，使用base64作为备选方案
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+              const url = reader.result as string;
+              insertFn(url, file.name, url);
+              ElMessage.warning('已使用本地图片，但不会保存到服务器');
+            };
+          })
+          .finally(() => {
+            loading.close();
+          });
+      }
+    }
+  }
+}
 
 const filteredCategories = computed(() => {
   if (!selectedOrganizationId.value) return []
@@ -502,15 +614,90 @@ const questionRules = reactive<FormRules>({
     { required: true, message: '请选择题目类型', trigger: 'change' }
   ],
   title: [
-    { required: true, message: '请输入题目内容', trigger: 'blur' }
+    { 
+      required: true, 
+      message: '请输入题目内容', 
+      trigger: 'blur',
+      validator: (_rule, value, callback) => {
+        // 如果是实操题且有富文本内容，可以自动提取标题
+        if (questionForm.type === 'handson' && questionForm.richContent && !value) {
+          updateTitleFromRichContent();
+          if (questionForm.title) {
+            callback();
+            return;
+          }
+        }
+        
+        if (value) {
+          callback();
+        } else {
+          if (questionForm.type === 'handson') {
+            callback(new Error('请输入题目内容或填写富文本内容'));
+          } else {
+            callback(new Error('请输入题目内容'));
+          }
+        }
+      }
+    }
+  ],
+  richContent: [
+    {
+      validator: (_rule, value, callback) => {
+        // 如果是实操题，富文本内容是必填的
+        if (questionForm.type === 'handson' && !value) {
+          callback(new Error('实操题请填写富文本内容'));
+        } else {
+          callback();
+        }
+      },
+      trigger: 'blur'
+    }
   ],
   answer: [
-    { required: true, message: '请选择正确答案', trigger: 'change' }
+    { 
+      required: true, 
+      message: '请选择正确答案', 
+      trigger: 'change',
+      // 只有非实操题才需要答案
+      validator: (_rule, value, callback) => {
+        if (questionForm.type === 'handson' || value) {
+          callback();
+        } else {
+          callback(new Error('请选择正确答案'));
+        }
+      }
+    }
   ],
   explanation: [
     { required: true, message: '请输入解析内容', trigger: 'blur' }
   ]
 })
+
+// 监听题目类型变化
+watch(() => questionForm.type, (newType) => {
+  // 当切换到实操题时，清空选项和答案
+  if (newType === 'handson') {
+    // 实操题不需要答案
+    questionForm.answer = '';
+    // 保留选项数组但清空内容，以便切换回其他题型时能恢复
+    questionForm.options = [];
+  } else if (questionForm.options.length === 0) {
+    // 如果从实操题切换回其他题型，恢复默认选项
+    questionForm.options = [
+      { id: 'A', text: '', images: [] as string[] },
+      { id: 'B', text: '', images: [] as string[] }
+    ];
+    
+    // 根据题型设置默认答案格式
+    if (newType === 'multiple') {
+      // 对于多选题，我们需要使用数组，但由于类型限制，这里先使用空字符串
+      // 在提交表单时会根据题型进行处理
+      questionForm.answer = '';
+    } else {
+      questionForm.answer = '';
+    }
+  }
+}, { immediate: true })
 
 // 初始化数据
 async function initData() {
@@ -524,9 +711,39 @@ async function initData() {
     organizations.value = orgs
     categories.value = cats
     levels.value = lvls
+    
+    // 设置默认选项
+    setDefaultSelections()
   } catch (error) {
     ElMessage.error('初始化数据失败')
     console.error('Failed to initialize data:', error)
+  }
+}
+
+// 设置默认选项
+function setDefaultSelections() {
+  // 如果有组织，默认选择第一个
+  if (organizations.value.length > 0 && !selectedOrganizationId.value) {
+    selectedOrganizationId.value = organizations.value[0].id
+    
+    // 根据选择的组织，过滤出相关类别
+    const orgCategories = categories.value.filter(cat => cat.organizationId === selectedOrganizationId.value)
+    
+    // 如果有类别，默认选择第一个
+    if (orgCategories.length > 0) {
+      selectedCategoryId.value = orgCategories[0].id
+      
+      // 根据选择的类别，过滤出相关级别
+      const catLevels = levels.value.filter(level => level.categoryId === selectedCategoryId.value)
+      
+      // 如果有级别，默认选择第一个
+      if (catLevels.length > 0) {
+        selectedLevelId.value = catLevels[0].id
+        
+        // 加载试卷列表
+        loadPapers()
+      }
+    }
   }
 }
 
@@ -547,15 +764,34 @@ async function loadPapers() {
 
 // 处理组织变更
 function handleOrganizationChange() {
+  // 重置类别和级别选择
   selectedCategoryId.value = ''
   selectedLevelId.value = ''
   papers.value = []
+  
+  // 如果选择了组织，自动选择第一个类别（如果存在）
+  if (selectedOrganizationId.value && filteredCategories.value.length > 0) {
+    selectedCategoryId.value = filteredCategories.value[0].id
+    
+    // 如果选择了类别，自动选择第一个级别（如果存在）
+    if (selectedCategoryId.value && filteredLevels.value.length > 0) {
+      selectedLevelId.value = filteredLevels.value[0].id
+      loadPapers()
+    }
+  }
 }
 
 // 处理类别变更
 function handleCategoryChange() {
+  // 重置级别选择
   selectedLevelId.value = ''
   papers.value = []
+  
+  // 如果选择了类别，自动选择第一个级别（如果存在）
+  if (selectedCategoryId.value && filteredLevels.value.length > 0) {
+    selectedLevelId.value = filteredLevels.value[0].id
+    loadPapers()
+  }
 }
 
 // 处理级别变更
@@ -759,6 +995,20 @@ async function handleFileUpload(options: any) {
 // 初始化
 initData()
 
+// 组件挂载时，如果已经有数据但没有选择，设置默认选项
+onMounted(() => {
+  if (organizations.value.length > 0 && !selectedOrganizationId.value) {
+    setDefaultSelections()
+  }
+})
+
+// 组件激活时（从缓存中恢复），如果没有选择但有数据，设置默认选项
+onActivated(() => {
+  if (organizations.value.length > 0 && !selectedOrganizationId.value) {
+    setDefaultSelections()
+  }
+})
+
 // 题目管理相关方法
 
 // 重置题目表单
@@ -767,6 +1017,7 @@ function resetQuestionForm() {
   questionForm.type = 'single'
   questionForm.title = ''
   questionForm.images = []
+  questionForm.richContent = ''
   questionForm.options = [
     { id: 'A', text: '', images: [] as string[] },
     { id: 'B', text: '', images: [] as string[] }
@@ -835,6 +1086,7 @@ function handleEditQuestion(question: any, index: number) {
   questionForm.id = question.id
   questionForm.type = question.type
   questionForm.title = question.title
+  questionForm.richContent = question.richContent || ''
   
   // 兼容旧版本：如果有image字段但没有images字段，创建包含单个image的images数组
   if (question.image && (!question.images || question.images.length === 0)) {
@@ -889,20 +1141,24 @@ async function confirmDeleteQuestion() {
 function validateQuestionTypeOrder(questions: Question[]): boolean {
   if (!questions || questions.length <= 1) return true;
   
+  // 过滤掉实操题，实操题不参与题型顺序检查
+  const nonHandsOnQuestions = questions.filter(q => q.type !== QuestionType.HandsOn);
+  if (nonHandsOnQuestions.length <= 1) return true;
+  
   // 记录当前题型和上一个题型
-  let currentType = questions[0].type;
+  let currentType = nonHandsOnQuestions[0].type;
   let typeChanges = 0;
   
   // 检查题型变化次数
-  for (let i = 1; i < questions.length; i++) {
-    if (questions[i].type !== currentType) {
-      currentType = questions[i].type;
+  for (let i = 1; i < nonHandsOnQuestions.length; i++) {
+    if (nonHandsOnQuestions[i].type !== currentType) {
+      currentType = nonHandsOnQuestions[i].type;
       typeChanges++;
     }
   }
   
   // 如果题型变化次数大于等于题型数量，说明题型有穿插
-  const uniqueTypes = new Set(questions.map((q: Question) => q.type));
+  const uniqueTypes = new Set(nonHandsOnQuestions.map((q: Question) => q.type));
   return typeChanges < uniqueTypes.size;
 }
 
@@ -910,24 +1166,29 @@ function validateQuestionTypeOrder(questions: Question[]): boolean {
 function getSuggestedQuestionOrder(questions: Question[]): Question[] {
   if (!questions || questions.length === 0) return [];
   
-  // 按题型分组
+  // 分离实操题和其他题型
+  const handsOnQuestions = questions.filter(q => q.type === QuestionType.HandsOn);
+  const nonHandsOnQuestions = questions.filter(q => q.type !== QuestionType.HandsOn);
+  
+  // 按题型分组（非实操题）
   const groups: Record<string, Question[]> = {
     'single': [],
     'multiple': [],
     'truefalse': []
   };
   
-  questions.forEach((q: Question) => {
+  nonHandsOnQuestions.forEach((q: Question) => {
     if (q.type in groups) {
       groups[q.type].push({...q});
     }
   });
   
-  // 推荐顺序：单选题 -> 多选题 -> 判断题
+  // 推荐顺序：单选题 -> 多选题 -> 判断题 -> 实操题
   return [
     ...groups['single'], 
     ...groups['multiple'], 
-    ...groups['truefalse']
+    ...groups['truefalse'],
+    ...handsOnQuestions
   ];
 }
 
@@ -938,13 +1199,25 @@ async function submitQuestionForm() {
   await questionFormRef.value.validate(async (valid) => {
     if (valid) {
       try {
+        // 处理实操题特殊情况
+        const isHandsOn = questionForm.type === 'handson';
+        
+        // 如果是实操题且没有手动设置标题，从富文本中提取
+        if (isHandsOn && !questionForm.title && questionForm.richContent) {
+          updateTitleFromRichContent();
+        }
+        
         const question = {
           id: questionForm.id,
           type: questionForm.type as QuestionType,
           title: questionForm.title,
           images: questionForm.images || [],
-          options: JSON.parse(JSON.stringify(questionForm.options)),
-          answer: questionForm.answer,
+          // 如果是实操题，添加富文本内容
+          ...(isHandsOn && questionForm.richContent ? { richContent: questionForm.richContent } : {}),
+          // 实操题不需要选项，使用空数组
+          options: isHandsOn ? [] : JSON.parse(JSON.stringify(questionForm.options)),
+          // 实操题不需要答案，使用null
+          answer: isHandsOn ? null : questionForm.answer,
           explanation: questionForm.explanation
         };
 
@@ -960,31 +1233,34 @@ async function submitQuestionForm() {
           }
         }
 
-        // 检查题型顺序是否合规
-        if (currentPaper.value && currentPaper.value.questions && !validateQuestionTypeOrder(currentPaper.value.questions)) {
-          const suggested = getSuggestedQuestionOrder(currentPaper.value.questions);
-          
-          try {
-            await ElMessageBox.confirm(
-              '当前试卷的题型顺序不规范，建议按照单选题、多选题、判断题的顺序排列。是否自动调整题目顺序？',
-              '题型顺序警告',
-              {
-                confirmButtonText: '自动调整',
-                cancelButtonText: '手动调整',
-                type: 'warning'
-              }
-            );
+        // 检查题型顺序是否合规 (实操题不参与题型顺序检查)
+        if (currentPaper.value && currentPaper.value.questions) {
+          const nonHandsOnQuestions = currentPaper.value.questions.filter(q => q.type !== 'handson');
+          if (nonHandsOnQuestions.length > 1 && !validateQuestionTypeOrder(nonHandsOnQuestions)) {
+            const suggested = getSuggestedQuestionOrder(currentPaper.value.questions);
             
-            // 用户选择自动调整
-            if (currentPaper.value) {
-              currentPaper.value.questions = suggested;
+            try {
+              await ElMessageBox.confirm(
+                '当前试卷的题型顺序不规范，建议按照单选题、多选题、判断题的顺序排列。是否自动调整题目顺序？',
+                '题型顺序警告',
+                {
+                  confirmButtonText: '自动调整',
+                  cancelButtonText: '手动调整',
+                  type: 'warning'
+                }
+              );
+              
+              // 用户选择自动调整
+              if (currentPaper.value) {
+                currentPaper.value.questions = suggested;
+              }
+              ElMessage.success('已自动调整题目顺序');
+            } catch (e) {
+              // 用户选择手动调整，展示建议
+              ElMessage.warning('请手动调整题目顺序，确保同一题型的题目连续排列');
+              questionDialogVisible.value = false;
+              return;
             }
-            ElMessage.success('已自动调整题目顺序');
-          } catch (e) {
-            // 用户选择手动调整，展示建议
-            ElMessage.warning('请手动调整题目顺序，确保同一题型的题目连续排列');
-            questionDialogVisible.value = false;
-            return;
           }
         }
 
@@ -992,15 +1268,39 @@ async function submitQuestionForm() {
         if (currentPaper.value) {
           await apiService.updatePaper(currentPaper.value);
         }
-        
+
         ElMessage.success(isEditQuestion.value ? '编辑题目成功' : '添加题目成功');
         questionDialogVisible.value = false;
       } catch (error) {
         ElMessage.error(isEditQuestion.value ? '编辑题目失败' : '添加题目失败');
-        console.error('Failed to save question:', error);
+        console.error('Failed to submit question:', error);
       }
+    } else {
+      console.log('表单验证失败');
     }
   });
+}
+
+// 从富文本内容中提取标题
+function updateTitleFromRichContent() {
+  if (!questionForm.richContent) return;
+  
+  try {
+    // 创建一个临时的DOM元素来解析HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = questionForm.richContent;
+    
+    // 获取纯文本内容作为标题
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+    
+    // 取前50个字符作为标题，避免过长
+    questionForm.title = textContent.trim().substring(0, 50);
+    if (textContent.length > 50) {
+      questionForm.title += '...';
+    }
+  } catch (error) {
+    console.error('从富文本提取标题时出错:', error);
+  }
 }
 
 // 重排题目函数
@@ -1090,12 +1390,53 @@ function removeOptionImage(optionIndex: number, imgIndex: number) {
   questionForm.options[optionIndex].images.splice(imgIndex, 1)
 }
 
+// 处理编辑器创建完成事件
+const handleCreated = (editor: IDomEditor) => {
+  editorRef.value = editor
+  // 如果有初始内容，设置到编辑器中
+  if (questionForm.richContent) {
+    editorHtml.value = questionForm.richContent
+  }
+}
+
+// 处理编辑器内容变化事件
+const handleEditorChange = (editor: IDomEditor) => {
+  questionForm.richContent = editor.getHtml()
+  updateTitleFromRichContent()
+}
+
+// 组件销毁前销毁编辑器实例
+onBeforeUnmount(() => {
+  const editor = editorRef.value
+  if (editor == null) return
+  editor.destroy()
+})
+
 // 监听级别变化
 watch(selectedLevelId, (newVal) => {
   if (newVal) {
     loadPapers()
   }
 })
+
+// 获取题目标题
+function getQuestionTitle(question: any): string {
+  if (question.type === 'handson' && question.richContent) {
+    // 创建一个临时的DOM元素来解析HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = question.richContent;
+    
+    // 获取纯文本内容
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+    
+    // 取前50个字符作为标题，避免过长
+    const title = textContent.trim().substring(0, 50);
+    return title + (textContent.length > 50 ? '...' : '');
+  } else {
+    // 对于普通题目，直接截取标题
+    return question.title ? (question.title.substring(0, 50) + (question.title.length > 50 ? '...' : '')) : '';
+  }
+}
 </script>
 
 <style scoped>
@@ -1266,5 +1607,179 @@ watch(selectedLevelId, (newVal) => {
     align-items: flex-start;
     gap: 1rem;
   }
+}
+
+.rich-editor-container {
+  width: 100%;
+}
+
+.rich-editor-actions {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.preview-header {
+  font-weight: bold;
+  margin: 15px 0 10px;
+}
+
+.rich-content-preview {
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  min-height: 100px;
+  background-color: #fafafa;
+  overflow: auto;
+}
+
+/* 富文本预览中的样式 */
+.rich-content-preview :deep(img) {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  display: block;
+}
+
+.rich-content-preview :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+.rich-content-preview :deep(table td),
+.rich-content-preview :deep(table th) {
+  border: 1px solid #dcdfe6;
+  padding: 8px;
+}
+
+.rich-content-preview :deep(ul),
+.rich-content-preview :deep(ol) {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.rich-content-preview :deep(pre),
+.rich-content-preview :deep(code) {
+  background-color: #f5f7fa;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-family: monospace;
+}
+
+.rich-content-preview :deep(pre) {
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.rich-content-preview :deep(p) {
+  margin: 8px 0;
+}
+
+.rich-content-preview :deep(h1),
+.rich-content-preview :deep(h2),
+.rich-content-preview :deep(h3),
+.rich-content-preview :deep(h4),
+.rich-content-preview :deep(h5),
+.rich-content-preview :deep(h6) {
+  margin: 12px 0;
+  font-weight: bold;
+}
+
+/* 确保题目详情中的富文本预览样式正确 */
+.question-detail .rich-content-preview {
+  margin: 10px 0 20px 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.rich-content-notice {
+  margin-top: 10px;
+}
+
+.html-tips {
+  font-size: 13px;
+}
+
+.html-tips code {
+  background-color: #f5f7fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+/* 富文本编辑器弹窗样式 */
+:deep(.rich-text-dialog .el-message-box__input) {
+  width: 100%;
+}
+
+:deep(.rich-text-dialog .el-textarea__inner) {
+  min-height: 300px;
+  font-family: monospace;
+}
+
+/* WangEditor 相关样式 */
+.editor-container {
+  border: 1px solid #ccc;
+  z-index: 100;
+  margin-bottom: 20px;
+}
+
+.w-e-text-container {
+  height: 300px !important;
+}
+
+.rich-content-preview {
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  min-height: 100px;
+  background-color: #fafafa;
+  overflow: auto;
+}
+
+.preview-header {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #606266;
+}
+
+/* 精简版富文本预览样式 */
+.rich-content-preview-compact {
+  padding: 10px;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.rich-content-preview-compact :deep(img) {
+  max-width: 100%;
+  max-height: 150px;
+  height: auto;
+  margin: 5px 0;
+  display: inline-block;
+}
+
+.rich-content-preview-compact :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 5px 0;
+}
+
+.rich-content-preview-compact :deep(table td),
+.rich-content-preview-compact :deep(table th) {
+  border: 1px solid #dcdfe6;
+  padding: 5px;
+}
+
+.rich-content-preview-compact :deep(p) {
+  margin: 5px 0;
 }
 </style>

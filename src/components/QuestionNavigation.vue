@@ -22,7 +22,8 @@ const groupedQuestions = computed(() => {
   const groups: Record<string, { type: string, questions: Array<{ question: Question, index: number }> }> = {
     [QuestionType.SingleChoice]: { type: '单选题', questions: [] },
     [QuestionType.MultipleChoice]: { type: '多选题', questions: [] },
-    [QuestionType.TrueFalse]: { type: '判断题', questions: [] }
+    [QuestionType.TrueFalse]: { type: '判断题', questions: [] },
+    [QuestionType.HandsOn]: { type: '实操题', questions: [] }
   }
 
   props.questions.forEach((question, index) => {
@@ -44,26 +45,74 @@ const groupedQuestions = computed(() => {
 })
 
 const getQuestionStatus = (questionId: string, _index: number) => {
-  const answer = props.userAnswers[questionId]
+  try {
+    // 如果是实操题，直接标记为已完成
+    const question = props.questions.find(q => q.id === questionId)
+    if (question && question.type === QuestionType.HandsOn) {
+      return props.showResult ? 'correct' : 'answered'
+    }
 
-  if (!answer || !answer.isAnswered) {
-    return 'unanswered'
+    const answer = props.userAnswers[questionId]
+
+    if (!answer || !answer.isAnswered) {
+      return 'unanswered'
+    }
+
+    if (!props.showResult) {
+      return 'answered'
+    }
+
+    return answer.isCorrect ? 'correct' : 'wrong'
+  } catch (error) {
+    console.error('获取题目状态时出错:', error)
+    return 'unanswered' // 默认返回未作答状态
   }
-
-  if (!props.showResult) {
-    return 'answered'
-  }
-
-  return answer.isCorrect ? 'correct' : 'wrong'
 }
 
 const completedCount = computed(() => {
-  return Object.values(props.userAnswers).filter(a => a.isAnswered).length
+  try {
+    // 计算已完成的题目数量，实操题默认计为已完成
+    let count = 0
+    
+    props.questions.forEach(question => {
+      if (question.type === QuestionType.HandsOn) {
+        count++
+      } else {
+        const answer = props.userAnswers[question.id]
+        if (answer && answer.isAnswered) {
+          count++
+        }
+      }
+    })
+    
+    return count
+  } catch (error) {
+    console.error('计算已完成题目数量时出错:', error)
+    return 0
+  }
 })
 
 const correctCount = computed(() => {
-  if (!props.showResult) return 0
-  return Object.values(props.userAnswers).filter(a => a.isCorrect).length
+  try {
+    if (!props.showResult) return 0
+    
+    // 计算正确的题目数量，实操题不计入评分
+    let count = 0
+    
+    props.questions.forEach(question => {
+      if (question.type !== QuestionType.HandsOn) {
+        const answer = props.userAnswers[question.id]
+        if (answer && answer.isCorrect) {
+          count++
+        }
+      }
+    })
+    
+    return count
+  } catch (error) {
+    console.error('计算正确题目数量时出错:', error)
+    return 0
+  }
 })
 
 const navigateToQuestion = (index: number) => {

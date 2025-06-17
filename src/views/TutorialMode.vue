@@ -3,6 +3,8 @@ import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuestionStore } from '@/stores/question'
 import QuestionItem from '@/components/QuestionItem.vue'
+import HandsOnQuestionItem from '@/components/HandsOnQuestionItem.vue'
+import { QuestionType } from '@/types/question'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 const route = useRoute()
@@ -31,6 +33,11 @@ const totalQuestions = computed(() => questionStore.totalQuestions)
 const isLastQuestion = computed(() => questionStore.isLastQuestion)
 const isFirstQuestion = computed(() => questionStore.isFirstQuestion)
 
+// 检查当前题目是否为实操题
+const isHandsOnQuestion = computed(() => {
+  return currentQuestion.value?.type === QuestionType.HandsOn
+})
+
 const currentUserAnswer = computed(() => {
   if (!currentQuestion.value) return undefined
 
@@ -40,6 +47,13 @@ const currentUserAnswer = computed(() => {
 
 const handleSubmitAnswer = (answer: string | string[]) => {
   if (!currentQuestion.value) return
+
+  // 如果是实操题，自动提交null作为答案
+  if (isHandsOnQuestion.value) {
+    questionStore.submitAnswer(currentQuestion.value.id, null);
+    showResult.value = true;
+    return;
+  }
 
   questionStore.submitAnswer(currentQuestion.value.id, answer)
   showResult.value = true
@@ -160,13 +174,20 @@ const backToHome = async () => {
       </div>
 
       <div class="question-wrapper">
-        <QuestionItem
-          v-if="currentQuestion"
-          :question="currentQuestion"
-          :user-answer="currentUserAnswer"
-          :show-result="showResult"
-          @submit="handleSubmitAnswer"
-        />
+        <!-- 根据题型选择不同的组件 -->
+        <template v-if="currentQuestion">
+          <HandsOnQuestionItem
+            v-if="isHandsOnQuestion"
+            :question="currentQuestion"
+          />
+          <QuestionItem
+            v-else
+            :question="currentQuestion"
+            :user-answer="currentUserAnswer"
+            :show-result="showResult"
+            @submit="handleSubmitAnswer"
+          />
+        </template>
       </div>
     </template>
   </div>
@@ -271,4 +292,4 @@ const backToHome = async () => {
   width: 100%;
   max-width: 700px;
 }
-</style>
+</style> 

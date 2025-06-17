@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import type { Question, Option } from '@/types/question'
 import { QuestionType } from '@/types/question'
 import speechService, { SpeechServiceStatus } from '@/services/speechService'
 
 const props = defineProps<{
   question: Question
-  userAnswer?: string | string[]
+  userAnswer?: string | string[] | null
   showResult?: boolean
   disabled?: boolean
   hideSubmitButton?: boolean
@@ -15,6 +15,11 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'submit', answer: string | string[]): void
 }>()
+
+// 判断是否为实操题
+const isHandsOnQuestion = computed(() => {
+  return props.question.type === QuestionType.HandsOn
+})
 
 // 判断题目是否有图片
 const hasQuestionImages = computed(() => {
@@ -42,37 +47,26 @@ watch(() => speechService.getStatus(), (status) => {
   isSpeaking.value = status === SpeechServiceStatus.SPEAKING
 }, { immediate: true })
 
-// 在组件挂载时输出调试信息
-onMounted(() => {
-  console.log('QuestionItem 组件挂载 - 语音服务状态:', speechService.getStatus())
-  console.log('QuestionItem 组件挂载 - 语音服务可用状态:', speechAvailable.value)
-})
-
-// 文本朗读函数
-const speakText = (text: string) => {
-  if (!speechAvailable.value) return
-
-  // 如果当前正在朗读，先停止
-  speechService.stop()
-
-  // 开始朗读新文本
-  speechService.speak(text)
-}
-
-const selectedAnswer = ref<string | string[]>(
+const selectedAnswer = ref<string | string[] | null>(
   props.question.type === QuestionType.MultipleChoice ? [] : ''
 )
 
 // 当用户答案变化时更新选中状态
 watch(() => props.userAnswer, (newVal) => {
-  if (newVal !== undefined) {
+  if (newVal !== undefined && newVal !== null) {
     selectedAnswer.value = Array.isArray(newVal) ? [...newVal] : newVal
+  } else {
+    selectedAnswer.value = props.question.type === QuestionType.MultipleChoice ? [] : ''
   }
 }, { immediate: true })
 
 // 当题目变化时重置选中状态
 watch(() => props.question, () => {
-  selectedAnswer.value = props.userAnswer || (props.question.type === QuestionType.MultipleChoice ? [] : '')
+  if (props.userAnswer !== undefined && props.userAnswer !== null) {
+    selectedAnswer.value = Array.isArray(props.userAnswer) ? [...props.userAnswer] : props.userAnswer
+  } else {
+    selectedAnswer.value = props.question.type === QuestionType.MultipleChoice ? [] : ''
+  }
 }, { immediate: true })
 
 const isCorrect = computed(() => {
@@ -118,8 +112,26 @@ const handleMultipleSelect = (optionId: string) => {
 }
 
 const submitAnswer = () => {
-  emit('submit', selectedAnswer.value)
+  // 确保不会提交null值
+  const answer = selectedAnswer.value === null 
+    ? (props.question.type === QuestionType.MultipleChoice ? [] : '') 
+    : selectedAnswer.value
+  emit('submit', answer)
 }
+
+// 判断提交按钮是否禁用
+const isSubmitButtonDisabled = computed(() => {
+  // 如果是实操题，提交按钮始终可用
+  if (isHandsOnQuestion.value) {
+    return false
+  }
+  
+  // 对于其他题型，按原有逻辑处理
+  return (props.question.type === QuestionType.MultipleChoice && 
+          Array.isArray(selectedAnswer.value) && 
+          selectedAnswer.value.length === 0) || 
+         selectedAnswer.value === ''
+})
 
 const getOptionClass = (optionId: string) => {
   if (!props.showResult) return {}
@@ -137,6 +149,31 @@ const getOptionClass = (optionId: string) => {
     'option-wrong': isSelected && !isCorrectOption
   }
 }
+
+// 在组件挂载时输出调试信息
+onMounted(() => {
+  console.log('QuestionItem 组件挂载 - 语音服务状态:', speechService.getStatus())
+  console.log('QuestionItem 组件挂载 - 语音服务可用状态:', speechAvailable.value)
+  
+  // 使用nextTick确保组件完全初始化后再自动提交实操题答案
+  nextTick(() => {
+    // 如果是实操题，自动标记为已完成
+    if (isHandsOnQuestion.value && !props.disabled && !props.showResult) {
+      submitAnswer()
+    }
+  })
+})
+
+// 文本朗读函数
+const speakText = (text: string) => {
+  if (!speechAvailable.value) return
+
+  // 如果当前正在朗读，先停止
+  speechService.stop()
+
+  // 开始朗读新文本
+  speechService.speak(text)
+}
 </script>
 
 <template>
@@ -148,7 +185,8 @@ const getOptionClass = (optionId: string) => {
             <span class="question-type">
               {{
                 question.type === QuestionType.SingleChoice ? '[单选题]' :
-                question.type === QuestionType.MultipleChoice ? '[多选题]' : '[判断题]'
+                question.type === QuestionType.MultipleChoice ? '[多选题]' : 
+                question.type === QuestionType.HandsOn ? '[实操题]' : '[判断题]'
               }}
             </span>
           </div>
@@ -312,7 +350,7 @@ const getOptionClass = (optionId: string) => {
       <el-button
         type="primary"
         @click="submitAnswer"
-        :disabled="(question.type === QuestionType.MultipleChoice && Array.isArray(selectedAnswer) && selectedAnswer.length === 0) || selectedAnswer === ''"
+        :disabled="isSubmitButtonDisabled"
       >
         提交答案
       </el-button>

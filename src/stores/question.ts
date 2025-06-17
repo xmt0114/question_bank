@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Paper, UserAnswer, ExamResult, Organization, Category, Level } from '@/types/question'
+import { QuestionType } from '@/types/question'
 import * as dataService from '@/services/dataService'
 
 export const useQuestionStore = defineStore('question', () => {
@@ -52,14 +53,29 @@ export const useQuestionStore = defineStore('question', () => {
   const examResult = computed(() => {
     if (!currentPaper.value) return null
 
-    const correctAnswers = Object.values(userAnswers.value).filter(a => a.isCorrect).length
-    const score = Math.round((correctAnswers / totalQuestions.value) * 100)
+    // 过滤掉实操题
+    const scorableQuestions = currentPaper.value.questions.filter(q => q.type !== QuestionType.HandsOn)
+    const totalScorableQuestions = scorableQuestions.length
+
+    // 计算正确答案数量（排除实操题）
+    const correctAnswers = Object.values(userAnswers.value)
+      .filter(a => {
+        // 找到对应的题目
+        const question = currentPaper.value?.questions.find(q => q.id === a.questionId)
+        // 只统计非实操题的正确答案
+        return question && question.type !== QuestionType.HandsOn && a.isCorrect
+      }).length
+
+    // 如果没有可评分的题目，得分为100
+    const score = totalScorableQuestions > 0 
+      ? Math.round((correctAnswers / totalScorableQuestions) * 100)
+      : 100
 
     const result: ExamResult = {
       paperId: currentPaperId.value,
       userAnswers: userAnswers.value,
       score,
-      totalQuestions: totalQuestions.value,
+      totalQuestions: totalScorableQuestions,
       correctAnswers,
       startTime: examStartTime.value!,
       endTime: examEndTime.value || undefined
@@ -91,11 +107,21 @@ export const useQuestionStore = defineStore('question', () => {
       // 初始化用户答案
       if (currentPaper.value) {
         currentPaper.value.questions.forEach(question => {
-          userAnswers.value[question.id] = {
-            questionId: question.id,
-            answer: Array.isArray(question.answer) ? [] : '',
-            isCorrect: false,
-            isAnswered: false
+          // 如果是实操题，直接标记为已答
+          if (question.type === QuestionType.HandsOn) {
+            userAnswers.value[question.id] = {
+              questionId: question.id,
+              answer: '',
+              isCorrect: true, // 实操题不计入评分，所以标记为正确
+              isAnswered: true // 实操题不需要作答，直接标记为已答
+            }
+          } else {
+            userAnswers.value[question.id] = {
+              questionId: question.id,
+              answer: Array.isArray(question.answer) ? [] : '',
+              isCorrect: false,
+              isAnswered: false
+            }
           }
         })
       }
@@ -127,17 +153,29 @@ export const useQuestionStore = defineStore('question', () => {
     }
   }
 
-  function submitAnswer(questionId: string, answer: string | string[]) {
+  function submitAnswer(questionId: string, answer: string | string[] | null) {
     const question = currentPaper.value?.questions.find(q => q.id === questionId)
     if (!question) return
 
+    // 如果是实操题，直接标记为正确
+    if (question.type === QuestionType.HandsOn) {
+      userAnswers.value[questionId] = {
+        questionId,
+        answer: null as any,
+        isCorrect: true,
+        isAnswered: true
+      }
+      return
+    }
+
+    // 处理其他题型
     const isCorrect = Array.isArray(question.answer)
       ? JSON.stringify(Array.isArray(answer) ? [...answer].sort() : []) === JSON.stringify([...question.answer].sort())
       : answer === question.answer
 
     userAnswers.value[questionId] = {
       questionId,
-      answer,
+      answer: answer as string | string[],
       isCorrect,
       isAnswered: true
     }
